@@ -158,8 +158,12 @@ void main(void)
 {
 	InitSys();
     LCD_Init();
-	Display_Red();
-    ViewTFT();    //在TFT上显示字符
+	Display_White();
+	Display_Image();
+	ChineseChar(50,79,2,colors[2],colors[7],1);	//晶
+    ChineseChar(50,122,2,colors[2],colors[7],2);	//液
+    ChineseChar(50,165,2,colors[2],colors[7],3);	//心
+    ChineseChar(50,208,2,colors[2],colors[7],4);	//伤
     Delay(3000);     
     while(1)
     {

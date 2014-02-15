@@ -191,23 +191,26 @@ void Display_Black(void)
 //******************************************************************
 //  图片显示(仅240*80dot模式)
 //------------------------------------------------------------------
-void Display_Image(void)
+void Display_Image()
 {
     unsigned char i,j,t;
    
 	LCD_CS =0;  //打开片选使能
-	Address_set(0,0,239,319);
+	//Address_set(0,0,239,319);
+	//Address_set(119,119,239,200);
+	Address_set(100,120,219,199);
     LCD_DC=1;
-    for(t=4;t!=0;t--)  //显示4次->填满240x320空间
+    for(t=1;t!=0;t--)  //显示4次->填满240x320空间
     {
 #pragma asm
 		mov DPTR, #Image
 #pragma endasm
 //        unsigned int  k=0;
         
-        for(j=80;j!=0;j--)
+        for(j=0;j<80;j++)
         {
-            for(i=240;i!=0;i--)
+
+            for(i=120;i!=0;i--)
             {
                 LCD_WR = 0;
 #pragma asm
@@ -289,6 +292,7 @@ void Address_set(unsigned int x1,unsigned int y1,unsigned int x2,unsigned int y2
 //------------------------------------------------------------------
 void ChineseChar(uint x,uint y,int size,uint For_color,uint Bk_color ,char c)
 {
+
     int e,i,j;
     int  ed;
    
@@ -302,6 +306,7 @@ void ChineseChar(uint x,uint y,int size,uint For_color,uint Bk_color ,char c)
    
     pfont=(uchar *)fonttable[size];
 
+		 LCD_CS =0;  //打开片选使能
     if(size==0)
     {
         ncols =16-1;
@@ -355,6 +360,7 @@ void ChineseChar(uint x,uint y,int size,uint For_color,uint Bk_color ,char c)
 	        }
         }
     }
+	LCD_CS =1;  //关闭片选使能
 }
 //******************************************************************
 //  字符显示子函数

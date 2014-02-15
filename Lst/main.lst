@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   MAIN                                                                  02/15/2014 16:46:13 PAGE 1   
+C51 COMPILER V7.50   MAIN                                                                  02/15/2014 22:44:01 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   52   1          ChineseChar(24,60,1,colors[0],colors[7],2);     //!
   53   1          
   54   1          ChineseChar( 48,60,1,colors[1],colors[7],3);    //
-C51 COMPILER V7.50   MAIN                                                                  02/15/2014 16:46:13 PAGE 2   
+C51 COMPILER V7.50   MAIN                                                                  02/15/2014 22:44:01 PAGE 2   
 
   55   1          ChineseChar( 72,60,1,colors[2],colors[7],4);    //
   56   1          ChineseChar( 96,60,1,colors[3],colors[2],5);    //
@@ -126,7 +126,7 @@ line level    source
  114   1        TH0=T0_H;
  115   1        TL0=T0_L;
  116   1        if (1==timer)
-C51 COMPILER V7.50   MAIN                                                                  02/15/2014 16:46:13 PAGE 3   
+C51 COMPILER V7.50   MAIN                                                                  02/15/2014 22:44:01 PAGE 3   
 
  117   1        {
  118   2          TR0=1;
@@ -172,26 +172,30 @@ line level    source
  158          {
  159   1              InitSys();
  160   1          LCD_Init();
- 161   1              Display_Red();
- 162   1          ViewTFT();    //在TFT上显示字符
- 163   1          Delay(3000);     
- 164   1          while(1)
- 165   1          {
- 166   2        
- 167   2          }
- 168   1      }
+ 161   1              Display_White();
+ 162   1              Display_Image();
+ 163   1              ChineseChar(50,79,2,colors[2],colors[7],1);     //晶
+ 164   1          ChineseChar(50,122,2,colors[2],colors[7],2);        //液
+ 165   1          ChineseChar(50,165,2,colors[2],colors[7],3);        //心
+ 166   1          ChineseChar(50,208,2,colors[2],colors[7],4);        //伤
+ 167   1          Delay(3000);     
+ 168   1          while(1)
+ 169   1          {
+ 170   2        
+ 171   2          }
+ 172   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   1437    ----
+   CODE SIZE        =   1557    ----
    CONSTANT SIZE    =     81    ----
    XDATA SIZE       =   ----    ----
+C51 COMPILER V7.50   MAIN                                                                  02/15/2014 22:44:01 PAGE 4   
+
    PDATA SIZE       =   ----    ----
    DATA SIZE        =     18    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
-C51 COMPILER V7.50   MAIN                                                                  02/15/2014 16:46:13 PAGE 4   
-
 END OF MODULE INFORMATION.
 
 
