@@ -1,1 +1,0 @@
-"Src\showimg51.c" BROWSE INCDIR(.\Src) DEBUG OBJECTEXTEND PRINT(.\Lst\showimg51.lst) SRC (.\Obj\showimg51.SRC)

@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 14:32:14 PAGE 1   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:19:28 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE S6D0154
@@ -14,7 +14,7 @@ line level    source
    4          
    5          #include"s6d0154_drv.h" //包含_24TFT-OK的正确初始化程序  
    6          
-   7          //#include"picture.h"
+   7          #include"picture.h"
    8          #include"chinese.h"
    9          #include"char.h"
   10          //------------------------------------------------------------------
@@ -62,7 +62,7 @@ line level    source
   52   1              LCD_WR = 1;
   53   1              LCD_CS = 1;
   54   1      }
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 14:32:14 PAGE 2   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:19:28 PAGE 2   
 
   55          /*
   56          void Write_DAT_18(unsigned int i,unsigned int j,unsigned int k)
@@ -126,7 +126,7 @@ line level    source
  114   2                  {
  115   3                  Write_DATA(0x07,0xe0);
  116   3                  //Write_Data_18(0x03,0xf0,0x00);
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 14:32:14 PAGE 3   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:19:28 PAGE 3   
 
  117   3              }
  118   2          }
@@ -190,7 +190,7 @@ line level    source
  176   3                          //Write_DATA_18(0x00,0x00,0x00);
  177   3                  }
  178   2                  for(k=0;k<1;k++)
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 14:32:14 PAGE 4   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:19:28 PAGE 4   
 
  179   2                  {
  180   3                      Write_DATA(0xff,0xff);
@@ -207,41 +207,41 @@ line level    source
  191          //******************************************************************
  192          //  图片显示(仅240*80dot模式)
  193          //------------------------------------------------------------------
- 194          /*void Display_Image(void)
+ 194          void Display_Image(void)
  195          {
- 196              unsigned char i,j,t;
- 197             
- 198                  LCD_CS =0;  //打开片选使能
- 199                  Address_set(0,0,239,319);
- 200              LCD_DC=1;
- 201              for(t=4;t!=0;t--)  //显示4次->填满240x320空间
- 202              {
- 203          #pragma asm
- 204                          mov DPTR, #Image
- 205          #pragma endasm
- 206          //        unsigned int  k=0;
- 207                  
- 208                  for(j=80;j!=0;j--)
- 209                  {
- 210                      for(i=240;i!=0;i--)
- 211                      {
- 212                          LCD_WR = 0;
- 213          #pragma asm
- 214                          clr A
- 215                          movc A, @A+DPTR
- 216                          mov P2, A
- 217                          inc DPTR
- 218                          clr A
- 219                          movc A, @A+DPTR
- 220                          mov P0, A
- 221                          inc DPTR
- 222          #pragma endasm
- 223                          LCD_WR = 1;
- 224          //                Write_DATA(Image[k++],Image[k++]);
- 225                      }
- 226                  }
- 227              }
- 228          }*/
+ 196   1          unsigned char i,j,t;
+ 197   1         
+ 198   1              LCD_CS =0;  //打开片选使能
+ 199   1              Address_set(0,0,239,319);
+ 200   1          LCD_DC=1;
+ 201   1          for(t=4;t!=0;t--)  //显示4次->填满240x320空间
+ 202   1          {
+ 203   2      #pragma asm
+ 204   2                      mov DPTR, #Image
+ 205   2      #pragma endasm
+ 206   2      //        unsigned int  k=0;
+ 207   2              
+ 208   2              for(j=80;j!=0;j--)
+ 209   2              {
+ 210   3                  for(i=240;i!=0;i--)
+ 211   3                  {
+ 212   4                      LCD_WR = 0;
+ 213   4      #pragma asm
+ 214   4                      clr A
+ 215   4                      movc A, @A+DPTR
+ 216   4                      mov P2, A
+ 217   4                      inc DPTR
+ 218   4                      clr A
+ 219   4                      movc A, @A+DPTR
+ 220   4                      mov P0, A
+ 221   4                      inc DPTR
+ 222   4      #pragma endasm
+ 223   4                      LCD_WR = 1;
+ 224   4      //                Write_DATA(Image[k++],Image[k++]);
+ 225   4                  }
+ 226   3              }
+ 227   2          }
+ 228   1      }
  229          //******************************************************************
  230          //  
  231          //------------------------------------------------------------------
@@ -254,7 +254,7 @@ line level    source
  238   1      }
  239          void LCD_Write_COM(char VH,char VL)         //发送命令
  240          {       
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 14:32:14 PAGE 5   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:19:28 PAGE 5   
 
  241   1          LCD_DC=0;
  242   1              LCD_Writ_Bus(VH,VL);
@@ -318,7 +318,7 @@ line level    source
  300   1          uchar *pchar;
  301   1          uchar *fonttable[]={(uchar *)hz16,(uchar *)hz24 , (uchar *)hz32};
  302   1         
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 14:32:14 PAGE 6   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:19:28 PAGE 6   
 
  303   1          pfont=(uchar *)fonttable[size];
  304   1      
@@ -382,7 +382,7 @@ line level    source
  362          void LCD_ShowChar(uint x,uint y,uint For_color,uint Bk_color, char ch)
  363          {       
  364   1          uchar temp , Bytes;
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 14:32:14 PAGE 7   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:19:28 PAGE 7   
 
  365   1          uchar pos,t;
  366   1          uint  CHAR_W,CHAR_H;
@@ -446,7 +446,7 @@ line level    source
  424   1              
  425   1              LCD_Write_COM(0x00,0x11); LCD_Write_DATA(0x00,0x1c);  // Power Control 2
  426   1              LCD_Write_COM(0x00,0x12); LCD_Write_DATA(0x12,0x12);  // Power Control 3  BT2-0, DC11-10, DC21-20, DC31-3
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 14:32:14 PAGE 8   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:19:28 PAGE 8   
 
              -0
  427   1              LCD_Write_COM(0x00,0x13); LCD_Write_DATA(0x00,0x41);  // Power Control 4  DCR_EX=0, DCR2-0, GVD6-0
@@ -510,10 +510,10 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 14:32:14 PAGE 9   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:19:28 PAGE 9   
 
-   CODE SIZE        =   1633    ----
-   CONSTANT SIZE    =   9169    ----
+   CODE SIZE        =   1682    ----
+   CONSTANT SIZE    =  47569    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =     16      73
