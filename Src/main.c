@@ -160,10 +160,13 @@ void main(void)
     LCD_Init();
 	Display_White();
 	Display_Image();
+	
 	ChineseChar(50,79,2,colors[2],colors[7],1);	//¾§
     ChineseChar(50,122,2,colors[2],colors[7],2);	//Òº
     ChineseChar(50,165,2,colors[2],colors[7],3);	//ÐÄ
     ChineseChar(50,208,2,colors[2],colors[7],4);	//ÉË
+
+
     Delay(3000);     
     while(1)
     {

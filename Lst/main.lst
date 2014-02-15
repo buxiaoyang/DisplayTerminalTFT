@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   MAIN                                                                  02/15/2014 22:44:01 PAGE 1   
+C51 COMPILER V7.50   MAIN                                                                  02/16/2014 00:15:42 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   52   1          ChineseChar(24,60,1,colors[0],colors[7],2);     //!
   53   1          
   54   1          ChineseChar( 48,60,1,colors[1],colors[7],3);    //
-C51 COMPILER V7.50   MAIN                                                                  02/15/2014 22:44:01 PAGE 2   
+C51 COMPILER V7.50   MAIN                                                                  02/16/2014 00:15:42 PAGE 2   
 
   55   1          ChineseChar( 72,60,1,colors[2],colors[7],4);    //
   56   1          ChineseChar( 96,60,1,colors[3],colors[2],5);    //
@@ -126,7 +126,7 @@ line level    source
  114   1        TH0=T0_H;
  115   1        TL0=T0_L;
  116   1        if (1==timer)
-C51 COMPILER V7.50   MAIN                                                                  02/15/2014 22:44:01 PAGE 3   
+C51 COMPILER V7.50   MAIN                                                                  02/16/2014 00:15:42 PAGE 3   
 
  117   1        {
  118   2          TR0=1;
@@ -174,24 +174,27 @@ line level    source
  160   1          LCD_Init();
  161   1              Display_White();
  162   1              Display_Image();
- 163   1              ChineseChar(50,79,2,colors[2],colors[7],1);     //¾§
- 164   1          ChineseChar(50,122,2,colors[2],colors[7],2);        //Òº
- 165   1          ChineseChar(50,165,2,colors[2],colors[7],3);        //ÐÄ
- 166   1          ChineseChar(50,208,2,colors[2],colors[7],4);        //ÉË
- 167   1          Delay(3000);     
- 168   1          while(1)
- 169   1          {
- 170   2        
- 171   2          }
- 172   1      }
+ 163   1              
+ 164   1              ChineseChar(50,79,2,colors[2],colors[7],1);     //¾§
+ 165   1          ChineseChar(50,122,2,colors[2],colors[7],2);        //Òº
+ 166   1          ChineseChar(50,165,2,colors[2],colors[7],3);        //ÐÄ
+ 167   1          ChineseChar(50,208,2,colors[2],colors[7],4);        //ÉË
+ 168   1      
+ 169   1      
+ 170   1          Delay(3000);     
+ 171   1          while(1)
+ 172   1          {
+ 173   2        
+ 174   2          }
+ 175   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
+C51 COMPILER V7.50   MAIN                                                                  02/16/2014 00:15:42 PAGE 4   
+
    CODE SIZE        =   1557    ----
    CONSTANT SIZE    =     81    ----
    XDATA SIZE       =   ----    ----
-C51 COMPILER V7.50   MAIN                                                                  02/15/2014 22:44:01 PAGE 4   
-
    PDATA SIZE       =   ----    ----
    DATA SIZE        =     18    ----
    IDATA SIZE       =   ----    ----
