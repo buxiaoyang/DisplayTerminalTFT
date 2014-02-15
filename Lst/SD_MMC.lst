@@ -1,0 +1,410 @@
+C51 COMPILER V7.50   SD_MMC                                                                02/15/2014 14:32:24 PAGE 1   
+
+
+C51 COMPILER V7.50, COMPILATION OF MODULE SD_MMC
+OBJECT MODULE PLACED IN .\Obj\SD_MMC.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Src\SD_MMC.C BROWSE INCDIR(.\Src) DEBUG OBJECTEXTEND PRINT(.\Lst\SD_MMC.lst
+                    -) OBJECT(.\Obj\SD_MMC.obj)
+
+line level    source
+
+   1          /*****************************************************************************
+   2          
+   3                                         SD卡驱动程序
+   4                                      (裁剪版，只读不写）
+   5          
+   6          *****************************************************************************/
+   7          
+   8          //#include <reg51.h>
+   9          #include "STC_NEW_8051.H"
+  10          #include "SD_MMC.h"
+  11          #include"s6d0154_drv.h"
+  12          #include "FAT3216.h"
+  13          #include"head.h"
+  14          //#include "lcd_3310.h"
+  15          
+  16          
+  17          /************************ 外部函数 *************************/
+  18          extern void Delay(unsigned int i);
+  19          
+  20          /********************** 写入一个字节 ***********************/
+  21          void SD_write_byte(unsigned char dat)
+  22          {   
+  23   1                              //不采用循环结构是为了提高处理速度
+  24   1          ACC = dat << 1;     //直接访问ACC和CY加快处理速度
+  25   1          MOSI =  CY; CLK = 0;
+  26   1          ACC += ACC; CLK = 1;
+  27   1          MOSI =  CY; CLK = 0;
+  28   1          ACC += ACC; CLK = 1;
+  29   1          MOSI =  CY; CLK = 0;
+  30   1          ACC += ACC; CLK = 1;
+  31   1          MOSI =  CY; CLK = 0;
+  32   1          ACC += ACC; CLK = 1;
+  33   1          MOSI =  CY; CLK = 0;                                  
+  34   1          ACC += ACC; CLK = 1;
+  35   1          MOSI =  CY; CLK = 0;
+  36   1          ACC += ACC; CLK = 1;
+  37   1          MOSI =  CY; CLK = 0;
+  38   1          ACC += ACC; CLK = 1;
+  39   1          MOSI =  CY; CLK = 0;
+  40   1          ACC += ACC; CLK = 1; // ACC += ACC; for delay 3 cycles only
+  41   1      }
+  42          void Delayus(unsigned char count)
+  43          {
+  44   1        while(--count!=0)
+  45   1        {
+  46   2        }
+  47   1      }
+  48          /********************* 慢速写入一个字节 *********************/
+  49          void SD_write_byte_low_speed(unsigned char x)
+  50          {
+  51   1          unsigned char i;
+  52   1          for(i = 8; i != 0; i--)
+  53   1          {
+  54   2              MOSI = x & 0x80;
+C51 COMPILER V7.50   SD_MMC                                                                02/15/2014 14:32:24 PAGE 2   
+
+  55   2              x <<= 1;
+  56   2              CLK = 0;
+  57   2              Delayus(8);
+  58   2              CLK = 1;
+  59   2              Delayus(8);
+  60   2          }
+  61   1      }
+  62          
+  63          /******************** 利用硬件移入一字节 ********************/
+  64          /*unsigned char SD_spi_read(void)
+  65          {   
+  66              RI = 0; //利用51串口的同步移位功能，以达到最高的速度 2MHz CLK
+  67              while(RI == 0);  //等待读取完成
+  68              return SBUF;     //返回值 LSB MSB 倒序
+  69          }
+  70          */
+  71          /********************** 慢速读入一字节 ***********************/
+  72          unsigned char SD_read_byte_low_speed(void)
+  73          {
+  74   1          unsigned char i, temp;
+  75   1          for(i = 8; i != 0; i--)
+  76   1          {
+  77   2              CLK = 0;
+  78   2              temp <<= 1;
+  79   2              if(MISO) temp++;
+  80   2              Delayus(8);
+  81   2              CLK = 1;
+  82   2              Delayus(8);
+  83   2          }
+  84   1          return temp;
+  85   1      }
+  86          
+  87          /************************ 读入一字节 *************************/
+  88          unsigned char SD_read_byte(void)
+  89          {
+  90   1          unsigned char i;
+  91   1          for(i = 8; i != 0; i--)
+  92   1          {   
+  93   2              ACC <<= 1;          //直接访问ACC加快执行速度
+  94   2              CLK = 0;
+  95   2              if (MISO) ACC++;
+  96   2              CLK = 1;
+  97   2          }
+  98   1          return ACC;
+  99   1      }
+ 100          
+ 101          /********************* SD卡访问出错处理 **********************/
+ 102          void Error(unsigned char Err_code)
+ 103          {
+ 104   1          unsigned char i = 0;
+ 105   1          CS = 1;
+ 106   1      //    TR0 = 0;                //停止播放
+ 107   1          do                      //空读512字节
+ 108   1          {
+ 109   2              SD_read_byte();
+ 110   2              SD_read_byte();
+ 111   2          }
+ 112   1          while(--i);
+ 113   1          LCD_CS =0;  //打开片选使能
+ 114   1          LCD_ShowChar(208,296,colors[0],colors[4], HalftoASC(Err_code>>4));
+ 115   1          LCD_ShowChar(224,296,colors[0],colors[4], HalftoASC(Err_code&0xf));
+ 116   1                                Delay(2000);
+C51 COMPILER V7.50   SD_MMC                                                                02/15/2014 14:32:24 PAGE 3   
+
+ 117   1          LCD_CS =1;  //关闭片选使能
+ 118   1      //    LCD3310_clear_screen(); //清屏
+ 119   1      //    LCD3310_set_XY(37,2);
+ 120   1      //    LCD3310_print(0x0e);    //显示'E'
+ 121   1      //    LCD3310_print(Err_code);//显示错误代码
+ 122   1      //    PCON |= 0x02;           //MCU休眠
+ 123   1      //    while(1);
+ 124   1      }
+ 125                                       
+ 126          /************************ 等待SD响应 *************************/
+ 127          void Wait_start_token(void)
+ 128          {
+ 129   1          unsigned int i;
+ 130   1      //    RI = 0;
+ 131   1          i  = 20000;
+ 132   1          while(--i)
+ 133   1          {             
+ 134   2              if (SD_read_byte() == 0xfe) return;//等待起始令牌0xfe
+ 135   2      //        RI = 0;
+ 136   2          }
+ 137   1          Error(1);                   //超时报错
+ 138   1      }
+ 139          
+ 140          /*********************** 跳过不需要的数据 ********************/
+ 141          void Skip_nwords(unsigned char n)
+ 142          {
+ 143   1          do
+ 144   1          {
+ 145   2              SD_read_byte();
+ 146   2              SD_read_byte();
+ 147   2          }           
+ 148   1          while(--n);
+ 149   1      }
+ 150          
+ 151          /******************* SD读入n个字节数据 ***********************/
+ 152          void Read_nbytes(unsigned char n)
+ 153          {
+ 154   1          unsigned char i = 0;
+ 155   1          do
+ 156   1          {
+ 157   2              Buffer[i] = SD_read_byte();
+ 158   2          }
+ 159   1          while(++i != n);
+ 160   1      }
+ 161          
+ 162          /********************** SD卡 复位，激活 **********************/
+ 163          unsigned char SD_init(void)
+ 164          {
+ 165   1          unsigned char i, timeout, retry, temp, cmd, crc;
+ 166   1      //    #define cmd     Buffer[0]
+ 167   1      //    #define i       Buffer[1]
+ 168   1      //    #define timeout Buffer[2]
+ 169   1      //    #define retry   Buffer[3]
+ 170   1      //    #define temp    Buffer[4]
+ 171   1      //    #define crc     Buffer[5]
+ 172   1      
+ 173   1          CS = 1;
+ 174   1          for(i = 15; i != 0; i--) //复位前,先发送74个以上时钟脉冲
+ 175   1          {
+ 176   2              SD_write_byte_low_speed(0xff);
+ 177   2          }
+ 178   1          LCD_CS =0;  //打开片选使能
+C51 COMPILER V7.50   SD_MMC                                                                02/15/2014 14:32:24 PAGE 4   
+
+ 179   1          LCD_ShowString(0,296,colors[3],colors[4],"TF initing...");
+ 180   1      
+ 181   1          cmd = 0x40;              //CMD0
+ 182   1              Addr.byte[0] = 0;
+ 183   1          crc = 0x95;              
+ 184   1          i = 2;
+ 185   1      //      do
+ 186   1              {                   
+ 187   2              retry = 100;
+ 188   2              do
+ 189   2              {
+ 190   3                  CS = 1;
+ 191   3                  SD_write_byte_low_speed(0xff);
+ 192   3                  CS = 0;
+ 193   3                  SD_write_byte_low_speed(cmd);
+ 194   3                  SD_write_byte_low_speed(Addr.byte[0]);
+ 195   3                  SD_write_byte_low_speed(0);
+ 196   3                  SD_write_byte_low_speed(0);
+ 197   3                  SD_write_byte_low_speed(0);
+ 198   3                  SD_write_byte_low_speed(crc);
+ 199   3      
+ 200   3                  timeout = 100;
+ 201   3                  do
+ 202   3                  {
+ 203   4                      temp = SD_read_byte_low_speed();
+ 204   4          LCD_ShowChar(128,296,colors[2],colors[4], HalftoASC(temp>>4));
+ 205   4          LCD_ShowChar(144,296,colors[2],colors[4], HalftoASC(temp&15));
+ 206   4                  }                       
+ 207   3                  while(temp == 0xff && --timeout);//等待SD卡响应
+ 208   3      
+ 209   3                  if(--retry == 0)
+ 210   3                              {
+ 211   4                                Error(1);       //重试失败报错
+ 212   4                                return 1;
+ 213   4                              }
+ 214   3              }
+ 215   2              while(temp != 1);                  //SD响应字节应为0x01,0x00
+ 216   2                      cmd = 0x41;
+ 217   2                  Addr.byte[0] = 0x40;
+ 218   2              crc = 0xff;                          //伪CRC
+ 219   2          }
+ 220   1      //      while(--i);
+ 221   1              i = 1;                   
+ 222   1          do                       //分别发送 CMD55 和 ACMD41
+ 223   1          {
+ 224   2                      cmd = 0x41;
+ 225   2              crc = 0xff;                          //伪CRC
+ 226   2              retry = 15;
+ 227   2              do
+ 228   2              {
+ 229   3                  CS = 1;
+ 230   3                  SD_write_byte_low_speed(0xff);
+ 231   3                  CS = 0;
+ 232   3                  SD_write_byte_low_speed(cmd);
+ 233   3                  SD_write_byte_low_speed(0);
+ 234   3                  SD_write_byte_low_speed(0);
+ 235   3                  SD_write_byte_low_speed(0);
+ 236   3                  SD_write_byte_low_speed(0);
+ 237   3                  SD_write_byte_low_speed(crc);
+ 238   3      
+ 239   3                  timeout = 100;
+ 240   3                  do
+C51 COMPILER V7.50   SD_MMC                                                                02/15/2014 14:32:24 PAGE 5   
+
+ 241   3                  {
+ 242   4                      temp = SD_read_byte_low_speed();
+ 243   4      
+ 244   4      //    LCD_ShowChar(160,296,colors[7],colors[4], (temp>>4)+'0');
+ 245   4          LCD_ShowChar(240-(retry<<4),272,colors[7],colors[4], HalftoASC(temp&15));
+ 246   4                  }                       
+ 247   3                  while(temp == 0xff && --timeout);//等待SD卡响应
+ 248   3      
+ 249   3                  if(--retry == 0)
+ 250   3                              {
+ 251   4                                Error(1);       //重试失败报错
+ 252   4                                return 2;
+ 253   4                              }
+ 254   3      //        }
+ 255   3      //        while(temp != 1);                  //SD响应字节应为0x01,0x00
+ 256   3              SD_write_byte_low_speed(0xff);       //补充8个时钟脉冲
+ 257   3              CS = 1;             
+ 258   3      //        cmd = 0x69;                          //CMD17
+ 259   3      //        retry = 100;
+ 260   3      //        do
+ 261   3      //        {
+ 262   3                  CS = 1;
+ 263   3                  SD_write_byte_low_speed(0xff);
+ 264   3                  CS = 0;
+ 265   3                  SD_write_byte_low_speed(cmd);
+ 266   3                  SD_write_byte_low_speed(0);
+ 267   3                  SD_write_byte_low_speed(0);
+ 268   3                  SD_write_byte_low_speed(0);
+ 269   3                  SD_write_byte_low_speed(0);
+ 270   3                  SD_write_byte_low_speed(crc);
+ 271   3      
+ 272   3                  timeout = 100;
+ 273   3                  do
+ 274   3                  {
+ 275   4                      temp = SD_read_byte_low_speed();
+ 276   4      //    LCD_ShowChar(192,296,colors[7],colors[4], (temp>>4)+'0');
+ 277   4          LCD_ShowChar(240-(retry<<4),296,colors[7],colors[5], HalftoASC(temp&15));
+ 278   4                  }                       
+ 279   3                  while(temp == 0xff && --timeout);//等待SD卡响应
+ 280   3                              if (temp)
+ 281   3                                Delay(100);
+ 282   3                  if(--retry == 0)
+ 283   3                              {
+ 284   4                                Delay(1000);
+ 285   4                                Error(2);       //重试失败报错
+ 286   4                                return 3;
+ 287   4                              }
+ 288   3              }
+ 289   2              while(temp != 0);                  //SD响应字节应为0x01,0x00
+ 290   2              SD_write_byte_low_speed(0xff);       //补充8个时钟脉冲
+ 291   2              CS = 1;             
+ 292   2          }
+ 293   1          while(--i);
+ 294   1          LCD_CS =0;  //打开片选使能
+ 295   1          LCD_ShowString(0,296,colors[1],colors[4],"TF init OK!");
+ 296   1          LCD_CS =1;  //关闭片选使能
+ 297   1                                Delay(500);
+ 298   1              return 0;
+ 299   1      
+ 300   1      //    #undef cmd
+ 301   1      //    #undef i   
+ 302   1      //    #undef timeout
+C51 COMPILER V7.50   SD_MMC                                                                02/15/2014 14:32:24 PAGE 6   
+
+ 303   1      //    #undef retry
+ 304   1      //    #undef temp
+ 305   1      //    #undef crc
+ 306   1      }
+ 307          
+ 308          /************************ 设置块大小 ************************/
+ 309          void Set_block_size(unsigned char size)
+ 310          {
+ 311   1          unsigned char timeout;
+ 312   1          CS = 0;
+ 313   1          SD_write_byte(0x50);     //发送CMD16
+ 314   1          //MOSI = 0;
+ 315   1          SD_read_byte();           //发送0x00
+ 316   1          SD_read_byte();           //发送0x00
+ 317   1          if (size == 1)
+ 318   1          {
+ 319   2              SD_write_byte(2);    //发送0x02
+ 320   2              //MOSI = 0;
+ 321   2              SD_read_byte();       //发送0x00
+ 322   2          }
+ 323   1          else
+ 324   1          {
+ 325   2             SD_read_byte();        //发送0x00
+ 326   2             SD_write_byte(4);     //发送0x04
+ 327   2          }
+ 328   1          MOSI = 1;
+ 329   1          SD_read_byte();           //发送0xff
+ 330   1      
+ 331   1          timeout = 100;
+ 332   1          do
+ 333   1          {
+ 334   2              if(--timeout == 0) Error(4);//超时报错
+ 335   2          }
+ 336   1          while(SD_read_byte() != 0);
+ 337   1          MOSI = 1;
+ 338   1          SD_read_byte();           //补充8个时钟脉冲
+ 339   1          CS = 1;
+ 340   1      }
+ 341          
+ 342          /*********************** 发送块读命令 ************************/
+ 343          void SD_send_read_cmd(void)
+ 344          {
+ 345   1          unsigned char timeout;
+ 346   1          CS = 0;
+ 347   1          SD_write_byte(0x51);     //发送CMD17
+ 348   1          SD_write_byte(Addr.byte[0]);
+ 349   1          SD_write_byte(Addr.byte[1]);
+ 350   1          SD_write_byte(Addr.byte[2]);
+ 351   1          SD_write_byte(Addr.byte[3]);
+ 352   1          MOSI = 1;
+ 353   1          SD_read_byte();           //发送0xff
+ 354   1          timeout = 100;
+ 355   1          do
+ 356   1          {
+ 357   2              if(--timeout == 0)
+ 358   2                      {
+ 359   3                        Error(3);
+ 360   3                        break;
+ 361   3                      }
+ 362   2          }
+ 363   1          while(SD_read_byte() != 0);
+ 364   1      }
+C51 COMPILER V7.50   SD_MMC                                                                02/15/2014 14:32:24 PAGE 7   
+
+ 365          
+ 366          /********************* 结束块读操作 **************************/
+ 367          void SD_read_block_complete(void)
+ 368          {
+ 369   1          SD_read_byte();          //忽略两字节校验码
+ 370   1          SD_read_byte();          //
+ 371   1          MOSI = 1;
+ 372   1          SD_read_byte();          //补充8个时钟脉冲
+ 373   1          CS = 1;                 //结束一次块读操作
+ 374   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    891    ----
+   CONSTANT SIZE    =     26    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       9
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

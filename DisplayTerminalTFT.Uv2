@@ -17,6 +17,12 @@ File 1,1,<.\Src\serial.c><serial.c> 0x0
 File 1,5,<.\Src\serial.h><serial.h> 0x0 
 File 1,5,<.\Src\STC_NEW_8051.H><STC_NEW_8051.H> 0x0 
 File 1,5,<.\Src\system.h><system.h> 0x0 
+File 1,1,<.\Src\FAT3216.C><FAT3216.C> 0x0 
+File 1,5,<.\Src\FAT3216.H><FAT3216.H> 0x0 
+File 1,1,<.\Src\SD_MMC.C><SD_MMC.C> 0x0 
+File 1,5,<.\Src\SD_MMC.H><SD_MMC.H> 0x0 
+File 1,1,<.\Src\showimg51.c><showimg51.c> 0x0 
+File 1,5,<.\Src\showimg51.h><showimg51.h> 0x0 
 
 
 Options 1,0,0  // Target 'Target 1'
@@ -131,6 +137,25 @@ Options 1,0,0  // Target 'Target 1'
 EndOpt
 
 Options 1,1,7  // File 's6d0154.c'
+ PropFld { 2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ IncBld=2
+ AlwaysBuild=2
+ GenAsm=1
+ AsmAsm=1
+ PublicsOnly=2
+ StopCode=11
+ CustArgs ()
+ LibMods ()
+ BankNo=65535
+ C51FL=177119914
+ C51VA=0
+ C51MSC ()
+ C51DEF ()
+ C51UDF ()
+ INCC5 ()
+EndOpt
+
+Options 1,1,17  // File 'showimg51.c'
  PropFld { 2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
  IncBld=2
  AlwaysBuild=2

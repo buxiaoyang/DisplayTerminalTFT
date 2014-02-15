@@ -44,8 +44,8 @@ void InitSys(void)
     TCON=0x05;  //1->0 == EX0 INT !!!
     TMOD=0x21;  //time0:16bit;time1:serial
     
-    TH1=0xf3;  //12MHz,12T,SMOD=0,2400bps
-    TL1=0xf3;
+    TH1=0xe6;    //12MHz,0xf3, 12T,SMOD=0,2400bps; 24MHz 0xe6
+    TL1=0xe6;
 //    TH1=0xfd;  //11.0592MHz,12T,SMOD=0,9600bps
 //    TL1=0xfd;
     

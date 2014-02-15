@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   SERIAL                                                                02/15/2014 14:11:32 PAGE 1   
+C51 COMPILER V7.50   SERIAL                                                                02/15/2014 14:32:19 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE SERIAL
@@ -19,7 +19,7 @@ line level    source
    9          //  STC89/12(MPC89/82)软复位程序
   10          //------------------------------------------------------------------
   11          
-  12          #define    RELOAD_COUNT    0xf3    //12MHz,12T,SMOD=0,2400bps
+  12          #define    RELOAD_COUNT    0xe6    //12MHz,0xf3, 12T,SMOD=0,2400bps; 24MHz 0xe6
   13          #define    Self_Define_ISP_Download_Command    0x7f
   14          //#define    RELOAD_COUNT    0xfd    //11.0592MHz,12T,SMOD=0,9600bps
   15          //#define    Self_Define_ISP_Download_Command    0x0d
@@ -37,12 +37,12 @@ line level    source
   27   1        {
   28   2          RI   =    0;
   29   2          k    =    SBUF;
-  30   2          if(k==Self_Define_ISP_Download_Command)        //是自定义下载命令
+  30   2          if((k==Self_Define_ISP_Download_Command)||(0x1f==k))        //是自定义下载命令
   31   2          {
   32   3            get_i++;
   33   3            if (10==get_i)
   34   3            {
-  35   4              Delay(100); //zxy
+  35   4              Delay(200); //zxy
   36   4              soft_reset_to_ISP_Monitor();    //软复位到系统ISP监控区
   37   4            }
   38   3          }
@@ -62,7 +62,7 @@ line level    source
   52   2          {
   53   3            LenToSend--;
   54   3            if (0==LenToSend)
-C51 COMPILER V7.50   SERIAL                                                                02/15/2014 14:11:32 PAGE 2   
+C51 COMPILER V7.50   SERIAL                                                                02/15/2014 14:32:19 PAGE 2   
 
   55   3              SBUF=DataToSend>>8;
   56   3            else
@@ -84,7 +84,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    135    ----
+   CODE SIZE        =    140    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

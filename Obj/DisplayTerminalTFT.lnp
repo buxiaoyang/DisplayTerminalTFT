@@ -1,6 +1,9 @@
 ".\Obj\STARTUP.obj",
 ".\Obj\main.obj",
 ".\Obj\s6d0154.obj",
-".\Obj\serial.obj" 
+".\Obj\serial.obj",
+".\Obj\FAT3216.obj",
+".\Obj\SD_MMC.obj",
+".\Obj\showimg51.obj" 
 TO ".\Obj\DisplayTerminalTFT" 
 PRINT(".\Lst\DisplayTerminalTFT.m51") RAMSIZE(256) 

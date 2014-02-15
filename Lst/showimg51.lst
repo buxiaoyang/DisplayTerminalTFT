@@ -1,0 +1,243 @@
+C51 COMPILER V7.50   SHOWIMG51                                                             02/15/2014 14:32:26 PAGE 1   
+
+
+C51 COMPILER V7.50, COMPILATION OF MODULE SHOWIMG51
+OBJECT MODULE PLACED IN Src\showimg51.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Src\showimg51.c BROWSE INCDIR(.\Src) DEBUG OBJECTEXTEND PRINT(.\Lst\showimg
+                    -51.lst) SRC(.\Obj\showimg51.SRC)
+
+line level    source
+
+   1          /*****************************************************************************
+   2          
+   3                               51系列模拟总线和模拟SPI显示图片
+   4                                   高度优化 V0.1 2012.11.10
+   5          
+   6          *****************************************************************************/
+   7          
+   8          #include "STC_NEW_8051.H"
+   9          #include "SD_MMC.h"
+  10          #include "s6d0154_drv.h"
+  11          #include "FAT3216.h"
+  12          #include "showimg51.h"
+  13          #include "picture.h"
+  14          
+  15          extern LongByte  File_length, Next_cluster;
+  16          extern LongByte Addr;                   //SD卡数据物理地址
+  17          
+  18          extern unsigned char gSector_count; //扇区计数器
+  19          extern unsigned char FatType;
+  20          extern unsigned long FAT_base;
+  21          extern unsigned long Dat_base;
+  22          extern unsigned char Cluster_size;
+  23          extern unsigned char Shift_bits;
+  24          
+  25          //******************************************************************
+  26          //  ROM图片显示(仅240*80dot模式)
+  27          //------------------------------------------------------------------
+  28          void Show_ROMImage(void)
+  29          {
+  30   1          unsigned char i,j,t;
+  31   1         
+  32   1              LCD_CS =0;  //打开片选使能
+  33   1              Address_set(0,0,239,319);
+  34   1          LCD_DC=1;
+  35   1          for(t=4;t!=0;t--)  //显示4次->填满240x320空间
+  36   1          {
+  37   2      #pragma asm
+  38   2                      mov DPTR, #Image
+  39   2      #pragma endasm
+  40   2              
+  41   2              for(j=80;j!=0;j--)
+  42   2              {
+  43   3                  for(i=240;i!=0;i--)
+  44   3                  {
+  45   4                      LCD_WR = 0;
+  46   4      #pragma asm
+  47   4                      clr A
+  48   4                      movc A, @A+DPTR
+  49   4                      mov P2, A
+  50   4                      inc DPTR
+  51   4                      clr A
+  52   4                      movc A, @A+DPTR
+  53   4                      mov P0, A
+  54   4                      inc DPTR
+C51 COMPILER V7.50   SHOWIMG51                                                             02/15/2014 14:32:26 PAGE 2   
+
+  55   4      #pragma endasm
+  56   4                      LCD_WR = 1;
+  57   4                  }
+  58   3              }
+  59   2          }
+  60   1      }
+  61          
+  62          //******************************************************************
+  63          //  TF卡图片显示(240*320dot模式)
+  64          //------------------------------------------------------------------
+  65          unsigned char Show_TFImage(void)
+  66          {
+  67   1      //  unsigned char i;
+  68   1        unsigned int k;
+  69   1      
+  70   1        LCD_CS =0;  //打开片选使能
+  71   1        Address_set(0,0,239,319);
+  72   1        LCD_DC=1;
+  73   1      
+  74   1        for (k=300; k!=0; k--)   //读取300 * 512字节
+  75   1        {
+  76   2        //------------------- 发送扇区读取命令 -----------------
+  77   2        SD_send_read_cmd();
+  78   2        //-------------------- 读取一扇区数据 ---------------------
+  79   2        Wait_start_token();         //等待SD卡响应
+  80   2      //  i=0;
+  81   2      //  do
+  82   2      //  {
+  83   2      //    LCD_WR = 0;
+  84   2      //      P2 = SD_read_byte();
+  85   2      //      P2 = *pBuffer;
+  86   2      //      pBuffer++;
+  87   2      //      P0 = SD_read_byte();
+  88   2      //      P2 = *pBuffer;
+  89   2      //      pBuffer++;
+  90   2      //              为了兼容现有图片，互换了高低字节顺序
+  91   2      #pragma asm
+  92   2                      mov a, P4
+  93   2                      anl a, #0FBH
+  94   2                      mov r5, a
+  95   2                      orl a, #04H
+  96   2                      mov r6, a
+  97   2                      mov r7, #0
+  98   2      repTF1: clr LCD_WR
+  99   2                      REPT 8
+ 100   2      //              clr CLK
+ 101   2                      mov P4, r5
+ 102   2                      mov c, MISO
+ 103   2      //              setb CLK
+ 104   2                      mov P4, r6
+ 105   2                      rlc A
+ 106   2                      ENDM
+ 107   2                      mov P0, A
+ 108   2      
+ 109   2                      REPT 8
+ 110   2                      mov P4, r5
+ 111   2                      mov c, MISO
+ 112   2                      mov P4, r6
+ 113   2                      rlc A
+ 114   2                      ENDM
+ 115   2      /*              clr CLK
+ 116   2                      mov c, MISO
+C51 COMPILER V7.50   SHOWIMG51                                                             02/15/2014 14:32:26 PAGE 3   
+
+ 117   2                      setb CLK
+ 118   2                      rlc A
+ 119   2                      clr CLK
+ 120   2                      mov c, MISO
+ 121   2                      setb CLK
+ 122   2                      rlc A
+ 123   2                      clr CLK
+ 124   2                      mov c, MISO
+ 125   2                      setb CLK
+ 126   2                      rlc A
+ 127   2                      clr CLK
+ 128   2                      mov c, MISO
+ 129   2                      setb CLK
+ 130   2                      rlc A
+ 131   2                      clr CLK
+ 132   2                      mov c, MISO
+ 133   2                      setb CLK
+ 134   2                      rlc A
+ 135   2                      clr CLK
+ 136   2                      mov c, MISO
+ 137   2                      setb CLK
+ 138   2                      rlc A
+ 139   2                      clr CLK
+ 140   2                      mov c, MISO
+ 141   2                      setb CLK
+ 142   2                      rlc A
+ 143   2                      clr CLK
+ 144   2                      mov c, MISO
+ 145   2                      setb CLK
+ 146   2                      rlc A
+ 147   2      */              mov P2, A
+ 148   2                      setb LCD_WR
+ 149   2                      djnz r7, repTF1
+ 150   2      #pragma endasm
+ 151   2      
+ 152   2      //      LCD_WR = 1;
+ 153   2      //      i--;
+ 154   2      //      }while(i!=0);
+ 155   2          SD_read_block_complete();                     //结束一次块读操作
+ 156   2      
+ 157   2          //------------------- 计算下一扇区地址 --------------------
+ 158   2          if (--gSector_count != 0)
+ 159   2          {                           //如在同一簇内
+ 160   3            Addr.all += 512;          //则下一扇区地址增加512
+ 161   3          }
+ 162   2          else                        //否则要查找下一簇地址
+ 163   2          {
+ 164   3            Set_block_size(0);                            //设定SD卡块大小为4字节
+ 165   3            if (FatType)
+ 166   3              Next_cluster.all = Next_cluster.all << 1;
+ 167   3            Addr.all = FAT_base + (Next_cluster.all << 1);//根据簇链计算链表地址
+ 168   3            SD_send_read_cmd();                           //发送读取指令
+ 169   3            gSector_count = Cluster_size;                  //扇区计数器重置
+ 170   3            Wait_start_token();                           //等待SD卡响应
+ 171   3            Next_cluster.byte[3] = SD_read_byte();        //获取下一簇簇号
+ 172   3            Next_cluster.byte[2] = SD_read_byte();
+ 173   3            Next_cluster.byte[1] = SD_read_byte();
+ 174   3            Next_cluster.byte[0] = SD_read_byte();
+ 175   3            if(!FatType)
+ 176   3                {
+ 177   4              Next_cluster.byte[1] = 0;
+ 178   4              Next_cluster.byte[0] = 0;
+C51 COMPILER V7.50   SHOWIMG51                                                             02/15/2014 14:32:26 PAGE 4   
+
+ 179   4                }
+ 180   3                SD_read_block_complete();                     //结束一次块读操作
+ 181   3            Addr.all = Dat_base + (Next_cluster.all << Shift_bits);//计算下一簇地址
+ 182   3      
+ 183   3            Set_block_size(1);                            //重新设定SD卡块大小为512字节
+ 184   3      
+ 185   3            if (FatType)
+ 186   3            {
+ 187   4              if (( Next_cluster.byte[3]                    //判断是否为簇链结束标志 0x0fffffff
+ 188   4                  & Next_cluster.byte[2]
+ 189   4                  & Next_cluster.byte[1]) == 0xff
+ 190   4                 && Next_cluster.byte[0]  == 0x0f)
+ 191   4              {
+ 192   5                        return 0;
+ 193   5              }
+ 194   4            }                               //如果是，返回1
+ 195   3            else
+ 196   3            {
+ 197   4              if (( Next_cluster.byte[3]            //判断是否为簇链结束标志 0xffff
+ 198   4                  & Next_cluster.byte[2]) == 0xff)
+ 199   4              {
+ 200   5                return 0;
+ 201   5              }
+ 202   4            }
+ 203   3          }                                                 
+ 204   2          File_length.all--;                                //文件长度递减
+ 205   2          if ((File_length.byte[1]                          //判断文件读完
+ 206   2             | File_length.byte[2]                          
+ 207   2             | File_length.byte[3]) == 0)                   
+ 208   2          {
+ 209   3            return 2;
+ 210   3          }                                                                   //如果是，返回2
+ 211   2        }
+ 212   1        return 0;                                
+ 213   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    542    ----
+   CONSTANT SIZE    =  38400    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

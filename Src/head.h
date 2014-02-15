@@ -8,19 +8,9 @@
 //  PCB:v1
 //  NAM:彩屏程序                                            20120906
 //******************************************************************
-//  I/O define
-//---------------------------------
 
-sbit LCD_CS  =  P1^0;
-sbit LCD_DC  =  P1^1;
-sbit LCD_WR  =  P1^2;
-sbit LCD_RD  =  P1^3;
-
-sbit LCD_RST =  P1^4;
-
-#define  LCD_DataPortH P2     //高8位数据口,8位模式下只使用高8位 
-#define  LCD_DataPortL P0     //低8位数据口	,8位模式下低8位可以不接线
-
+void HEXtoASC(unsigned int HEX, unsigned char index);
+unsigned char HalftoASC(unsigned char half);
 unsigned char code pic1[];
 void Delay(unsigned int tt);
 void delayms(unsigned int tt);

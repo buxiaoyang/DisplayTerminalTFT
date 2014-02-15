@@ -9,7 +9,7 @@ unsigned int DataToSend;
 //  STC89/12(MPC89/82)软复位程序
 //------------------------------------------------------------------
 
-#define    RELOAD_COUNT    0xf3    //12MHz,12T,SMOD=0,2400bps
+#define    RELOAD_COUNT    0xe6    //12MHz,0xf3, 12T,SMOD=0,2400bps; 24MHz 0xe6
 #define    Self_Define_ISP_Download_Command    0x7f
 //#define    RELOAD_COUNT    0xfd    //11.0592MHz,12T,SMOD=0,9600bps
 //#define    Self_Define_ISP_Download_Command    0x0d
@@ -27,12 +27,12 @@ void UART_Interrupt_Receive(void) interrupt 4 //using 1
   {
     RI   =    0;
     k    =    SBUF;
-    if(k==Self_Define_ISP_Download_Command)        //是自定义下载命令
+    if((k==Self_Define_ISP_Download_Command)||(0x1f==k))        //是自定义下载命令
     {
       get_i++;
       if (10==get_i)
       {
-        Delay(100); //zxy
+        Delay(200); //zxy
         soft_reset_to_ISP_Monitor();    //软复位到系统ISP监控区
       }
     }
