@@ -1,0 +1,5 @@
+".\Obj\main.obj",
+".\Obj\s6d0154.obj",
+".\Obj\STARTUP.obj" 
+TO ".\Obj\DisplayTerminalTFT" 
+PRINT(".\Lst\DisplayTerminalTFT.m51") RAMSIZE(256) 
