@@ -1,13 +1,12 @@
-Build target 'Target 1'
-compiling main.c...
-Src\main.c(13): warning C318: can't open file 'HEAD.H'
-Src\main.c(24): warning C318: can't open file 'serial.h'
-Src\main.c(25): warning C318: can't open file 'SysTem.H'
-SRC\MAIN.C(44): error C202: 'LCD_CS': undefined identifier
-SRC\MAIN.C(104): error C202: 'LCD_CS': undefined identifier
-compiling s6d0154.c...
-assembling STARTUP.A51...
-Target not created
+<html>
+<body>
+<pre>
+<h1>µVision3 Build Log</h1>
+<h2>Project:</h2>
+C:\ShareXP\GitHub\DisplayTerminalTFT\trunk\DisplayTerminalTFT.uv2
+Project File Date:  02/15/2014
+
+<h2>Output:</h2>
 Build target 'Target 1'
 compiling main.c...
 compiling s6d0154.c...

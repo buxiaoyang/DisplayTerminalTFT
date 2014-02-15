@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 12:33:08 PAGE 1   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 13:57:43 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE S6D0154
@@ -62,7 +62,7 @@ line level    source
   52                  RD0 = 1;
   53                  P2  = i;
   54                  P0  = j;
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 12:33:08 PAGE 2   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 13:57:43 PAGE 2   
 
   55                  WR0 = 0;
   56                  WR0 = 1;
@@ -126,7 +126,7 @@ line level    source
  114   1      }
  115          void Display_Blue(void)
  116          {  
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 12:33:08 PAGE 3   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 13:57:43 PAGE 3   
 
  117   1          int i,j;
  118   1           
@@ -190,7 +190,7 @@ line level    source
  176   2          }
  177   1          //---------------------------------
  178   1          for(i=0;i<240;i++)
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 12:33:08 PAGE 4   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 13:57:43 PAGE 4   
 
  179   1          {
  180   2              Write_DATA(0xff,0xff);
@@ -254,7 +254,7 @@ line level    source
  238   3                  LCD_Write_DATA(VH,VL);
  239   3                  }
  240   2          }
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 12:33:08 PAGE 5   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 13:57:43 PAGE 5   
 
  241   1          LCD_CS =1;  //关闭片选使能
  242   1      }
@@ -318,7 +318,7 @@ line level    source
  300   1          Address_set(x,  y, x+nrows,y+ncols);
  301   1          //---------------------------------
  302   1          for(i=0;i<nbytes;i++)
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 12:33:08 PAGE 6   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 13:57:43 PAGE 6   
 
  303   1          {
  304   2              ed=*pchar++;
@@ -382,7 +382,7 @@ line level    source
  362   3              }
  363   2          }
  364   1      }  
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 12:33:08 PAGE 7   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 13:57:43 PAGE 7   
 
  365          //******************************************************************
  366          //  显示字符串子函数    x,y:起点坐标    *p:字符串起始地址
@@ -446,7 +446,7 @@ line level    source
  423   1          LCD_Write_COM(0x00,0x39); LCD_Write_DATA(0x00,0x00);  //            VSA = 000000000 
  424   1          LCD_Write_COM(0x00,0x50); LCD_Write_DATA(0x01,0x01);  // Gamma Control
  425   1          //---------------------------------
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 12:33:08 PAGE 8   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 13:57:43 PAGE 8   
 
  426   1              LCD_Write_COM(0x00,0x51); LCD_Write_DATA(0x09,0x03);
  427   1              LCD_Write_COM(0x00,0x52); LCD_Write_DATA(0x0b,0x08);

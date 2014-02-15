@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   MAIN                                                                  02/15/2014 12:33:07 PAGE 1   
+C51 COMPILER V7.50   MAIN                                                                  02/15/2014 13:57:40 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   52   1          ChineseChar(24,60,1,colors[0],colors[7],2);     //!
   53   1          
   54   1          ChineseChar( 48,60,1,colors[1],colors[7],3);    //
-C51 COMPILER V7.50   MAIN                                                                  02/15/2014 12:33:07 PAGE 2   
+C51 COMPILER V7.50   MAIN                                                                  02/15/2014 13:57:40 PAGE 2   
 
   55   1          ChineseChar( 72,60,1,colors[2],colors[7],4);    //
   56   1          ChineseChar( 96,60,1,colors[3],colors[2],5);    //
@@ -126,7 +126,7 @@ line level    source
  114   1          Delay(100);
  115   1          LCD_Init();//-yuan
  116   1          Delay(100);
-C51 COMPILER V7.50   MAIN                                                                  02/15/2014 12:33:07 PAGE 3   
+C51 COMPILER V7.50   MAIN                                                                  02/15/2014 13:57:40 PAGE 3   
 
  117   1          /*
  118   1                  //---------------------------------
