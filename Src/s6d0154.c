@@ -1,4 +1,5 @@
-#include <reg52.h>
+//#include <reg52.h>
+#include "STC_NEW_8051.H"
 #include"head.h"        //IO define
 
 #include"s6d0154_drv.h" //包含_24TFT-OK的正确初始化程序  
@@ -15,11 +16,19 @@ uint colors[]={
 //******************************************************************
 //  
 //------------------------------------------------------------------
-void delayms(long tt)
+void delayms(unsigned int tt) //0.5
 {
+    unsigned char i;
+	unsigned char j;
     while(tt>0)
     {
         tt--;
+        for(j=0;j<5;j++)
+	    {
+		    for(i=0;i<168;i++)
+			{
+			}
+        }
     }
 }
 /*
@@ -79,10 +88,8 @@ void Display_Red(void)
 {  
     int i,j,k=0;
      
-    Write_COMD(0x00,0x20);
-    Write_DATA(0x00,0x00);        
-    Write_COMD(0x00,0x21);
-    Write_DATA(0x00,0x00);   
+	LCD_CS =0;  //打开片选使能
+	Address_set(0,0,239,319);
         
     Write_COMD(0x00,0x22); 
     for(i=0;i<320;i++)
@@ -97,10 +104,8 @@ void Display_Green(void)
 {  
     int i,j;
    
-    Write_COMD(0x00,0x20);
-    Write_DATA(0x00,0x00);        
-    Write_COMD(0x00,0x21);
-    Write_DATA(0x00,0x00);        
+	LCD_CS =0;  //打开片选使能
+	Address_set(0,0,239,319);
    
     Write_COMD(0x00,0x22); 
     for(i=0;i<320;i++)
@@ -135,7 +140,8 @@ void Display_White(void)
 {
     int i,j;
     
-    Write_COMD(0x00,0x22);
+	LCD_CS =0;  //打开片选使能
+	Address_set(0,0,239,319);
     for(i=0;i<320;i++)
     {
         for(j=0;j<240;j++)
@@ -149,7 +155,8 @@ void Display_Black(void)
 {  
     int i,j,k;
      
-    Write_COMD(0x00,0x22);
+	LCD_CS =0;  //打开片选使能
+	Address_set(0,0,239,319);
     for(i=0;i<240;i++)
     {
         Write_DATA(0xff,0xff);
@@ -186,18 +193,35 @@ void Display_Black(void)
 //------------------------------------------------------------------
 void Display_Image(void)
 {
-    unsigned int i=0,j=0,t=0;
+    unsigned char i,j,t;
    
-    Write_COMD(0x00,0x22);
-    for(t=0;t<4;t++)  //显示4次->填满240x320空间
+	LCD_CS =0;  //打开片选使能
+	Address_set(0,0,239,319);
+    LCD_DC=1;
+    for(t=4;t!=0;t--)  //显示4次->填满240x320空间
     {
-        unsigned int  k=0;
+#pragma asm
+		mov DPTR, #Image
+#pragma endasm
+//        unsigned int  k=0;
         
-        for(i=0;i<240;i++)
+        for(j=80;j!=0;j--)
         {
-            for(j=0;j<80;j++)
+            for(i=240;i!=0;i--)
             {
-                Write_DATA(Image[k++],Image[k++]);
+                LCD_WR = 0;
+#pragma asm
+		clr A
+		movc A, @A+DPTR
+		mov P2, A
+		inc DPTR
+		clr A
+		movc A, @A+DPTR
+		mov P0, A
+		inc DPTR
+#pragma endasm
+                LCD_WR = 1;
+//                Write_DATA(Image[k++],Image[k++]);
             }
         }
     }
@@ -227,15 +251,22 @@ void LCD_Write_DATA(char VH,char VL)	//发送数据
 //------------------------------------------------------------------
 void Pant(char VH,char VL)
 {
-	int i,j;
+	unsigned char i;
+	unsigned char j;
 	
 	LCD_CS =0;  //打开片选使能
 	Address_set(0,0,239,319);
-    for(i=0;i<320;i++)
+    LCD_DataPortH=VH;	  //高位P口
+	LCD_DataPortL=VL;	  //低位P口	
+    LCD_DC=1;
+    for(i=160;i!=0;i--)
 	{
-        for (j=0;j<240;j++)
+        for (j=240;j!=0;j--)
         {
-            LCD_Write_DATA(VH,VL);
+            LCD_WR=0;
+            LCD_WR=1; 
+            LCD_WR=0;
+            LCD_WR=1; 
 	    }
     }
     LCD_CS =1;  //关闭片选使能
@@ -258,7 +289,7 @@ void Address_set(unsigned int x1,unsigned int y1,unsigned int x2,unsigned int y2
 //------------------------------------------------------------------
 void ChineseChar(uint x,uint y,int size,uint For_color,uint Bk_color ,char c)
 {
-    int e=0,i,j;
+    int e,i,j;
     int  ed;
    
     uint  ncols;
@@ -380,12 +411,12 @@ void LCD_ShowString(uint x,uint y,uint For_color,uint Bk_color,char *p)
 //------------------------------------------------------------------
 void LCD_Init(void)
 {
-    LCD_RST=1;
-    delayms(5);
+//    LCD_RST=1;
+//    delayms(5);
 	LCD_RST=0;
 	delayms(5);
 	LCD_RST=1;
-	delayms(5);
+//	delayms(5);
 	LCD_CS =0;  //打开片选使能
     //---------------------------------
 	LCD_Write_COM(0x00,0x10); LCD_Write_DATA(0x00,0x00);  // Power Control 1  current consumption  STB
@@ -403,9 +434,9 @@ void LCD_Init(void)
 	LCD_Write_COM(0x00,0x11); LCD_Write_DATA(0x07,0x1c);  // Power Control 2
 	delayms(300);//300ms
 	LCD_Write_COM(0x00,0x11); LCD_Write_DATA(0x0f,0x1c);  // Power Control 2
-	delayms(40);//600ms
+	delayms(600);//600ms
 	LCD_Write_COM(0x00,0x11); LCD_Write_DATA(0x0f,0x39);  // Power Control 2
-	delayms(60);//500ms
+	delayms(500);//500ms
 	LCD_Write_COM(0x00,0x01); LCD_Write_DATA(0x01,0x28);  // Driver Output Control
 	LCD_Write_COM(0x00,0x02); LCD_Write_DATA(0x01,0x00);  // LCD-Driving-Waveform Control
 	LCD_Write_COM(0x00,0x03); LCD_Write_DATA(0x10,0x30);  // Entry Mode
@@ -440,7 +471,7 @@ void LCD_Init(void)
 	LCD_Write_COM(0x00,0x0f); LCD_Write_DATA(0x1f,0x01);  // Start Oscillation
 	delayms(300);//300ms
 	LCD_Write_COM(0x00,0x07); LCD_Write_DATA(0x00,0x16);  // Display Control
-	delayms(32);//200ms
+	delayms(200);//200ms
 	LCD_Write_COM(0x00,0x07); LCD_Write_DATA(0x00,0x17);
 	//---------------------------------
 	LCD_CS =1;

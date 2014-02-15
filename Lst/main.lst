@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   MAIN                                                                  02/15/2014 13:57:40 PAGE 1   
+C51 COMPILER V7.50   MAIN                                                                  02/15/2014 14:11:30 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE MAIN
@@ -16,21 +16,21 @@ line level    source
    6          //  NAM:彩屏程序                                            20120906
    7          //******************************************************************
    8          //#include <REG54.H>
-   9          #include <reg51.h>
-  10          #define uchar unsigned char
-  11          #define uint unsigned int
-  12          
-  13          #include <HEAD.H>
-  14          
-  15          //#include"init_tft.h"
-  16          #include"s6d0154_drv.h"
-  17          
-  18          //---------------------------------
-  19          #define T0_H 0xfc
-  20          #define T0_L 0x66
-  21          #define T1_H 0xfe
-  22          #define T1_L 0x31
-  23          void Delay(unsigned int);
+   9          //#include <reg51.h>
+  10          #include "STC_NEW_8051.H"
+  11          #define uchar unsigned char
+  12          #define uint unsigned int
+  13          
+  14          #include "HEAD.H"
+  15          
+  16          //#include"init_tft.h"
+  17          #include"s6d0154_drv.h"
+  18          
+  19          //---------------------------------
+  20          #define T0_H 0xFC
+  21          #define T0_L 0x1A
+  22          #define T1_H 0xfe
+  23          #define T1_L 0x31
   24          #include <serial.h> //串口功能
   25          #include <SysTem.H>
   26          //****************************************************************
@@ -39,7 +39,7 @@ line level    source
   29          //           fosc=12MHz;count=10;j=5, i=62; Keil uV2=9.977ms
   30          //STC12c4042:fosc=12Mhz;count=1; j=10,i=169;KEIL750 =1.000ms!!!不准!!!实际长了
   31          //STC12c5410AD:内置5.756373M;count=10;j=10,i=78;KEIL750=10.000ms!
-  32          void Delay(unsigned int count)// delay=1ms*count
+  32          void Delay(unsigned int count)// delay=1ms*count 12MHz with 11L60XE
   33          {
   34   1          unsigned char i,j;
   35   1          while(count--!=0)
@@ -53,16 +53,16 @@ line level    source
   43          {
   44   1          LCD_CS =0;  //打开片选使能
   45   1          //---------------------------------
-  46   1          ChineseChar(14+46,10,2,colors[2],colors[7],1);      //伤
-  47   1          ChineseChar(46+46,10,2,colors[2],colors[7],2);      //心
-  48   1          ChineseChar(78+46,10,2,colors[2],colors[7],3);      //液
-  49   1          ChineseChar(110+46,10,2,colors[2],colors[7],4);     //晶
+  46   1          ChineseChar(14+46,10,2,colors[2],colors[7],1);      //晶
+  47   1          ChineseChar(46+46,10,2,colors[2],colors[7],2);      //液
+  48   1          ChineseChar(78+46,10,2,colors[2],colors[7],3);      //心
+  49   1          ChineseChar(110+46,10,2,colors[2],colors[7],4);     //伤
   50   1              //---------------------------------
   51   1          ChineseChar( 0,60,1,colors[0],colors[7],1);     //靠
   52   1          ChineseChar(24,60,1,colors[0],colors[7],2);     //!
   53   1          
   54   1          ChineseChar( 48,60,1,colors[1],colors[7],3);    //
-C51 COMPILER V7.50   MAIN                                                                  02/15/2014 13:57:40 PAGE 2   
+C51 COMPILER V7.50   MAIN                                                                  02/15/2014 14:11:30 PAGE 2   
 
   55   1          ChineseChar( 72,60,1,colors[2],colors[7],4);    //
   56   1          ChineseChar( 96,60,1,colors[3],colors[2],5);    //
@@ -118,75 +118,163 @@ line level    source
  106          //******************************************************************
  107          //  主程序
  108          //------------------------------------------------------------------
- 109          void main(void)
+ 109          void TestDelay(uchar timer)
  110          {
- 111   1          Delay(100);
- 112   1              InitSys();//初始化timer/serial-isp
- 113   1          //---------------------------------
- 114   1          Delay(100);
- 115   1          LCD_Init();//-yuan
- 116   1          Delay(100);
-C51 COMPILER V7.50   MAIN                                                                  02/15/2014 13:57:40 PAGE 3   
+ 111   1      //  uint DelayTime;
+ 112   1      
+ 113   1        etx0=0;
+ 114   1        TH0=T0_H;
+ 115   1        TL0=T0_L;
+ 116   1        if (1==timer)
+C51 COMPILER V7.50   MAIN                                                                  02/15/2014 14:11:30 PAGE 3   
 
- 117   1          /*
- 118   1                  //---------------------------------
- 119   1                  Pant(0xff,0xff);  //TFT清屏
- 120   1                  Delay(100);
- 121   1                  //---------------------------------
- 122   1                  Display_Image();
- 123   1                  Delay(2000);
- 124   1                  //while(1);
- 125   1          */
- 126   1                  ViewTFT();          //在TFT上显示字符
- 127   1                  Delay(3000);
- 128   1                  //while(1);
- 129   1                  
- 130   1          while(1)
- 131   1          {
- 132   2              Display_Red();
- 133   2              Delay(300);
- 134   2              Display_Green();
- 135   2              Delay(300);
- 136   2              Display_Blue();
- 137   2              Delay(300);
- 138   2              Display_White();
- 139   2              Delay(300);
- 140   2              Display_Black();
- 141   2              Delay(300);
- 142   2              //---------------------------------
- 143   2              while(1)
- 144   2              {
- 145   3                  Pant(0xff,0xff);    //TFT清屏
- 146   3                  //Delay(100);
- 147   3                  Display_Image();    //显示图片240*80
- 148   3                  Delay(3000);
- 149   3                  //---------------------------------
- 150   3                  //Pant(0xff,0xff);  //不清屏的话就在上幅Image上覆盖
- 151   3                  //Delay(100);
- 152   3                  ViewTFT();          //在TFT上显示字符
- 153   3                  Delay(3000);
- 154   3              }
- 155   2          }
- 156   1      }
- 157          //while(1){Delay(500);PWM0=~PWM0;}
- 158          //******************************************************************
- 159          //  
- 160          //------------------------------------------------------------------
- 161          
- 162          //---------------------------------
- 163          
- 164          //******************************************************************
- 165          //  
- 166          //------------------------------------------------------------------
+ 117   1        {
+ 118   2          TR0=1;
+ 119   2          Delay(1);
+ 120   2          TR0=0;
+ 121   2        }
+ 122   1        else
+ 123   1        {
+ 124   2          TR0=1;
+ 125   2          delayms(1);
+ 126   2          TR0=0;
+ 127   2        }
+ 128   1      //  DelayTime=(TH0<<8)|TL0;
+ 129   1        SerialSend(etx0,2);
+ 130   1      }
+ 131          
+ 132          unsigned int etx0;
+ 133          uchar Display[16]={0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,
+ 134                             0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x00};
+ 135          void HEXtoASC(uint HEX, uchar index)
+ 136          {
+ 137   1        uchar i, temp;
+ 138   1        for (i=4;i!=0;i--)
+ 139   1        {
+ 140   2          if (4==i)
+ 141   2                temp=HEX>>12;
+ 142   2          else if (3==i)
+ 143   2                temp=HEX>>8;
+ 144   2          else if (2==i)
+ 145   2                temp=((uchar)HEX)>>4;
+ 146   2              else
+ 147   2                temp=HEX;
+ 148   2              temp&=0x0f;
+ 149   2              if (temp>9)
+ 150   2                Display[index]=temp+'A'-10;
+ 151   2              else
+ 152   2                Display[index]=temp+'0';
+ 153   2              index++;
+ 154   2        }
+ 155   1      }
+ 156          
+ 157          void main(void)
+ 158          {
+ 159   1      //    uint DelayTime;
+ 160   1      
+ 161   1              InitSys();//初始化timer/serial-isp
+ 162   1          //---------------------------------
+ 163   1          LCD_Init();//-yuan
+ 164   1          /*
+ 165   1                  //---------------------------------
+ 166   1                  Pant(0xff,0xff);  //TFT清屏
+ 167   1                  Delay(100);
+ 168   1                  //---------------------------------
+ 169   1                  Display_Image();
+ 170   1                  Delay(2000);
+ 171   1                  //while(1);
+ 172   1          */
+ 173   1                  ViewTFT();          //在TFT上显示字符
+ 174   1                  Delay(3000);
+ 175   1                  //while(1);
+ 176   1                  
+ 177   1          while(1)
+ 178   1          {
+C51 COMPILER V7.50   MAIN                                                                  02/15/2014 14:11:30 PAGE 4   
+
+ 179   2              Display_White();
+ 180   2              Delay(400);
+ 181   2              Display_Black();
+ 182   2              Delay(400);
+ 183   2      
+ 184   2              etx0=0;
+ 185   2              TH0=T0_H;
+ 186   2              TL0=T0_L;
+ 187   2              TR0=1;
+ 188   2              Display_Red();
+ 189   2              TR0=0;
+ 190   2      //        DelayTime=(etx0<<8);
+ 191   2      //              DelayTime|=(etx0>>8);
+ 192   2              SerialSend(etx0,2);
+ 193   2                      HEXtoASC(etx0, 0);
+ 194   2              Delay(400);
+ 195   2      
+ 196   2              Display_Green();
+ 197   2              Delay(400);
+ 198   2              Display_Blue();
+ 199   2              Delay(400);
+ 200   2      
+ 201   2              etx0=0;
+ 202   2              TH0=T0_H;
+ 203   2              TL0=T0_L;
+ 204   2              TR0=1;
+ 205   2              Pant(0x0,0x0);    //TFT黑色清屏
+ 206   2              TR0=0;
+ 207   2      //        DelayTime=(etx0<<8);
+ 208   2      //              DelayTime|=(etx0>>8);
+ 209   2              SerialSend(etx0,2);
+ 210   2                      HEXtoASC(etx0, 5);
+ 211   2              Delay(400);
+ 212   2              //---------------------------------
+ 213   2      //        while(1)
+ 214   2              {
+ 215   3                  Pant(0xff,0xff);    //TFT白色清屏
+ 216   3                  Delay(400);
+ 217   3                  etx0=0;
+ 218   3                  TH0=T0_H;
+ 219   3                  TL0=T0_L;
+ 220   3                  TR0=1;
+ 221   3                  Display_Image();    //显示图片240*80
+ 222   3                  TR0=0;
+ 223   3      //            DelayTime=(etx0<<8);
+ 224   3      //                      DelayTime|=(etx0>>8);
+ 225   3                  SerialSend(etx0,2);
+ 226   3                          HEXtoASC(etx0, 10);
+ 227   3                  LCD_CS =0;  //打开片选使能
+ 228   3                  LCD_ShowString(0,296,colors[7],colors[4],Display);
+ 229   3                  LCD_CS =1;  //关闭片选使能
+ 230   3                  Delay(2000);
+ 231   3                  //---------------------------------
+ 232   3      //            Pant(0xff,0xff);  //不清屏的话就在上幅Image上覆盖
+ 233   3      //            Delay(500);
+ 234   3                              TestDelay(1);
+ 235   3                  ViewTFT();          //在TFT上显示字符
+ 236   3                  Delay(2000);
+ 237   3                          TestDelay(2);
+ 238   3              }
+ 239   2          }
+ 240   1      }
+C51 COMPILER V7.50   MAIN                                                                  02/15/2014 14:11:30 PAGE 5   
+
+ 241          //while(1){Delay(500);PWM0=~PWM0;}
+ 242          //******************************************************************
+ 243          //  
+ 244          //------------------------------------------------------------------
+ 245          
+ 246          //---------------------------------
+ 247          
+ 248          //******************************************************************
+ 249          //  
+ 250          //------------------------------------------------------------------
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   1495    ----
+   CODE SIZE        =   1642    ----
    CONSTANT SIZE    =     81    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =      2       1
-   IDATA SIZE       =     16    ----
+   DATA SIZE        =     18    ----
+   IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
 

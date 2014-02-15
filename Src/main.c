@@ -6,21 +6,21 @@
 //  NAM:彩屏程序                                            20120906
 //******************************************************************
 //#include <REG54.H>
-#include <reg51.h>
+//#include <reg51.h>
+#include "STC_NEW_8051.H"
 #define uchar unsigned char
 #define uint unsigned int
 
-#include <HEAD.H>
+#include "HEAD.H"
 
 //#include"init_tft.h"
 #include"s6d0154_drv.h"
 
 //---------------------------------
-#define T0_H 0xfc
-#define T0_L 0x66
+#define T0_H 0xFC
+#define T0_L 0x1A
 #define T1_H 0xfe
 #define T1_L 0x31
-void Delay(unsigned int);
 #include <serial.h> //串口功能
 #include <SysTem.H>
 //****************************************************************
@@ -29,7 +29,7 @@ void Delay(unsigned int);
 //           fosc=12MHz;count=10;j=5, i=62; Keil uV2=9.977ms
 //STC12c4042:fosc=12Mhz;count=1; j=10,i=169;KEIL750 =1.000ms!!!不准!!!实际长了
 //STC12c5410AD:内置5.756373M;count=10;j=10,i=78;KEIL750=10.000ms!
-void Delay(unsigned int count)// delay=1ms*count
+void Delay(unsigned int count)// delay=1ms*count 12MHz with 11L60XE
 {
     unsigned char i,j;
     while(count--!=0)
@@ -43,10 +43,10 @@ void ViewTFT(void)
 {
     LCD_CS =0;  //打开片选使能
     //---------------------------------
-    ChineseChar(14+46,10,2,colors[2],colors[7],1);	//伤
-    ChineseChar(46+46,10,2,colors[2],colors[7],2);	//心
-    ChineseChar(78+46,10,2,colors[2],colors[7],3);	//液
-    ChineseChar(110+46,10,2,colors[2],colors[7],4);	//晶
+    ChineseChar(14+46,10,2,colors[2],colors[7],1);	//晶
+    ChineseChar(46+46,10,2,colors[2],colors[7],2);	//液
+    ChineseChar(78+46,10,2,colors[2],colors[7],3);	//心
+    ChineseChar(110+46,10,2,colors[2],colors[7],4);	//伤
 	//---------------------------------
     ChineseChar( 0,60,1,colors[0],colors[7],1);	    //靠
     ChineseChar(24,60,1,colors[0],colors[7],2);	    //!
@@ -106,14 +106,61 @@ void ViewTFT(void)
 //******************************************************************
 //  主程序
 //------------------------------------------------------------------
+void TestDelay(uchar timer)
+{
+//  uint DelayTime;
+
+  etx0=0;
+  TH0=T0_H;
+  TL0=T0_L;
+  if (1==timer)
+  {
+    TR0=1;
+    Delay(1);
+    TR0=0;
+  }
+  else
+  {
+    TR0=1;
+    delayms(1);
+    TR0=0;
+  }
+//  DelayTime=(TH0<<8)|TL0;
+  SerialSend(etx0,2);
+}
+
+unsigned int etx0;
+uchar Display[16]={0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,
+                   0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x00};
+void HEXtoASC(uint HEX, uchar index)
+{
+  uchar i, temp;
+  for (i=4;i!=0;i--)
+  {
+    if (4==i)
+	  temp=HEX>>12;
+    else if (3==i)
+	  temp=HEX>>8;
+    else if (2==i)
+	  temp=((uchar)HEX)>>4;
+	else
+	  temp=HEX;
+	temp&=0x0f;
+	if (temp>9)
+	  Display[index]=temp+'A'-10;
+	else
+	  Display[index]=temp+'0';
+	index++;
+  }
+}
+
 void main(void)
 {
-    Delay(100);
+//    uint DelayTime;
+
 	InitSys();//初始化timer/serial-isp
     //---------------------------------
-    Delay(100);
     LCD_Init();//-yuan
-    Delay(100);
     /*
             //---------------------------------
             Pant(0xff,0xff);  //TFT清屏
@@ -129,28 +176,65 @@ void main(void)
             
     while(1)
     {
-        Display_Red();
-        Delay(300);
-        Display_Green();
-        Delay(300);
-        Display_Blue();
-        Delay(300);
         Display_White();
-        Delay(300);
+        Delay(400);
         Display_Black();
-        Delay(300);
+        Delay(400);
+
+        etx0=0;
+        TH0=T0_H;
+        TL0=T0_L;
+        TR0=1;
+        Display_Red();
+        TR0=0;
+//        DelayTime=(etx0<<8);
+//		DelayTime|=(etx0>>8);
+        SerialSend(etx0,2);
+		HEXtoASC(etx0, 0);
+        Delay(400);
+
+        Display_Green();
+        Delay(400);
+        Display_Blue();
+        Delay(400);
+
+        etx0=0;
+        TH0=T0_H;
+        TL0=T0_L;
+        TR0=1;
+        Pant(0x0,0x0);    //TFT黑色清屏
+        TR0=0;
+//        DelayTime=(etx0<<8);
+//		DelayTime|=(etx0>>8);
+        SerialSend(etx0,2);
+		HEXtoASC(etx0, 5);
+        Delay(400);
         //---------------------------------
-        while(1)
+//        while(1)
         {
-            Pant(0xff,0xff);    //TFT清屏
-            //Delay(100);
+            Pant(0xff,0xff);    //TFT白色清屏
+            Delay(400);
+            etx0=0;
+            TH0=T0_H;
+            TL0=T0_L;
+            TR0=1;
             Display_Image();    //显示图片240*80
-            Delay(3000);
+            TR0=0;
+//            DelayTime=(etx0<<8);
+//			DelayTime|=(etx0>>8);
+            SerialSend(etx0,2);
+		    HEXtoASC(etx0, 10);
+            LCD_CS =0;  //打开片选使能
+            LCD_ShowString(0,296,colors[7],colors[4],Display);
+            LCD_CS =1;  //关闭片选使能
+            Delay(2000);
             //---------------------------------
-            //Pant(0xff,0xff);  //不清屏的话就在上幅Image上覆盖
-            //Delay(100);
+//            Pant(0xff,0xff);  //不清屏的话就在上幅Image上覆盖
+//            Delay(500);
+			TestDelay(1);
             ViewTFT();          //在TFT上显示字符
-            Delay(3000);
+            Delay(2000);
+		    TestDelay(2);
         }
     }
 }

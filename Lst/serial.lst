@@ -1,0 +1,97 @@
+C51 COMPILER V7.50   SERIAL                                                                02/15/2014 14:11:32 PAGE 1   
+
+
+C51 COMPILER V7.50, COMPILATION OF MODULE SERIAL
+OBJECT MODULE PLACED IN .\Obj\serial.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Src\serial.c BROWSE INCDIR(.\Src) DEBUG OBJECTEXTEND PRINT(.\Lst\serial.lst
+                    -) OBJECT(.\Obj\serial.obj)
+
+line level    source
+
+   1          #include "STC_NEW_8051.H"
+   2          #include "SERIAL.H"
+   3          #include "HEAD.H"
+   4          
+   5          unsigned char get_i=0;  //读取数据的计数
+   6          unsigned char LenToSend=0;
+   7          unsigned int DataToSend;
+   8          //******************************************************************
+   9          //  STC89/12(MPC89/82)软复位程序
+  10          //------------------------------------------------------------------
+  11          
+  12          #define    RELOAD_COUNT    0xf3    //12MHz,12T,SMOD=0,2400bps
+  13          #define    Self_Define_ISP_Download_Command    0x7f
+  14          //#define    RELOAD_COUNT    0xfd    //11.0592MHz,12T,SMOD=0,9600bps
+  15          //#define    Self_Define_ISP_Download_Command    0x0d
+  16          
+  17          void soft_reset_to_ISP_Monitor(void)
+  18          {
+  19   1        IAP_CONTR = 0x60;   //0110，0000  软复位到系统ISP监控区
+  20   1      }
+  21          
+  22          void UART_Interrupt_Receive(void) interrupt 4 //using 1
+  23          {
+  24   1        unsigned char k;
+  25   1        
+  26   1        if(RI==1)
+  27   1        {
+  28   2          RI   =    0;
+  29   2          k    =    SBUF;
+  30   2          if(k==Self_Define_ISP_Download_Command)        //是自定义下载命令
+  31   2          {
+  32   3            get_i++;
+  33   3            if (10==get_i)
+  34   3            {
+  35   4              Delay(100); //zxy
+  36   4              soft_reset_to_ISP_Monitor();    //软复位到系统ISP监控区
+  37   4            }
+  38   3          }
+  39   2          else
+  40   2          {
+  41   3            if ((0==TI)&&(0==LenToSend))
+  42   3            {
+  43   4              SBUF=0xa5;  //Serial OK !!!
+  44   4            }
+  45   3            get_i=0;
+  46   3          }
+  47   2        }
+  48   1        else
+  49   1        {
+  50   2          TI = 0;
+  51   2          if (0!=LenToSend)
+  52   2          {
+  53   3            LenToSend--;
+  54   3            if (0==LenToSend)
+C51 COMPILER V7.50   SERIAL                                                                02/15/2014 14:11:32 PAGE 2   
+
+  55   3              SBUF=DataToSend>>8;
+  56   3            else
+  57   3              SBUF=DataToSend;
+  58   3          }
+  59   2        }
+  60   1      }
+  61          
+  62          void SerialSend(unsigned int Data, unsigned char Len)
+  63          {
+  64   1        if (0==TI)
+  65   1        {
+  66   2          SBUF=Data;
+  67   2          Len--;
+  68   2        }
+  69   1        LenToSend=Len;
+  70   1        DataToSend=Data;
+  71   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    135    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,3 +1,5 @@
+#ifndef _S6D0154_DRV_
+#define _S6D0154_DRV_
 //******************************************************************
 //  #define
 //------------------------------------------------------------------
@@ -37,9 +39,9 @@ void Display_Green(void);
 void Display_Blue(void);
 void Display_Black(void);
 void Display_White(void);
-void delayms(long tt);
 //void delay(long tt);
 void Display_Image(void);
 //******************************************************************
 //  
 //------------------------------------------------------------------
+#endif // _S6D0154_DRV_
