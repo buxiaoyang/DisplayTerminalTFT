@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:19:28 PAGE 1   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:46:16 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE S6D0154
@@ -62,7 +62,7 @@ line level    source
   52   1              LCD_WR = 1;
   53   1              LCD_CS = 1;
   54   1      }
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:19:28 PAGE 2   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:46:16 PAGE 2   
 
   55          /*
   56          void Write_DAT_18(unsigned int i,unsigned int j,unsigned int k)
@@ -126,7 +126,7 @@ line level    source
  114   2                  {
  115   3                  Write_DATA(0x07,0xe0);
  116   3                  //Write_Data_18(0x03,0xf0,0x00);
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:19:28 PAGE 3   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:46:16 PAGE 3   
 
  117   3              }
  118   2          }
@@ -190,7 +190,7 @@ line level    source
  176   3                          //Write_DATA_18(0x00,0x00,0x00);
  177   3                  }
  178   2                  for(k=0;k<1;k++)
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:19:28 PAGE 4   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:46:16 PAGE 4   
 
  179   2                  {
  180   3                      Write_DATA(0xff,0xff);
@@ -254,7 +254,7 @@ line level    source
  238   1      }
  239          void LCD_Write_COM(char VH,char VL)         //·¢ËÍÃüÁî
  240          {       
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:19:28 PAGE 5   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:46:16 PAGE 5   
 
  241   1          LCD_DC=0;
  242   1              LCD_Writ_Bus(VH,VL);
@@ -318,7 +318,7 @@ line level    source
  300   1          uchar *pchar;
  301   1          uchar *fonttable[]={(uchar *)hz16,(uchar *)hz24 , (uchar *)hz32};
  302   1         
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:19:28 PAGE 6   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:46:16 PAGE 6   
 
  303   1          pfont=(uchar *)fonttable[size];
  304   1      
@@ -382,7 +382,7 @@ line level    source
  362          void LCD_ShowChar(uint x,uint y,uint For_color,uint Bk_color, char ch)
  363          {       
  364   1          uchar temp , Bytes;
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:19:28 PAGE 7   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:46:16 PAGE 7   
 
  365   1          uchar pos,t;
  366   1          uint  CHAR_W,CHAR_H;
@@ -446,7 +446,7 @@ line level    source
  424   1              
  425   1              LCD_Write_COM(0x00,0x11); LCD_Write_DATA(0x00,0x1c);  // Power Control 2
  426   1              LCD_Write_COM(0x00,0x12); LCD_Write_DATA(0x12,0x12);  // Power Control 3  BT2-0, DC11-10, DC21-20, DC31-3
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:19:28 PAGE 8   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:46:16 PAGE 8   
 
              -0
  427   1              LCD_Write_COM(0x00,0x13); LCD_Write_DATA(0x00,0x41);  // Power Control 4  DCR_EX=0, DCR2-0, GVD6-0
@@ -510,7 +510,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:19:28 PAGE 9   
+C51 COMPILER V7.50   S6D0154                                                               02/15/2014 16:46:16 PAGE 9   
 
    CODE SIZE        =   1682    ----
    CONSTANT SIZE    =  47569    ----

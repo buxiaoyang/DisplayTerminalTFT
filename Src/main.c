@@ -156,95 +156,13 @@ void HEXtoASC(uint HEX, uchar index)
 
 void main(void)
 {
-//    uint DelayTime;
-
-	InitSys();//初始化timer/serial-isp
-    //---------------------------------
-    LCD_Init();//-yuan
-    /*
-            //---------------------------------
-            Pant(0xff,0xff);  //TFT清屏
-            Delay(100);
-            //---------------------------------
-            Display_Image();
-            Delay(2000);
-            //while(1);
-    */
-            ViewTFT();          //在TFT上显示字符
-            Delay(3000);
-            //while(1);
-            
+	InitSys();
+    LCD_Init();
+	Display_Red();
+    ViewTFT();    //在TFT上显示字符
+    Delay(3000);     
     while(1)
     {
-        Display_White();
-        Delay(400);
-        Display_Black();
-        Delay(400);
-
-        etx0=0;
-        TH0=T0_H;
-        TL0=T0_L;
-        TR0=1;
-        Display_Red();
-        TR0=0;
-//        DelayTime=(etx0<<8);
-//		DelayTime|=(etx0>>8);
-        SerialSend(etx0,2);
-		HEXtoASC(etx0, 0);
-        Delay(400);
-
-        Display_Green();
-        Delay(400);
-        Display_Blue();
-        Delay(400);
-
-        etx0=0;
-        TH0=T0_H;
-        TL0=T0_L;
-        TR0=1;
-        Pant(0x0,0x0);    //TFT黑色清屏
-        TR0=0;
-//        DelayTime=(etx0<<8);
-//		DelayTime|=(etx0>>8);
-        SerialSend(etx0,2);
-		HEXtoASC(etx0, 5);
-        Delay(400);
-        //---------------------------------
-//        while(1)
-        {
-            Pant(0xff,0xff);    //TFT白色清屏
-            Delay(400);
-            etx0=0;
-            TH0=T0_H;
-            TL0=T0_L;
-            TR0=1;
-            Display_Image();    //显示图片240*80
-            TR0=0;
-//            DelayTime=(etx0<<8);
-//			DelayTime|=(etx0>>8);
-            SerialSend(etx0,2);
-		    HEXtoASC(etx0, 10);
-            LCD_CS =0;  //打开片选使能
-            LCD_ShowString(0,296,colors[7],colors[4],Display);
-            LCD_CS =1;  //关闭片选使能
-            Delay(2000);
-            //---------------------------------
-//            Pant(0xff,0xff);  //不清屏的话就在上幅Image上覆盖
-//            Delay(500);
-			TestDelay(1);
-            ViewTFT();          //在TFT上显示字符
-            Delay(2000);
-		    TestDelay(2);
-        }
+  
     }
 }
-//while(1){Delay(500);PWM0=~PWM0;}
-//******************************************************************
-//  
-//------------------------------------------------------------------
-
-//---------------------------------
-
-//******************************************************************
-//  
-//------------------------------------------------------------------
