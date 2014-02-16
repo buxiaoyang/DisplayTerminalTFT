@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   MAIN                                                                  02/16/2014 16:48:46 PAGE 1   
+C51 COMPILER V7.50   MAIN                                                                  02/16/2014 17:30:05 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   52   1          ChineseChar(24,60,1,colors[0],colors[7],2);     //!
   53   1          
   54   1          ChineseChar( 48,60,1,colors[1],colors[7],3);    //
-C51 COMPILER V7.50   MAIN                                                                  02/16/2014 16:48:46 PAGE 2   
+C51 COMPILER V7.50   MAIN                                                                  02/16/2014 17:30:05 PAGE 2   
 
   55   1          ChineseChar( 72,60,1,colors[2],colors[7],4);    //
   56   1          ChineseChar( 96,60,1,colors[3],colors[2],5);    //
@@ -126,7 +126,7 @@ line level    source
  114   1        if (1==timer)
  115   1        {
  116   2          TR0=1;
-C51 COMPILER V7.50   MAIN                                                                  02/16/2014 16:48:46 PAGE 3   
+C51 COMPILER V7.50   MAIN                                                                  02/16/2014 17:30:05 PAGE 3   
 
  117   2          Delay(1);
  118   2          TR0=0;
@@ -170,28 +170,30 @@ line level    source
  156          {
  157   1              InitSys();
  158   1          LCD_Init();
- 159   1              Display_White();
- 160   1      
- 161   1              Display_Running();
- 162   1      
- 163   1          Delay(3000);     
- 164   1          while(1)
- 165   1          {
- 166   2        
- 167   2          }
- 168   1      }
+ 159   1          while(1)
+ 160   1          {
+ 161   2                 Display_Loding();
+ 162   2                 Delay(10000);  
+ 163   2                 Display_Running1();
+ 164   2                 Delay(20000); 
+ 165   2                 Display_Running2();
+ 166   2                 Delay(20000); 
+ 167   2                 Display_Running3();
+ 168   2                 Delay(20000);  
+ 169   2          }
+ 170   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   1427    ----
+   CODE SIZE        =   1446    ----
    CONSTANT SIZE    =     65    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =     18    ----
+C51 COMPILER V7.50   MAIN                                                                  02/16/2014 17:30:05 PAGE 4   
+
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
-C51 COMPILER V7.50   MAIN                                                                  02/16/2014 16:48:46 PAGE 4   
-
 END OF MODULE INFORMATION.
 
 

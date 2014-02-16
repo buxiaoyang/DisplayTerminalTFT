@@ -143,6 +143,9 @@ P0M0	DATA	094H
 ?PR?Display_Loding?S6D0154               SEGMENT CODE 
 ?PR?Display_Loading_Image?S6D0154        SEGMENT CODE 
 ?PR?Display_Running?S6D0154              SEGMENT CODE 
+?PR?Display_Running1?S6D0154             SEGMENT CODE 
+?PR?Display_Running2?S6D0154             SEGMENT CODE 
+?PR?Display_Running3?S6D0154             SEGMENT CODE 
 ?PR?Display_Running_Image?S6D0154        SEGMENT CODE 
 ?PR?_LCD_Writ_Bus?S6D0154                SEGMENT CODE 
 ?PR?_LCD_Write_COM?S6D0154               SEGMENT CODE 
@@ -191,6 +194,9 @@ P0M0	DATA	094H
 	PUBLIC	_LCD_Write_COM
 	PUBLIC	_LCD_Writ_Bus
 	PUBLIC	Display_Running_Image
+	PUBLIC	Display_Running3
+	PUBLIC	Display_Running2
+	PUBLIC	Display_Running1
 	PUBLIC	Display_Running
 	PUBLIC	Display_Loading_Image
 	PUBLIC	Display_Loding
@@ -209,51 +215,51 @@ P0M0	DATA	094H
 
 	RSEG  ?DT?_ChineseString?S6D0154
 ?_ChineseString?BYTE:
-         x?1893:   DS   2
-         y?1894:   DS   2
-      size?1895:   DS   2
- For_color?1896:   DS   2
-  Bk_color?1897:   DS   2
-         p?1898:   DS   3
+         x?2193:   DS   2
+         y?2194:   DS   2
+      size?2195:   DS   2
+ For_color?2196:   DS   2
+  Bk_color?2197:   DS   2
+         p?2198:   DS   3
 
 	RSEG  ?DT?_ChineseChar?S6D0154
 ?_ChineseChar?BYTE:
-         x?1777:   DS   2
-         y?1778:   DS   2
-      size?1779:   DS   2
- For_color?1780:   DS   2
-  Bk_color?1781:   DS   2
-         c?1782:   DS   1
+         x?2077:   DS   2
+         y?2078:   DS   2
+      size?2079:   DS   2
+ For_color?2080:   DS   2
+  Bk_color?2081:   DS   2
+         c?2082:   DS   1
 	ORG  11
-         e?1783:   DS   2
-         i?1784:   DS   2
-        ed?1786:   DS   2
-     ncols?1787:   DS   2
-     nrows?1788:   DS   2
-    nbytes?1789:   DS   2
-     pchar?1791:   DS   3
- fonttable?1792:   DS   9
+         e?2083:   DS   2
+         i?2084:   DS   2
+        ed?2086:   DS   2
+     ncols?2087:   DS   2
+     nrows?2088:   DS   2
+    nbytes?2089:   DS   2
+     pchar?2091:   DS   3
+ fonttable?2092:   DS   9
 
 	RSEG  ?DT?_LCD_ShowString?S6D0154
 ?_LCD_ShowString?BYTE:
-        x?20111:   DS   2
-        y?20112:   DS   2
-     size?20113:   DS   2
-For_color?20114:   DS   2
- Bk_color?20115:   DS   2
-        p?20116:   DS   3
+        x?23111:   DS   2
+        y?23112:   DS   2
+     size?23113:   DS   2
+For_color?23114:   DS   2
+ Bk_color?23115:   DS   2
+        p?23116:   DS   3
 
 	RSEG  ?DT?_LCD_ShowChar?S6D0154
 ?_LCD_ShowChar?BYTE:
-         x?1999:   DS   2
-        y?19100:   DS   2
-     size?19101:   DS   2
-For_color?19102:   DS   2
- Bk_color?19103:   DS   2
-       ch?19104:   DS   1
+         x?2299:   DS   2
+        y?22100:   DS   2
+     size?22101:   DS   2
+For_color?22102:   DS   2
+ Bk_color?22103:   DS   2
+       ch?22104:   DS   1
 	ORG  11
-   CHAR_W?19109:   DS   2
-   CHAR_H?19110:   DS   2
+   CHAR_W?22109:   DS   2
+   CHAR_H?22110:   DS   2
 
 	RSEG  ?DT?Display_Red?S6D0154
 ?Display_Red?BYTE:
@@ -261,51 +267,138 @@ For_color?19102:   DS   2
 
 	RSEG  ?DT?_Address_set?S6D0154
 ?_Address_set?BYTE:
-        x1?1673:   DS   2
-        y1?1674:   DS   2
-        x2?1675:   DS   2
-        y2?1676:   DS   2
+        x1?1973:   DS   2
+        y1?1974:   DS   2
+        x2?1975:   DS   2
+        y2?1976:   DS   2
 
 	RSEG  ?DT?_Pant?S6D0154
 ?_Pant?BYTE:
-        VH?1569:   DS   1
-        VL?1570:   DS   1
+        VH?1869:   DS   1
+        VL?1870:   DS   1
 
 	RSEG  ?DT?S6D0154
          colors:   DS   16
 
 	RSEG  ?CO?S6D0154
 ?SC_0:
-	DB  ' ' ,'!' ,'"' ,'#' ,'$' ,'%' ,'&' ,'`' ,'(' ,')' 
-	DB  '*' ,'+' ,',' ,'-' ,'.' ,'/' ,'0' ,'1' ,'2' ,000H
+	DB  'W' ,'h' ,'a' ,'t' ,' ' ,'i' ,'s' ,' ' ,'a' ,' ' 
+	DB  'R' ,'a' ,'s' ,'p' ,'b' ,'e' ,'r' ,'r' ,'y' ,' ' 
+	DB  'P' ,'i' ,'?' ,000H
 
-?SC_20:
+?SC_24:
 	DB  '3' ,'4' ,'5' ,'6' ,'7' ,'8' ,'9' ,':' ,';' ,'<' 
 	DB  '=' ,'>' ,'?' ,'@' ,'A' ,'B' ,'C' ,'D' ,'E' ,000H
 
-?SC_40:
+?SC_44:
 	DB  'F' ,'G' ,'H' ,'I' ,'J' ,'K' ,'L' ,'M' ,'N' ,'O' 
 	DB  'P' ,'Q' ,'R' ,'S' ,'T' ,'U' ,'V' ,'W' ,'X' ,000H
 
-?SC_60:
+?SC_64:
 	DB  'Y' ,'Z' ,'[' ,']' ,'^' ,'_' ,027H,'a' ,'b' ,'c' 
 	DB  'd' ,'e' ,'f' ,'g' ,'h' ,'i' ,'j' ,'k' ,000H
 
-?SC_79:
+?SC_83:
 	DB  'l' ,'m' ,'n' ,'o' ,'p' ,'q' ,'r' ,'s' ,'t' ,'u' 
 	DB  'v' ,'w' ,'x' ,'y' ,'z' ,'{' ,'|' ,'}' ,'~' ,000H
 
-?SC_99:
-	DB  '0' ,'1' ,'2' ,'3' ,'4' ,'5' ,'6' ,'7' ,'8' ,'9' 
+?SC_103:
+	DB  'W' ,'h' ,'a' ,'t' ,' ' ,'i' ,'s' ,' ' ,'a' ,' ' 
+	DB  'R' ,'a' ,'s' ,'p' ,'b' ,000H
+
+?SC_119:
+	DB  'e' ,'r' ,'r' ,'y' ,' ' ,'P' ,'i' ,'?' ,000H
+
+?SC_128:
+	DB  'T' ,'h' ,'e' ,' ' ,'R' ,'a' ,'s' ,'p' ,'b' ,'e' 
+	DB  'r' ,'r' ,'y' ,' ' ,'P' ,000H
+
+?SC_144:
+	DB  'i' ,' ' ,'i' ,'s' ,' ' ,'a' ,' ' ,'c' ,'r' ,'e' 
+	DB  'd' ,'i' ,'t' ,'-' ,'c' ,'a' ,'r' ,'d' ,' ' ,000H
+
+?SC_164:
+	DB  's' ,'i' ,'z' ,'e' ,'d' ,' ' ,'c' ,'o' ,'m' ,'p' 
+	DB  'u' ,'t' ,'e' ,'r' ,' ' ,'t' ,'h' ,'a' ,'t' ,000H
+
+?SC_184:
+	DB  ' ' ,'p' ,'l' ,'u' ,'g' ,'s' ,' ' ,'i' ,'n' ,'t' 
+	DB  'o' ,' ' ,'y' ,'o' ,'u' ,'r' ,' ' ,'T' ,'V' ,000H
+
+?SC_204:
+	DB  ' ' ,'a' ,'n' ,'d' ,' ' ,'a' ,' ' ,'k' ,'e' ,'y' 
+	DB  'b' ,'o' ,'a' ,'r' ,'d' ,'.' ,' ' ,'I' ,'t' ,000H
+
+?SC_224:
+	DB  ' ' ,'i' ,'s' ,' ' ,'a' ,' ' ,'c' ,'a' ,'p' ,'a' 
+	DB  'b' ,'l' ,'e' ,' ' ,'l' ,'i' ,'t' ,'t' ,'l' ,000H
+
+?SC_244:
+	DB  'e' ,' ' ,'c' ,'o' ,'m' ,'p' ,'u' ,'t' ,'e' ,'r' 
+	DB  ' ' ,'w' ,'h' ,'i' ,'c' ,000H
+
+?SC_260:
+	DB  'h' ,' ' ,'c' ,'a' ,'n' ,' ' ,'b' ,'e' ,' ' ,'u' 
+	DB  's' ,'e' ,'d' ,' ' ,'i' ,000H
+
+?SC_276:
+	DB  'n' ,' ' ,'e' ,'l' ,'e' ,'c' ,'t' ,'r' ,'o' ,'n' 
+	DB  'i' ,'c' ,'s' ,' ' ,'p' ,000H
+
+?SC_292:
+	DB  'r' ,'o' ,'j' ,'e' ,'c' ,'t' ,'s' ,',' ,' ' ,'a' 
+	DB  'n' ,'d' ,' ' ,'f' ,'o' ,'r' ,' ' ,'m' ,'a' ,000H
+
+?SC_312:
+	DB  'n' ,'y' ,' ' ,'o' ,'f' ,' ' ,'t' ,'h' ,'e' ,' ' 
+	DB  't' ,'h' ,'i' ,'n' ,'g' ,'s' ,' ' ,'t' ,'h' ,000H
+
+?SC_332:
+	DB  'a' ,'t' ,' ' ,'y' ,'o' ,'u' ,'r' ,' ' ,'d' ,'e' 
+	DB  's' ,'k' ,'t' ,'o' ,'p' ,' ' ,'P' ,'C' ,' ' ,000H
+
+?SC_352:
+	DB  'd' ,'o' ,'e' ,'s' ,',' ,' ' ,'l' ,'i' ,'k' ,'e' 
+	DB  ' ' ,'s' ,'p' ,'r' ,'e' ,'a' ,'d' ,'s' ,'h' ,000H
+
+?SC_372:
+	DB  'e' ,'e' ,'t' ,'s' ,',' ,' ' ,'w' ,'o' ,'r' ,'d' 
+	DB  '-' ,'p' ,'r' ,'o' ,'c' ,'e' ,'s' ,'s' ,'i' ,000H
+
+?SC_392:
+	DB  'n' ,'g' ,' ' ,'a' ,'n' ,'d' ,' ' ,'g' ,'a' ,'m' 
+	DB  'e' ,'s' ,'.' ,' ' ,'I' ,000H
+
+?SC_408:
+	DB  't' ,' ' ,'a' ,'l' ,'s' ,'o' ,' ' ,'p' ,'l' ,'a' 
+	DB  'y' ,'s' ,' ' ,'h' ,'i' ,'g' ,000H
+
+?SC_425:
+	DB  'h' ,'-' ,'d' ,'e' ,'f' ,'i' ,'n' ,'i' ,'t' ,'i' 
+	DB  'o' ,'n' ,' ' ,'v' ,'i' ,'d' ,000H
+
+?SC_442:
+	DB  'e' ,'o' ,'.' ,' ' ,'W' ,'e' ,' ' ,'w' ,'a' ,'n' 
+	DB  't' ,' ' ,'t' ,'o' ,' ' ,'s' ,'e' ,'e' ,' ' ,'i' 
 	DB  000H
 
-?SC_110:
-	DB  ':' ,';' ,'<' ,'=' ,'>' ,'?' ,'@' ,'A' ,'B' ,'C' 
+?SC_463:
+	DB  't' ,' ' ,'b' ,'e' ,'i' ,'n' ,'g' ,' ' ,'u' ,'s' 
+	DB  'e' ,'d' ,' ' ,'b' ,'y' ,' ' ,'k' ,'i' ,'d' ,'s' 
 	DB  000H
 
-?SC_121:
-	DB  'D' ,'E' ,'F' ,'G' ,'H' ,'I' ,'J' ,'K' ,'L' ,'M' 
+?SC_484:
+	DB  ' ' ,'a' ,'l' ,'l' ,' ' ,'o' ,'v' ,'e' ,'r' ,' ' 
+	DB  't' ,'h' ,'e' ,' ' ,'w' ,'o' ,'r' ,'l' ,'d' ,' ' 
 	DB  000H
+
+?SC_505:
+	DB  't' ,'o' ,' ' ,'l' ,'e' ,'a' ,'r' ,'n' ,' ' ,'p' 
+	DB  'r' ,'o' ,'g' ,'r' ,'a' ,'m' ,'m' ,'i' ,'n' ,'g' 
+	DB  000H
+
+?SC_526:
+	DB  '.' ,000H
 
 RaspberryPiLogoBig:
 	DB	0FFH
@@ -35763,9 +35856,9 @@ _delayms:
 			; SOURCE LINE # 25
 	MOV  	A,R7
 	DEC  	R7
-	JNZ  	?C0128
+	JNZ  	?C0131
 	DEC  	R6
-?C0128:
+?C0131:
 ;         for(j=0;j<5;j++)
 			; SOURCE LINE # 26
 	CLR  	A
@@ -35814,12 +35907,12 @@ _delayms:
 ; void Write_DATA(unsigned int i,unsigned int j)
 
 	RSEG  ?PR?_Write_DATA?S6D0154
-L?0152:
+L?0158:
 	USING	0
-L?0153:
+L?0159:
 	MOV  	R5,#0FFH
 	MOV  	R7,#0FFH
-L?0154:
+L?0160:
 	MOV  	R4,#00H
 	MOV  	R6,#00H
 _Write_DATA:
@@ -35878,10 +35971,10 @@ _Write_DATA:
 ; void Write_COMD(unsigned int i,unsigned int j)
 
 	RSEG  ?PR?_Write_COMD?S6D0154
-L?0161:
+L?0166:
 	USING	0
 	MOV  	R5,#022H
-L?0162:
+L?0167:
 	MOV  	R4,#00H
 	CLR  	A
 	MOV  	R7,A
@@ -35948,11 +36041,11 @@ Display_Red:
 	MOV  	?_Address_set?BYTE+07H,#03FH
 	MOV  	R3,#0EFH
 	MOV  	R2,A
-	LCALL	L?0148
+	LCALL	L?0154
 ;         
 ;     Write_COMD(0x00,0x22); 
 			; SOURCE LINE # 94
-	LCALL	L?0161
+	LCALL	L?0166
 ;     for(i=0;i<320;i++)
 			; SOURCE LINE # 95
 ;---- Variable 'i?347' assigned to Register 'R2/R3' ----
@@ -35987,9 +36080,9 @@ Display_Red:
 			; SOURCE LINE # 101
 ?C0014:
 	INC  	R3
-	CJNE 	R3,#00H,?C0129
+	CJNE 	R3,#00H,?C0132
 	INC  	R2
-?C0129:
+?C0132:
 	CJNE 	R2,#01H,?C0012
 	CJNE 	R3,#040H,?C0012
 ; }
@@ -36012,11 +36105,11 @@ Display_Green:
 			; SOURCE LINE # 107
 ; 	Address_set(0,0,239,319);
 			; SOURCE LINE # 108
-	LCALL	L?0146
+	LCALL	L?0152
 ;    
 ;     Write_COMD(0x00,0x22); 
 			; SOURCE LINE # 110
-	LCALL	L?0161
+	LCALL	L?0166
 ;     for(i=0;i<320;i++)
 			; SOURCE LINE # 111
 ;---- Variable 'i?450' assigned to Register 'R2/R3' ----
@@ -36036,7 +36129,7 @@ Display_Green:
 			; SOURCE LINE # 115
 	MOV  	R5,#0E0H
 	MOV  	R7,#07H
-	LCALL	L?0154
+	LCALL	L?0160
 ;             //Write_Data_18(0x03,0xf0,0x00);
 ;         }
 			; SOURCE LINE # 117
@@ -36049,9 +36142,9 @@ Display_Green:
 			; SOURCE LINE # 118
 ?C0021:
 	INC  	R3
-	CJNE 	R3,#00H,?C0130
+	CJNE 	R3,#00H,?C0133
 	INC  	R2
-?C0130:
+?C0133:
 	CJNE 	R2,#01H,?C0019
 	CJNE 	R3,#040H,?C0019
 ; }
@@ -36073,7 +36166,7 @@ Display_Blue:
 ;     Write_COMD(0x00,0x20);
 			; SOURCE LINE # 124
 	MOV  	R5,#020H
-	LCALL	L?0162
+	LCALL	L?0167
 ;     Write_DATA(0x00,0x00);
 			; SOURCE LINE # 125
 	MOV  	R5,A
@@ -36126,9 +36219,9 @@ Display_Blue:
 			; SOURCE LINE # 137
 ?C0028:
 	INC  	R3
-	CJNE 	R3,#00H,?C0131
+	CJNE 	R3,#00H,?C0134
 	INC  	R2
-?C0131:
+?C0134:
 	CJNE 	R2,#01H,?C0026
 	CJNE 	R3,#040H,?C0026
 ; }
@@ -36151,7 +36244,7 @@ Display_White:
 			; SOURCE LINE # 143
 ; 	Address_set(0,0,239,319);
 			; SOURCE LINE # 144
-	LCALL	L?0146
+	LCALL	L?0152
 ;     for(i=0;i<320;i++)
 			; SOURCE LINE # 145
 ;---- Variable 'i?654' assigned to Register 'R2/R3' ----
@@ -36170,7 +36263,7 @@ Display_White:
 			; SOURCE LINE # 148
 ;             Write_DATA(0xff,0xff);
 			; SOURCE LINE # 149
-	LCALL	L?0152
+	LCALL	L?0158
 ;             //Write_Data_18(0xff,0xff,0xc0);
 ;         }
 			; SOURCE LINE # 151
@@ -36183,9 +36276,9 @@ Display_White:
 			; SOURCE LINE # 152
 ?C0035:
 	INC  	R3
-	CJNE 	R3,#00H,?C0132
+	CJNE 	R3,#00H,?C0135
 	INC  	R2
-?C0132:
+?C0135:
 	CJNE 	R2,#01H,?C0033
 	CJNE 	R3,#040H,?C0033
 ; }
@@ -36208,7 +36301,7 @@ Display_Black:
 			; SOURCE LINE # 158
 ; 	Address_set(0,0,239,319);
 			; SOURCE LINE # 159
-	LCALL	L?0147
+	LCALL	L?0153
 ;     for(i=0;i<240;i++)
 			; SOURCE LINE # 160
 ;---- Variable 'i?756' assigned to Register 'R2/R3' ----
@@ -36220,14 +36313,14 @@ Display_Black:
 			; SOURCE LINE # 161
 ;         Write_DATA(0xff,0xff);
 			; SOURCE LINE # 162
-	LCALL	L?0152
+	LCALL	L?0158
 ;         //Write_DATA_18(0xff,0xff,0xc0);
 ;     }
 			; SOURCE LINE # 164
 	INC  	R3
-	CJNE 	R3,#00H,?C0133
+	CJNE 	R3,#00H,?C0136
 	INC  	R2
-?C0133:
+?C0136:
 	MOV  	A,R3
 	XRL  	A,#0F0H
 	ORL  	A,R2
@@ -36251,7 +36344,7 @@ Display_Black:
 			; SOURCE LINE # 169
 ;             Write_DATA(0xff,0xff);
 			; SOURCE LINE # 170
-	LCALL	L?0153
+	LCALL	L?0159
 ; 	        //WRITE_DATA_18(0xff,0xff,0xc0);
 ; 	    }
 			; SOURCE LINE # 172
@@ -36282,9 +36375,9 @@ Display_Black:
 			; SOURCE LINE # 177
 	INC  	j?757+01H
 	MOV  	A,j?757+01H
-	JNZ  	?C0134
+	JNZ  	?C0137
 	INC  	j?757
-?C0134:
+?C0137:
 	CLR  	C
 	SUBB 	A,#0EEH
 	MOV  	A,j?757
@@ -36302,7 +36395,7 @@ Display_Black:
 			; SOURCE LINE # 179
 ; 	        Write_DATA(0xff,0xff);
 			; SOURCE LINE # 180
-	LCALL	L?0153
+	LCALL	L?0159
 ;             //Write_DATA_18(0xff,0xff,0xc0);
 ; 	    }
 			; SOURCE LINE # 182
@@ -36315,9 +36408,9 @@ Display_Black:
 			; SOURCE LINE # 183
 ?C0045:
 	INC  	R3
-	CJNE 	R3,#00H,?C0135
+	CJNE 	R3,#00H,?C0138
 	INC  	R2
-?C0135:
+?C0138:
 	CJNE 	R2,#01H,?C0043
 	CJNE 	R3,#03EH,?C0043
 ?C0044:
@@ -36332,14 +36425,14 @@ Display_Black:
 			; SOURCE LINE # 186
 ;         Write_DATA(0xff,0xff);
 			; SOURCE LINE # 187
-	LCALL	L?0153
+	LCALL	L?0159
 ;         //Write_Data_18(0xff,0xff,0xc0);
 ;     }
 			; SOURCE LINE # 189
 	INC  	R3
-	CJNE 	R3,#00H,?C0136
+	CJNE 	R3,#00H,?C0139
 	INC  	R2
-?C0136:
+?C0139:
 	MOV  	A,R3
 	XRL  	A,#0F0H
 	ORL  	A,R2
@@ -36359,29 +36452,32 @@ Display_Loding:
 			; SOURCE LINE # 192
 ; {
 			; SOURCE LINE # 193
-; 	Display_Loading_Image();
+; 	Display_White();
 			; SOURCE LINE # 194
+	LCALL	Display_White
+; 	Display_Loading_Image();
+			; SOURCE LINE # 195
 	LCALL	Display_Loading_Image
 ; 	ChineseChar(50,79,2,colors[4],colors[7],1);		//正
-			; SOURCE LINE # 195
+			; SOURCE LINE # 196
 	MOV  	?_ChineseChar?BYTE+06H,colors+08H
 	MOV  	?_ChineseChar?BYTE+07H,colors+09H
 	MOV  	?_ChineseChar?BYTE+08H,colors+0EH
 	MOV  	?_ChineseChar?BYTE+09H,colors+0FH
 	MOV  	?_ChineseChar?BYTE+0AH,#01H
 	MOV  	R5,#04FH
-	LCALL	L?0159
+	LCALL	L?0164
 ;     ChineseChar(50,122,2,colors[4],colors[7],2);	//在
-			; SOURCE LINE # 196
+			; SOURCE LINE # 197
 	MOV  	?_ChineseChar?BYTE+06H,colors+08H
 	MOV  	?_ChineseChar?BYTE+07H,colors+09H
 	MOV  	?_ChineseChar?BYTE+08H,colors+0EH
 	MOV  	?_ChineseChar?BYTE+09H,colors+0FH
 	MOV  	?_ChineseChar?BYTE+0AH,#02H
 	MOV  	R5,#07AH
-	LCALL	L?0159
+	LCALL	L?0164
 ;     ChineseChar(50,165,2,colors[4],colors[7],3);	//启
-			; SOURCE LINE # 197
+			; SOURCE LINE # 198
 	MOV  	?_ChineseChar?BYTE+06H,colors+08H
 	MOV  	?_ChineseChar?BYTE+07H,colors+09H
 	MOV  	?_ChineseChar?BYTE+08H,colors+0EH
@@ -36390,9 +36486,9 @@ Display_Loding:
 	MOV  	R3,#02H
 	MOV  	R2,#00H
 	MOV  	R5,#0A5H
-	LCALL	L?0160
+	LCALL	L?0165
 ;     ChineseChar(50,208,2,colors[4],colors[7],4);	//动
-			; SOURCE LINE # 198
+			; SOURCE LINE # 199
 	MOV  	?_ChineseChar?BYTE+06H,colors+08H
 	MOV  	?_ChineseChar?BYTE+07H,colors+09H
 	MOV  	?_ChineseChar?BYTE+08H,colors+0EH
@@ -36417,17 +36513,17 @@ Display_Loding:
 	RSEG  ?PR?Display_Loading_Image?S6D0154
 Display_Loading_Image:
 	USING	0
-			; SOURCE LINE # 204
-; {
 			; SOURCE LINE # 205
+; {
+			; SOURCE LINE # 206
 ;     unsigned char i,j;
 ; 	LCD_CS =0;  //打开片选使能
-			; SOURCE LINE # 207
+			; SOURCE LINE # 208
 	CLR  	LCD_CS
 ; 	//Address_set(0,0,239,319);
 ; 	//Address_set(119,119,239,200);
 ; 	Address_set(100,115,219,214);
-			; SOURCE LINE # 210
+			; SOURCE LINE # 211
 	MOV  	?_Address_set?BYTE+06H,#00H
 	MOV  	?_Address_set?BYTE+07H,#0D6H
 	MOV  	R3,#0DBH
@@ -36438,7 +36534,7 @@ Display_Loading_Image:
 	MOV  	R6,#00H
 	LCALL	_Address_set
 ;     LCD_DC=1;
-			; SOURCE LINE # 211
+			; SOURCE LINE # 212
 	SETB 	LCD_DC
 ; #pragma asm
 ; 		mov DPTR, #RaspberryPiLogoBig
@@ -36447,23 +36543,23 @@ Display_Loading_Image:
 ; //        unsigned int  k=0;
 ;         
 ;         for(j=0;j<99;j++)
-			; SOURCE LINE # 217
+			; SOURCE LINE # 218
 ;---- Variable 'j?960' assigned to Register 'R7' ----
 	CLR  	A
 	MOV  	R7,A
 ?C0060:
 ;         {
-			; SOURCE LINE # 218
+			; SOURCE LINE # 219
 ; 
 ;             for(i=119;i!=0;i--)
-			; SOURCE LINE # 220
+			; SOURCE LINE # 221
 ;---- Variable 'i?959' assigned to Register 'R6' ----
 	MOV  	R6,#077H
 ?C0063:
 ;             {
-			; SOURCE LINE # 221
-;                 LCD_WR = 0;
 			; SOURCE LINE # 222
+;                 LCD_WR = 0;
+			; SOURCE LINE # 223
 	CLR  	LCD_WR
 ; #pragma asm
 ; 		clr A
@@ -36484,19 +36580,19 @@ Display_Loading_Image:
 	  inc DPTR
 ; #pragma endasm
 ;                 LCD_WR = 1;
-			; SOURCE LINE # 233
+			; SOURCE LINE # 234
 	SETB 	LCD_WR
 ; //                Write_DATA(Image[k++],Image[k++]);
 ;             }
-			; SOURCE LINE # 235
+			; SOURCE LINE # 236
 	DJNZ 	R6,?C0063
 ;         }
-			; SOURCE LINE # 236
+			; SOURCE LINE # 237
 ?C0062:
 	INC  	R7
 	CJNE 	R7,#063H,?C0060
 ; }
-			; SOURCE LINE # 237
+			; SOURCE LINE # 238
 ?C0066:
 	RET  	
 ; END OF Display_Loading_Image
@@ -36508,15 +36604,27 @@ Display_Loading_Image:
 	RSEG  ?PR?Display_Running?S6D0154
 Display_Running:
 	USING	0
-			; SOURCE LINE # 240
-; {
 			; SOURCE LINE # 241
-; 	Display_Running_Image();
+; {
 			; SOURCE LINE # 242
-	LCALL	Display_Running_Image
-;     
-;     LCD_ShowString(5,5,0,colors[4],colors[7]," !\"#$%&`()*+,-./012");	
+; 	Display_White();
+			; SOURCE LINE # 243
+	LCALL	Display_White
+; 	Display_Running_Image();
 			; SOURCE LINE # 244
+	LCALL	Display_Running_Image
+;     /*
+; 	LCD_ShowString(5,5,0,colors[4],colors[7]," !\"#$%&`()*+,-./012");	
+;     LCD_ShowString(35,5,0,colors[4],colors[7],"3456789:;<=>?@ABCDE"); 
+;     LCD_ShowString(65,5,0,colors[4],colors[7],"FGHIJKLMNOPQRSTUVWX"); 
+;     LCD_ShowString(95,5,0,colors[4],colors[7],"YZ[\]^_'abcdefghijk");
+; 	LCD_ShowString(125,5,0,colors[4],colors[7],"lmnopqrstuvwxyz{|}~");
+; 	ChineseString(155,70,1,colors[4],colors[7],"0123456789");
+; 	ChineseString(185,70,1,colors[4],colors[7],":;<=>?@ABC");
+; 	ChineseString(215,70,1,colors[4],colors[7],"DEFGHIJKLM");
+; 	*/
+; 	LCD_ShowString(215,70,0,colors[4],colors[7],"What is a Raspberry Pi?");	
+			; SOURCE LINE # 255
 	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
 	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
 	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
@@ -36524,28 +36632,78 @@ Display_Running:
 	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
 	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_0)
 	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_0)
-	MOV  	R7,#05H
-	LCALL	L?0158
-;     LCD_ShowString(35,5,0,colors[4],colors[7],"3456789:;<=>?@ABCDE"); 
-			; SOURCE LINE # 245
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R5,#046H
+	MOV  	R4,A
+	MOV  	R7,#0D7H
+	MOV  	R6,A
+	LCALL	_LCD_ShowString
+; 	LCD_ShowString(185,70,0,colors[4],colors[7],"3456789:;<=>?@ABCDE"); 
+			; SOURCE LINE # 256
 	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
 	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
 	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
 	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
 	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
-	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_20)
-	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_20)
-	MOV  	R7,#023H
-	LCALL	L?0158
-;     LCD_ShowString(65,5,0,colors[4],colors[7],"FGHIJKLMNOPQRSTUVWX"); 
-			; SOURCE LINE # 246
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_24)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_24)
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R5,#046H
+	MOV  	R4,A
+	MOV  	R7,#0B9H
+	MOV  	R6,A
+	LCALL	_LCD_ShowString
+; 	LCD_ShowString(155,70,0,colors[4],colors[7],"FGHIJKLMNOPQRSTUVWX"); 
+			; SOURCE LINE # 257
 	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
 	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
 	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
 	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
 	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
-	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_40)
-	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_40)
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_44)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_44)
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R5,#046H
+	MOV  	R4,A
+	MOV  	R7,#09BH
+	MOV  	R6,A
+	LCALL	_LCD_ShowString
+; 	LCD_ShowString(125,5,0,colors[4],colors[7],"YZ[\]^_'abcdefghijk");
+			; SOURCE LINE # 258
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_64)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_64)
+	LCALL	L?0149
+; 	LCD_ShowString(95,5,0,colors[4],colors[7],"lmnopqrstuvwxyz{|}~");
+			; SOURCE LINE # 259
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_83)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_83)
+	MOV  	R7,#05FH
+	LCALL	L?0151
+; 	LCD_ShowString(65,5,0,colors[4],colors[7],"FGHIJKLMNOPQRSTUVWX"); 
+			; SOURCE LINE # 260
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_44)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_44)
 	CLR  	A
 	MOV  	R3,A
 	MOV  	R2,A
@@ -36554,15 +36712,128 @@ Display_Running:
 	MOV  	R7,#041H
 	MOV  	R6,A
 	LCALL	_LCD_ShowString
-;     LCD_ShowString(95,5,0,colors[4],colors[7],"YZ[\]^_'abcdefghijk");
-			; SOURCE LINE # 247
+; 	LCD_ShowString(35,5,0,colors[4],colors[7],"YZ[\]^_'abcdefghijk");
+			; SOURCE LINE # 261
 	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
 	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
 	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
 	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
 	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
-	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_60)
-	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_60)
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_64)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_64)
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R5,#05H
+	MOV  	R4,A
+	MOV  	R7,#023H
+	MOV  	R6,A
+	LCALL	_LCD_ShowString
+; 	LCD_ShowString(5,5,0,colors[4],colors[7],"lmnopqrstuvwxyz{|}~");
+			; SOURCE LINE # 262
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_83)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_83)
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R5,#05H
+	MOV  	R4,A
+	MOV  	R7,#05H
+	MOV  	R6,A
+	LJMP 	_LCD_ShowString
+; END OF Display_Running
+
+; }
+; 
+; void Display_Running1()
+
+	RSEG  ?PR?Display_Running1?S6D0154
+Display_Running1:
+	USING	0
+			; SOURCE LINE # 265
+; {
+			; SOURCE LINE # 266
+; 	Display_White();
+			; SOURCE LINE # 267
+	LCALL	Display_White
+; 	Display_Running_Image();
+			; SOURCE LINE # 268
+	LCALL	Display_Running_Image
+; 	LCD_ShowString(215,70,0,colors[4],colors[7],	"What is a Raspb");	
+			; SOURCE LINE # 269
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_103)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_103)
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R5,#046H
+	MOV  	R4,A
+	MOV  	R7,#0D7H
+	MOV  	R6,A
+	LCALL	_LCD_ShowString
+; 	LCD_ShowString(185,70,0,colors[4],colors[7],	"erry Pi?"); 
+			; SOURCE LINE # 270
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_119)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_119)
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R5,#046H
+	MOV  	R4,A
+	MOV  	R7,#0B9H
+	MOV  	R6,A
+	LCALL	_LCD_ShowString
+; 	LCD_ShowString(155,70,0,colors[4],colors[7],	"The Raspberry P"); 
+			; SOURCE LINE # 271
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_128)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_128)
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R5,#046H
+	MOV  	R4,A
+	MOV  	R7,#09BH
+	MOV  	R6,A
+	LCALL	_LCD_ShowString
+; 	LCD_ShowString(125,5,0,colors[4],colors[7],		"i is a credit-card ");
+			; SOURCE LINE # 272
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_144)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_144)
+	LCALL	L?0149
+; 	LCD_ShowString(95,5,0,colors[4],colors[7],		"sized computer that");
+			; SOURCE LINE # 273
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_164)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_164)
 	CLR  	A
 	MOV  	R3,A
 	MOV  	R2,A
@@ -36571,62 +36842,352 @@ Display_Running:
 	MOV  	R7,#05FH
 	MOV  	R6,A
 	LCALL	_LCD_ShowString
-; 	LCD_ShowString(125,5,0,colors[4],colors[7],"lmnopqrstuvwxyz{|}~");
-			; SOURCE LINE # 248
+; 	LCD_ShowString(65,5,0,colors[4],colors[7],		" plugs into your TV"); 
+			; SOURCE LINE # 274
 	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
 	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
 	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
 	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
 	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
-	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_79)
-	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_79)
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_184)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_184)
 	CLR  	A
 	MOV  	R3,A
 	MOV  	R2,A
 	MOV  	R5,#05H
 	MOV  	R4,A
-	MOV  	R7,#07DH
+	MOV  	R7,#041H
 	MOV  	R6,A
 	LCALL	_LCD_ShowString
-; 	ChineseString(155,70,1,colors[4],colors[7],"0123456789");
-			; SOURCE LINE # 249
-	MOV  	?_ChineseString?BYTE+06H,colors+08H
-	MOV  	?_ChineseString?BYTE+07H,colors+09H
-	MOV  	?_ChineseString?BYTE+08H,colors+0EH
-	MOV  	?_ChineseString?BYTE+09H,colors+0FH
-	MOV  	?_ChineseString?BYTE+0AH,#0FFH
-	MOV  	?_ChineseString?BYTE+0BH,#HIGH (?SC_99)
-	MOV  	?_ChineseString?BYTE+0CH,#LOW (?SC_99)
-	MOV  	R7,#09BH
-	LCALL	L?0163
-; 	ChineseString(185,70,1,colors[4],colors[7],":;<=>?@ABC");
-			; SOURCE LINE # 250
-	MOV  	?_ChineseString?BYTE+06H,colors+08H
-	MOV  	?_ChineseString?BYTE+07H,colors+09H
-	MOV  	?_ChineseString?BYTE+08H,colors+0EH
-	MOV  	?_ChineseString?BYTE+09H,colors+0FH
-	MOV  	?_ChineseString?BYTE+0AH,#0FFH
-	MOV  	?_ChineseString?BYTE+0BH,#HIGH (?SC_110)
-	MOV  	?_ChineseString?BYTE+0CH,#LOW (?SC_110)
-	MOV  	R7,#0B9H
-	LCALL	L?0163
-; 	ChineseString(215,70,1,colors[4],colors[7],"DEFGHIJKLM");
-			; SOURCE LINE # 251
-	MOV  	?_ChineseString?BYTE+06H,colors+08H
-	MOV  	?_ChineseString?BYTE+07H,colors+09H
-	MOV  	?_ChineseString?BYTE+08H,colors+0EH
-	MOV  	?_ChineseString?BYTE+09H,colors+0FH
-	MOV  	?_ChineseString?BYTE+0AH,#0FFH
-	MOV  	?_ChineseString?BYTE+0BH,#HIGH (?SC_121)
-	MOV  	?_ChineseString?BYTE+0CH,#LOW (?SC_121)
-	MOV  	R3,#01H
-	MOV  	R2,#00H
+; 	LCD_ShowString(35,5,0,colors[4],colors[7],		" and a keyboard. It");
+			; SOURCE LINE # 275
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_204)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_204)
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R5,#05H
+	MOV  	R4,A
+	MOV  	R7,#023H
+	MOV  	R6,A
+	LCALL	_LCD_ShowString
+; 	LCD_ShowString(5,5,0,colors[4],colors[7],		" is a capable littl");
+			; SOURCE LINE # 276
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_224)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_224)
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R5,#05H
+	MOV  	R4,A
+	MOV  	R7,#05H
+	MOV  	R6,A
+	LJMP 	_LCD_ShowString
+; END OF Display_Running1
+
+; }
+; 
+; void Display_Running2()
+
+	RSEG  ?PR?Display_Running2?S6D0154
+Display_Running2:
+	USING	0
+			; SOURCE LINE # 279
+; {
+			; SOURCE LINE # 280
+; 	Display_White();
+			; SOURCE LINE # 281
+	LCALL	Display_White
+; 	Display_Running_Image();
+			; SOURCE LINE # 282
+	LCALL	Display_Running_Image
+; 	LCD_ShowString(215,70,0,colors[4],colors[7],"e computer whic");	
+			; SOURCE LINE # 283
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_244)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_244)
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
 	MOV  	R5,#046H
-	MOV  	R4,#00H
+	MOV  	R4,A
 	MOV  	R7,#0D7H
-	MOV  	R6,#00H
-	LJMP 	_ChineseString
-; END OF Display_Running
+	MOV  	R6,A
+	LCALL	_LCD_ShowString
+; 	LCD_ShowString(185,70,0,colors[4],colors[7],"h can be used i"); 
+			; SOURCE LINE # 284
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_260)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_260)
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R5,#046H
+	MOV  	R4,A
+	MOV  	R7,#0B9H
+	MOV  	R6,A
+	LCALL	_LCD_ShowString
+; 	LCD_ShowString(155,70,0,colors[4],colors[7],"n electronics p"); 
+			; SOURCE LINE # 285
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_276)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_276)
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R5,#046H
+	MOV  	R4,A
+	MOV  	R7,#09BH
+	MOV  	R6,A
+	LCALL	_LCD_ShowString
+; 	LCD_ShowString(125,5,0,colors[4],colors[7],	"rojects, and for ma");
+			; SOURCE LINE # 286
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_292)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_292)
+	LCALL	L?0150
+; 	LCD_ShowString(95,5,0,colors[4],colors[7],	"ny of the things th");
+			; SOURCE LINE # 287
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_312)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_312)
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R5,#05H
+	MOV  	R4,A
+	MOV  	R7,#05FH
+	MOV  	R6,A
+	LCALL	_LCD_ShowString
+; 	LCD_ShowString(65,5,0,colors[4],colors[7],	"at your desktop PC "); 
+			; SOURCE LINE # 288
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_332)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_332)
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R5,#05H
+	MOV  	R4,A
+	MOV  	R7,#041H
+	MOV  	R6,A
+	LCALL	_LCD_ShowString
+; 	LCD_ShowString(35,5,0,colors[4],colors[7],	"does, like spreadsh");
+			; SOURCE LINE # 289
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_352)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_352)
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R5,#05H
+	MOV  	R4,A
+	MOV  	R7,#023H
+	MOV  	R6,A
+	LCALL	_LCD_ShowString
+; 	LCD_ShowString(5,5,0,colors[4],colors[7],	"eets, word-processi");
+			; SOURCE LINE # 290
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_372)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_372)
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R5,#05H
+	MOV  	R4,A
+	MOV  	R7,#05H
+	MOV  	R6,A
+	LJMP 	_LCD_ShowString
+; END OF Display_Running2
+
+; }
+; 
+; void Display_Running3()
+
+	RSEG  ?PR?Display_Running3?S6D0154
+Display_Running3:
+	USING	0
+			; SOURCE LINE # 293
+; {
+			; SOURCE LINE # 294
+; 	Display_White();
+			; SOURCE LINE # 295
+	LCALL	Display_White
+; 	Display_Running_Image();
+			; SOURCE LINE # 296
+	LCALL	Display_Running_Image
+; 	LCD_ShowString(215,70,0,colors[4],colors[7],"ng and games. I");	
+			; SOURCE LINE # 297
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_392)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_392)
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R5,#046H
+	MOV  	R4,A
+	MOV  	R7,#0D7H
+	MOV  	R6,A
+	LCALL	_LCD_ShowString
+; 	LCD_ShowString(185,70,0,colors[4],colors[7],"t also plays hig"); 
+			; SOURCE LINE # 298
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_408)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_408)
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R5,#046H
+	MOV  	R4,A
+	MOV  	R7,#0B9H
+	MOV  	R6,A
+	LCALL	_LCD_ShowString
+; 	LCD_ShowString(155,70,0,colors[4],colors[7],"h-definition vid"); 
+			; SOURCE LINE # 299
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_425)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_425)
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R5,#046H
+	MOV  	R4,A
+	MOV  	R7,#09BH
+	MOV  	R6,A
+	LCALL	_LCD_ShowString
+; 	LCD_ShowString(125,5,0,colors[4],colors[7],"eo. We want to see i");
+			; SOURCE LINE # 300
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_442)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_442)
+	LCALL	L?0150
+; 	LCD_ShowString(95,5,0,colors[4],colors[7],"t being used by kids");
+			; SOURCE LINE # 301
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_463)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_463)
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R5,#05H
+	MOV  	R4,A
+	MOV  	R7,#05FH
+	MOV  	R6,A
+	LCALL	_LCD_ShowString
+; 	LCD_ShowString(65,5,0,colors[4],colors[7]," all over the world "); 
+			; SOURCE LINE # 302
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_484)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_484)
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R5,#05H
+	MOV  	R4,A
+	MOV  	R7,#041H
+	MOV  	R6,A
+	LCALL	_LCD_ShowString
+; 	LCD_ShowString(35,5,0,colors[4],colors[7],"to learn programming");
+			; SOURCE LINE # 303
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_505)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_505)
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R5,#05H
+	MOV  	R4,A
+	MOV  	R7,#023H
+	MOV  	R6,A
+	LCALL	_LCD_ShowString
+; 	LCD_ShowString(5,5,0,colors[4],colors[7],".");
+			; SOURCE LINE # 304
+	MOV  	?_LCD_ShowString?BYTE+06H,colors+08H
+	MOV  	?_LCD_ShowString?BYTE+07H,colors+09H
+	MOV  	?_LCD_ShowString?BYTE+08H,colors+0EH
+	MOV  	?_LCD_ShowString?BYTE+09H,colors+0FH
+	MOV  	?_LCD_ShowString?BYTE+0AH,#0FFH
+	MOV  	?_LCD_ShowString?BYTE+0BH,#HIGH (?SC_526)
+	MOV  	?_LCD_ShowString?BYTE+0CH,#LOW (?SC_526)
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+	MOV  	R5,#05H
+	MOV  	R4,A
+	MOV  	R7,#05H
+	MOV  	R6,A
+	LJMP 	_LCD_ShowString
+; END OF Display_Running3
 
 ; }
 ; 
@@ -36635,17 +37196,17 @@ Display_Running:
 	RSEG  ?PR?Display_Running_Image?S6D0154
 Display_Running_Image:
 	USING	0
-			; SOURCE LINE # 254
+			; SOURCE LINE # 307
 ; {
-			; SOURCE LINE # 255
+			; SOURCE LINE # 308
 ;     unsigned char i,j;
 ; 	LCD_CS =0;  //打开片选使能
-			; SOURCE LINE # 257
+			; SOURCE LINE # 310
 	CLR  	LCD_CS
 ; 	//Address_set(0,0,239,319);
 ; 	//Address_set(119,119,239,200);
 ; 	Address_set(174,5,233,54);
-			; SOURCE LINE # 260
+			; SOURCE LINE # 313
 	MOV  	?_Address_set?BYTE+06H,#00H
 	MOV  	?_Address_set?BYTE+07H,#036H
 	MOV  	R3,#0E9H
@@ -36656,7 +37217,7 @@ Display_Running_Image:
 	MOV  	R6,#00H
 	LCALL	_Address_set
 ;     LCD_DC=1;
-			; SOURCE LINE # 261
+			; SOURCE LINE # 314
 	SETB 	LCD_DC
 ; #pragma asm
 ; 		mov DPTR, #RaspberryPiLogoSmall
@@ -36665,23 +37226,23 @@ Display_Running_Image:
 ; //        unsigned int  k=0;
 ;         
 ;         for(j=0;j<50;j++)
-			; SOURCE LINE # 267
-;---- Variable 'j?1162' assigned to Register 'R7' ----
+			; SOURCE LINE # 320
+;---- Variable 'j?1462' assigned to Register 'R7' ----
 	CLR  	A
 	MOV  	R7,A
-?C0068:
+?C0071:
 ;         {
-			; SOURCE LINE # 268
+			; SOURCE LINE # 321
 ; 
 ;             for(i=60;i!=0;i--)
-			; SOURCE LINE # 270
-;---- Variable 'i?1161' assigned to Register 'R6' ----
+			; SOURCE LINE # 323
+;---- Variable 'i?1461' assigned to Register 'R6' ----
 	MOV  	R6,#03CH
-?C0071:
+?C0074:
 ;             {
-			; SOURCE LINE # 271
+			; SOURCE LINE # 324
 ;                 LCD_WR = 0;
-			; SOURCE LINE # 272
+			; SOURCE LINE # 325
 	CLR  	LCD_WR
 ; #pragma asm
 ; 		clr A
@@ -36702,20 +37263,20 @@ Display_Running_Image:
 	  inc DPTR
 ; #pragma endasm
 ;                 LCD_WR = 1;
-			; SOURCE LINE # 283
+			; SOURCE LINE # 336
 	SETB 	LCD_WR
 ; //                Write_DATA(Image[k++],Image[k++]);
 ;             }
-			; SOURCE LINE # 285
-	DJNZ 	R6,?C0071
+			; SOURCE LINE # 338
+	DJNZ 	R6,?C0074
 ;         }
-			; SOURCE LINE # 286
-?C0070:
+			; SOURCE LINE # 339
+?C0073:
 	INC  	R7
-	CJNE 	R7,#032H,?C0068
+	CJNE 	R7,#032H,?C0071
 ; }
-			; SOURCE LINE # 287
-?C0074:
+			; SOURCE LINE # 340
+?C0077:
 	RET  	
 ; END OF Display_Running_Image
 
@@ -36726,54 +37287,54 @@ Display_Running_Image:
 
 	RSEG  ?PR?_LCD_Writ_Bus?S6D0154
 _LCD_Writ_Bus:
-			; SOURCE LINE # 291
-;---- Variable 'VL?1264' assigned to Register 'R5' ----
-;---- Variable 'VH?1263' assigned to Register 'R7' ----
+			; SOURCE LINE # 344
+;---- Variable 'VL?1564' assigned to Register 'R5' ----
+;---- Variable 'VH?1563' assigned to Register 'R7' ----
 ; {
-			; SOURCE LINE # 292
+			; SOURCE LINE # 345
 ;     LCD_DataPortH=VH;	  //高位P口
-			; SOURCE LINE # 293
+			; SOURCE LINE # 346
 	MOV  	P2,R7
 ; 	LCD_DataPortL=VL;	  //低位P口	
-			; SOURCE LINE # 294
+			; SOURCE LINE # 347
 	MOV  	P0,R5
 ; 	LCD_WR=0;
-			; SOURCE LINE # 295
+			; SOURCE LINE # 348
 	CLR  	LCD_WR
 ; 	LCD_WR=1; 
-			; SOURCE LINE # 296
+			; SOURCE LINE # 349
 	SETB 	LCD_WR
 ; }
-			; SOURCE LINE # 297
+			; SOURCE LINE # 350
 	RET  	
 ; END OF _LCD_Writ_Bus
 
 ; void LCD_Write_COM(char VH,char VL)	    //发送命令
 
 	RSEG  ?PR?_LCD_Write_COM?S6D0154
-L?0149:
+L?0155:
 	USING	0
 	MOV  	R5,#01CH
-L?0150:
+L?0156:
 	LCALL	_LCD_Write_DATA
 	MOV  	R7,#02CH
 	MOV  	R6,#01H
-L?0151:
+L?0157:
 	LCALL	_delayms
 	MOV  	R5,#011H
 	CLR  	A
 	MOV  	R7,A
 _LCD_Write_COM:
-			; SOURCE LINE # 298
-;---- Variable 'VL?1366' assigned to Register 'R5' ----
-;---- Variable 'VH?1365' assigned to Register 'R7' ----
+			; SOURCE LINE # 351
+;---- Variable 'VL?1666' assigned to Register 'R5' ----
+;---- Variable 'VH?1665' assigned to Register 'R7' ----
 ; {	
-			; SOURCE LINE # 299
+			; SOURCE LINE # 352
 ;     LCD_DC=0;
-			; SOURCE LINE # 300
+			; SOURCE LINE # 353
 	CLR  	LCD_DC
 ; 	LCD_Writ_Bus(VH,VL);
-			; SOURCE LINE # 301
+			; SOURCE LINE # 354
 	LJMP 	_LCD_Writ_Bus
 ; END OF _LCD_Write_COM
 
@@ -36781,24 +37342,24 @@ _LCD_Write_COM:
 ; void LCD_Write_DATA(char VH,char VL)	//发送数据
 
 	RSEG  ?PR?_LCD_Write_DATA?S6D0154
-L?0155:
+L?0161:
 	USING	0
-L?0156:
+L?0162:
 	MOV  	R7,A
-L?0157:
+L?0163:
 	LCALL	_LCD_Write_COM
 	MOV  	R5,A
 _LCD_Write_DATA:
-			; SOURCE LINE # 303
-;---- Variable 'VL?1468' assigned to Register 'R5' ----
-;---- Variable 'VH?1467' assigned to Register 'R7' ----
+			; SOURCE LINE # 356
+;---- Variable 'VL?1768' assigned to Register 'R5' ----
+;---- Variable 'VH?1767' assigned to Register 'R7' ----
 ; {
-			; SOURCE LINE # 304
+			; SOURCE LINE # 357
 ;     LCD_DC=1;
-			; SOURCE LINE # 305
+			; SOURCE LINE # 358
 	SETB 	LCD_DC
 ; 	LCD_Writ_Bus(VH,VL);
-			; SOURCE LINE # 306
+			; SOURCE LINE # 359
 	LJMP 	_LCD_Writ_Bus
 ; END OF _LCD_Write_DATA
 
@@ -36811,141 +37372,141 @@ _LCD_Write_DATA:
 	RSEG  ?PR?_Pant?S6D0154
 _Pant:
 	USING	0
-			; SOURCE LINE # 311
-	MOV  	VH?1569,R7
-	MOV  	VL?1570,R5
+			; SOURCE LINE # 364
+	MOV  	VH?1869,R7
+	MOV  	VL?1870,R5
 ; {
-			; SOURCE LINE # 312
+			; SOURCE LINE # 365
 ; 	unsigned char i;
 ; 	unsigned char j;
 ; 	
 ; 	LCD_CS =0;  //打开片选使能
-			; SOURCE LINE # 316
+			; SOURCE LINE # 369
 ; 	Address_set(0,0,239,319);
-			; SOURCE LINE # 317
-	LCALL	L?0147
+			; SOURCE LINE # 370
+	LCALL	L?0153
 ;     LCD_DataPortH=VH;	  //高位P口
-			; SOURCE LINE # 318
-	MOV  	P2,VH?1569
+			; SOURCE LINE # 371
+	MOV  	P2,VH?1869
 ; 	LCD_DataPortL=VL;	  //低位P口	
-			; SOURCE LINE # 319
-	MOV  	P0,VL?1570
+			; SOURCE LINE # 372
+	MOV  	P0,VL?1870
 ;     LCD_DC=1;
-			; SOURCE LINE # 320
+			; SOURCE LINE # 373
 	SETB 	LCD_DC
 ;     for(i=160;i!=0;i--)
-			; SOURCE LINE # 321
-;---- Variable 'i?1571' assigned to Register 'R7' ----
+			; SOURCE LINE # 374
+;---- Variable 'i?1871' assigned to Register 'R7' ----
 	MOV  	R7,#0A0H
-?C0078:
-; 	{
-			; SOURCE LINE # 322
-;         for (j=240;j!=0;j--)
-			; SOURCE LINE # 323
-;---- Variable 'j?1572' assigned to Register 'R6' ----
-	MOV  	R6,#0F0H
 ?C0081:
+; 	{
+			; SOURCE LINE # 375
+;         for (j=240;j!=0;j--)
+			; SOURCE LINE # 376
+;---- Variable 'j?1872' assigned to Register 'R6' ----
+	MOV  	R6,#0F0H
+?C0084:
 ;         {
-			; SOURCE LINE # 324
+			; SOURCE LINE # 377
 ;             LCD_WR=0;
-			; SOURCE LINE # 325
+			; SOURCE LINE # 378
 	CLR  	LCD_WR
 ;             LCD_WR=1; 
-			; SOURCE LINE # 326
+			; SOURCE LINE # 379
 	SETB 	LCD_WR
 ;             LCD_WR=0;
-			; SOURCE LINE # 327
+			; SOURCE LINE # 380
 	CLR  	LCD_WR
 ;             LCD_WR=1; 
-			; SOURCE LINE # 328
+			; SOURCE LINE # 381
 	SETB 	LCD_WR
 ; 	    }
-			; SOURCE LINE # 329
-	DJNZ 	R6,?C0081
+			; SOURCE LINE # 382
+	DJNZ 	R6,?C0084
 ;     }
-			; SOURCE LINE # 330
-?C0080:
-	DJNZ 	R7,?C0078
-?C0079:
+			; SOURCE LINE # 383
+?C0083:
+	DJNZ 	R7,?C0081
+?C0082:
 ;     LCD_CS =1;  //关闭片选使能
-			; SOURCE LINE # 331
+			; SOURCE LINE # 384
 	SETB 	LCD_CS
 ; }
-			; SOURCE LINE # 332
+			; SOURCE LINE # 385
 	RET  	
 ; END OF _Pant
 
 ; void Address_set(unsigned int x1,unsigned int y1,unsigned int x2,unsigned int y2)
 
 	RSEG  ?PR?_Address_set?S6D0154
-L?0146:
+L?0152:
 	USING	0
-L?0147:
+L?0153:
 	CLR  	LCD_CS
 	MOV  	?_Address_set?BYTE+06H,#01H
 	MOV  	?_Address_set?BYTE+07H,#03FH
 	MOV  	R3,#0EFH
 	MOV  	R2,#00H
 	CLR  	A
-L?0148:
+L?0154:
 	MOV  	R5,A
 	MOV  	R4,A
 	MOV  	R7,A
 	MOV  	R6,A
 _Address_set:
 	USING	0
-			; SOURCE LINE # 333
-	MOV  	x1?1673,R6
-	MOV  	x1?1673+01H,R7
-	MOV  	y1?1674,R4
-	MOV  	y1?1674+01H,R5
-;---- Variable 'x2?1675' assigned to Register 'R2/R3' ----
+			; SOURCE LINE # 386
+	MOV  	x1?1973,R6
+	MOV  	x1?1973+01H,R7
+	MOV  	y1?1974,R4
+	MOV  	y1?1974+01H,R5
+;---- Variable 'x2?1975' assigned to Register 'R2/R3' ----
 ; {
-			; SOURCE LINE # 334
+			; SOURCE LINE # 387
 ; 
 ;     LCD_Write_COM(0x00,0x20);LCD_Write_DATA(x1>>8,x1);  //设置X坐标位置
-			; SOURCE LINE # 336
+			; SOURCE LINE # 389
 	MOV  	R5,#020H
 	CLR  	A
 	MOV  	R7,A
 	LCALL	_LCD_Write_COM
-	MOV  	A,x1?1673
+	MOV  	A,x1?1973
 	MOV  	R7,A
-	MOV  	R5,x1?1673+01H
+	MOV  	R5,x1?1973+01H
 	LCALL	_LCD_Write_DATA
 ;     LCD_Write_COM(0x00,0x21);LCD_Write_DATA(y1>>8,y1);  //设置Y坐标位置
-			; SOURCE LINE # 337
+			; SOURCE LINE # 390
 	MOV  	R5,#021H
 	CLR  	A
 	MOV  	R7,A
 	LCALL	_LCD_Write_COM
-	MOV  	A,y1?1674
+	MOV  	A,y1?1974
 	MOV  	R7,A
-	MOV  	R5,y1?1674+01H
+	MOV  	R5,y1?1974+01H
 	LCALL	_LCD_Write_DATA
 ; 		 
 ;     LCD_Write_COM(0x00,0x37);LCD_Write_DATA(x1>>8,x1);  //开始X
-			; SOURCE LINE # 339
+			; SOURCE LINE # 392
 	MOV  	R5,#037H
 	CLR  	A
 	MOV  	R7,A
 	LCALL	_LCD_Write_COM
-	MOV  	A,x1?1673
+	MOV  	A,x1?1973
 	MOV  	R7,A
-	MOV  	R5,x1?1673+01H
+	MOV  	R5,x1?1973+01H
 	LCALL	_LCD_Write_DATA
 ; 	LCD_Write_COM(0x00,0x39);LCD_Write_DATA(y1>>8,y1);  //开始Y
-			; SOURCE LINE # 340
+			; SOURCE LINE # 393
 	MOV  	R5,#039H
 	CLR  	A
 	MOV  	R7,A
 	LCALL	_LCD_Write_COM
-	MOV  	A,y1?1674
+	MOV  	A,y1?1974
 	MOV  	R7,A
-	MOV  	R5,y1?1674+01H
+	MOV  	R5,y1?1974+01H
 	LCALL	_LCD_Write_DATA
 ;     LCD_Write_COM(0x00,0x36);LCD_Write_DATA(x2>>8,x2);  //结束X
-			; SOURCE LINE # 341
+			; SOURCE LINE # 394
 	MOV  	R5,#036H
 	CLR  	A
 	MOV  	R7,A
@@ -36954,17 +37515,17 @@ _Address_set:
 	MOV  	R5,AR3
 	LCALL	_LCD_Write_DATA
 ; 	LCD_Write_COM(0x00,0x38);LCD_Write_DATA(y2>>8,y2);  //结束Y
-			; SOURCE LINE # 342
+			; SOURCE LINE # 395
 	MOV  	R5,#038H
 	MOV  	R7,A
 	LCALL	_LCD_Write_COM
-	MOV  	A,y2?1676
+	MOV  	A,y2?1976
 	MOV  	R7,A
-	MOV  	R5,y2?1676+01H
+	MOV  	R5,y2?1976+01H
 	LCALL	_LCD_Write_DATA
 ; 
 ; 	LCD_Write_COM(0x00,0x22);										 
-			; SOURCE LINE # 344
+			; SOURCE LINE # 397
 	MOV  	R5,#022H
 	CLR  	A
 	MOV  	R7,A
@@ -36978,25 +37539,25 @@ _Address_set:
 ; void ChineseChar(uint x,uint y,int size,uint For_color,uint Bk_color ,char c)
 
 	RSEG  ?PR?_ChineseChar?S6D0154
-L?0159:
+L?0164:
 	USING	0
 	MOV  	R3,#02H
 	MOV  	R2,#00H
-L?0160:
+L?0165:
 	MOV  	R4,#00H
 	MOV  	R7,#032H
 	MOV  	R6,#00H
 _ChineseChar:
 	USING	0
-			; SOURCE LINE # 349
-	MOV  	x?1777,R6
-	MOV  	x?1777+01H,R7
-	MOV  	y?1778,R4
-	MOV  	y?1778+01H,R5
-	MOV  	size?1779,R2
-	MOV  	size?1779+01H,R3
+			; SOURCE LINE # 402
+	MOV  	x?2077,R6
+	MOV  	x?2077+01H,R7
+	MOV  	y?2078,R4
+	MOV  	y?2078+01H,R5
+	MOV  	size?2079,R2
+	MOV  	size?2079+01H,R3
 ; {
-			; SOURCE LINE # 350
+			; SOURCE LINE # 403
 ; 
 ;     int e,i,j;
 ;     int  ed;
@@ -37008,9 +37569,9 @@ _ChineseChar:
 ;     uchar *pfont;
 ;     uchar *pchar;
 ;     uchar *fonttable[]={(uchar *)hz16,(uchar *)hz24 , (uchar *)hz32};
-			; SOURCE LINE # 361
-	MOV  	R0,#LOW (fonttable?1792)
-	MOV  	R4,#HIGH (fonttable?1792)
+			; SOURCE LINE # 414
+	MOV  	R0,#LOW (fonttable?2092)
+	MOV  	R4,#HIGH (fonttable?2092)
 	MOV  	R5,#00H
 	MOV  	R3,#0FFH
 	MOV  	R2,#HIGH (_?ix1000)
@@ -37020,11 +37581,11 @@ _ChineseChar:
 	LCALL	?C?COPY
 ;    
 ;     pfont=(uchar *)fonttable[size];
-			; SOURCE LINE # 363
-	MOV  	A,size?1779+01H
+			; SOURCE LINE # 416
+	MOV  	A,size?2079+01H
 	MOV  	B,#03H
 	MUL  	AB
-	ADD  	A,#LOW (fonttable?1792)
+	ADD  	A,#LOW (fonttable?2092)
 	MOV  	R0,A
 	MOV  	AR3,@R0
 	INC  	R0
@@ -37033,94 +37594,94 @@ _ChineseChar:
 	INC  	R0
 	MOV  	A,@R0
 	MOV  	R1,A
-;---- Variable 'pfont?1790' assigned to Register 'R1/R2/R3' ----
+;---- Variable 'pfont?2090' assigned to Register 'R1/R2/R3' ----
 ; 
 ; 		 LCD_CS =0;  //打开片选使能
-			; SOURCE LINE # 365
+			; SOURCE LINE # 418
 	CLR  	LCD_CS
 ;     if(size==0)
-			; SOURCE LINE # 366
-	MOV  	A,size?1779+01H
-	ORL  	A,size?1779
-	JNZ  	?C0086
+			; SOURCE LINE # 419
+	MOV  	A,size?2079+01H
+	ORL  	A,size?2079
+	JNZ  	?C0089
 ;     {
-			; SOURCE LINE # 367
+			; SOURCE LINE # 420
 ;         ncols =16-1;
-			; SOURCE LINE # 368
-	MOV  	ncols?1787,A
-	MOV  	ncols?1787+01H,#0FH
+			; SOURCE LINE # 421
+	MOV  	ncols?2087,A
+	MOV  	ncols?2087+01H,#0FH
 ;         nrows =16-1;
-			; SOURCE LINE # 369
-	MOV  	nrows?1788,A
-	MOV  	nrows?1788+01H,#0FH
+			; SOURCE LINE # 422
+	MOV  	nrows?2088,A
+	MOV  	nrows?2088+01H,#0FH
 ;         nbytes =32;	 //(16*16)/8
-			; SOURCE LINE # 370
-	MOV  	nbytes?1789,A
-	MOV  	nbytes?1789+01H,#020H
+			; SOURCE LINE # 423
+	MOV  	nbytes?2089,A
+	MOV  	nbytes?2089+01H,#020H
 ;     }
-			; SOURCE LINE # 371
-	SJMP 	?C0087
-?C0086:
+			; SOURCE LINE # 424
+	SJMP 	?C0090
+?C0089:
 ;     else
 ;     {    
-			; SOURCE LINE # 373
+			; SOURCE LINE # 426
 ;         if(size==1)
-			; SOURCE LINE # 374
-	MOV  	A,size?1779+01H
+			; SOURCE LINE # 427
+	MOV  	A,size?2079+01H
 	XRL  	A,#01H
-	ORL  	A,size?1779
-	JNZ  	?C0088
+	ORL  	A,size?2079
+	JNZ  	?C0091
 ;         {
-			; SOURCE LINE # 375
+			; SOURCE LINE # 428
 ;             ncols =24-1;
-			; SOURCE LINE # 376
-	MOV  	ncols?1787,A
-	MOV  	ncols?1787+01H,#017H
+			; SOURCE LINE # 429
+	MOV  	ncols?2087,A
+	MOV  	ncols?2087+01H,#017H
 ;             nrows =24-1;
-			; SOURCE LINE # 377
-	MOV  	nrows?1788,A
-	MOV  	nrows?1788+01H,#017H
+			; SOURCE LINE # 430
+	MOV  	nrows?2088,A
+	MOV  	nrows?2088+01H,#017H
 ;             nbytes =72;  //(24*24)/8
-			; SOURCE LINE # 378
-	MOV  	nbytes?1789,A
-	MOV  	nbytes?1789+01H,#048H
+			; SOURCE LINE # 431
+	MOV  	nbytes?2089,A
+	MOV  	nbytes?2089+01H,#048H
 ;         }
-			; SOURCE LINE # 379
-	SJMP 	?C0087
-?C0088:
+			; SOURCE LINE # 432
+	SJMP 	?C0090
+?C0091:
 ;         else
 ;         {
-			; SOURCE LINE # 381
+			; SOURCE LINE # 434
 ;             if(size==2)
-			; SOURCE LINE # 382
-	MOV  	A,size?1779+01H
+			; SOURCE LINE # 435
+	MOV  	A,size?2079+01H
 	XRL  	A,#02H
-	ORL  	A,size?1779
-	JNZ  	?C0087
+	ORL  	A,size?2079
+	JNZ  	?C0090
 ;             {
-			; SOURCE LINE # 383
+			; SOURCE LINE # 436
 ;                 ncols =32-1;
-			; SOURCE LINE # 384
-	MOV  	ncols?1787,A
-	MOV  	ncols?1787+01H,#01FH
+			; SOURCE LINE # 437
+	MOV  	ncols?2087,A
+	MOV  	ncols?2087+01H,#01FH
 ;                 nrows =32-1;
-			; SOURCE LINE # 385
-	MOV  	nrows?1788,A
-	MOV  	nrows?1788+01H,#01FH
+			; SOURCE LINE # 438
+	MOV  	nrows?2088,A
+	MOV  	nrows?2088+01H,#01FH
 ;                 nbytes =132;   //(32*32)/8
-			; SOURCE LINE # 386
-	MOV  	nbytes?1789,A
-	MOV  	nbytes?1789+01H,#084H
+			; SOURCE LINE # 439
+	MOV  	nbytes?2089,A
+	MOV  	nbytes?2089+01H,#084H
 ;             }
-			; SOURCE LINE # 387
+			; SOURCE LINE # 440
 ;         }
-			; SOURCE LINE # 388
+			; SOURCE LINE # 441
 ;     }
-			; SOURCE LINE # 389
-?C0087:
+			; SOURCE LINE # 442
+?C0090:
 ;     pchar=pfont + (nbytes*(c-1));
-			; SOURCE LINE # 390
-	MOV  	R7,c?1782
+			; SOURCE LINE # 443
+	MOV  	R7,c?2082
 	MOV  	A,R7
 	RLC  	A
 	SUBB 	A,ACC
@@ -37131,188 +37692,188 @@ _ChineseChar:
 	MOV  	A,R6
 	ADDC 	A,#0FFH
 	MOV  	R6,A
-	MOV  	R4,nbytes?1789
-	MOV  	R5,nbytes?1789+01H
+	MOV  	R4,nbytes?2089
+	MOV  	R5,nbytes?2089+01H
 	LCALL	?C?IMUL
 	MOV  	A,R1
 	ADD  	A,R7
 	MOV  	R1,A
 	MOV  	A,R2
 	ADDC 	A,R6
-	MOV  	pchar?1791,R3
-	MOV  	pchar?1791+01H,A
-	MOV  	pchar?1791+02H,R1
+	MOV  	pchar?2091,R3
+	MOV  	pchar?2091+01H,A
+	MOV  	pchar?2091+02H,R1
 ; 
 ;     Address_set(x,  y, x+nrows,y+ncols);
-			; SOURCE LINE # 392
-	MOV  	A,x?1777+01H
-	ADD  	A,nrows?1788+01H
+			; SOURCE LINE # 445
+	MOV  	A,x?2077+01H
+	ADD  	A,nrows?2088+01H
 	MOV  	R3,A
-	MOV  	A,x?1777
-	ADDC 	A,nrows?1788
+	MOV  	A,x?2077
+	ADDC 	A,nrows?2088
 	MOV  	R2,A
-	MOV  	A,y?1778+01H
-	ADD  	A,ncols?1787+01H
+	MOV  	A,y?2078+01H
+	ADD  	A,ncols?2087+01H
 	MOV  	?_Address_set?BYTE+07H,A
-	MOV  	A,y?1778
-	ADDC 	A,ncols?1787
+	MOV  	A,y?2078
+	ADDC 	A,ncols?2087
 	MOV  	?_Address_set?BYTE+06H,A
-	MOV  	R5,y?1778+01H
-	MOV  	R4,y?1778
-	MOV  	R7,x?1777+01H
-	MOV  	R6,x?1777
+	MOV  	R5,y?2078+01H
+	MOV  	R4,y?2078
+	MOV  	R7,x?2077+01H
+	MOV  	R6,x?2077
 	LCALL	_Address_set
 ;     //---------------------------------
 ;     for(i=0;i<nbytes;i++)
-			; SOURCE LINE # 394
+			; SOURCE LINE # 447
 	CLR  	A
-	MOV  	i?1784,A
-	MOV  	i?1784+01H,A
-?C0091:
+	MOV  	i?2084,A
+	MOV  	i?2084+01H,A
+?C0094:
 	CLR  	C
-	MOV  	A,i?1784+01H
-	SUBB 	A,nbytes?1789+01H
-	MOV  	A,i?1784
-	SUBB 	A,nbytes?1789
+	MOV  	A,i?2084+01H
+	SUBB 	A,nbytes?2089+01H
+	MOV  	A,i?2084
+	SUBB 	A,nbytes?2089
 	JC   	$ + 5H
-	LJMP 	?C0092
+	LJMP 	?C0095
 ;     {
-			; SOURCE LINE # 395
+			; SOURCE LINE # 448
 ;         ed=*pchar++;
-			; SOURCE LINE # 396
-	MOV  	R3,pchar?1791
-	INC  	pchar?1791+02H
-	MOV  	A,pchar?1791+02H
-	MOV  	R2,pchar?1791+01H
-	JNZ  	?C0137
-	INC  	pchar?1791+01H
-?C0137:
+			; SOURCE LINE # 449
+	MOV  	R3,pchar?2091
+	INC  	pchar?2091+02H
+	MOV  	A,pchar?2091+02H
+	MOV  	R2,pchar?2091+01H
+	JNZ  	?C0140
+	INC  	pchar?2091+01H
+?C0140:
 	DEC  	A
 	MOV  	R1,A
 	LCALL	?C?CLDPTR
-	MOV  	ed?1786,#00H
-	MOV  	ed?1786+01H,A
+	MOV  	ed?2086,#00H
+	MOV  	ed?2086+01H,A
 ;         if(size==0)
-			; SOURCE LINE # 397
-	MOV  	A,size?1779+01H
-	ORL  	A,size?1779
-	JNZ  	?C0094
+			; SOURCE LINE # 450
+	MOV  	A,size?2079+01H
+	ORL  	A,size?2079
+	JNZ  	?C0097
 ;         {
-			; SOURCE LINE # 398
+			; SOURCE LINE # 451
 ;             if(i%2==0)
-			; SOURCE LINE # 399
-	MOV  	R6,i?1784
-	MOV  	R7,i?1784+01H
+			; SOURCE LINE # 452
+	MOV  	R6,i?2084
+	MOV  	R7,i?2084+01H
 	MOV  	R4,A
 	MOV  	R5,#02H
 	LCALL	?C?SIDIV
 	MOV  	A,R5
 	ORL  	A,R4
-	JNZ  	?C0095
+	JNZ  	?C0098
 ;                 e=8;
-			; SOURCE LINE # 400
-	MOV  	e?1783,A
-	SJMP 	?C0143
-?C0095:
+			; SOURCE LINE # 453
+	MOV  	e?2083,A
+	SJMP 	?C0146
+?C0098:
 ;             else
 ;                 e=4;
-			; SOURCE LINE # 402
-	MOV  	e?1783,#00H
-	MOV  	e?1783+01H,#04H
+			; SOURCE LINE # 455
+	MOV  	e?2083,#00H
+	MOV  	e?2083+01H,#04H
 ;         }
-			; SOURCE LINE # 403
-	SJMP 	?C0097
-?C0094:
+			; SOURCE LINE # 456
+	SJMP 	?C0100
+?C0097:
 ;         else
 ;             e=8;
-			; SOURCE LINE # 405
-	MOV  	e?1783,#00H
-?C0143:
-	MOV  	e?1783+01H,#08H
-?C0097:
+			; SOURCE LINE # 458
+	MOV  	e?2083,#00H
+?C0146:
+	MOV  	e?2083+01H,#08H
+?C0100:
 ;         for(j=0;j<e;j++)
-			; SOURCE LINE # 406
-;---- Variable 'j?1785' assigned to Register 'R2/R3' ----
+			; SOURCE LINE # 459
+;---- Variable 'j?2085' assigned to Register 'R2/R3' ----
 	CLR  	A
 	MOV  	R3,A
 	MOV  	R2,A
-?C0098:
+?C0101:
 	CLR  	C
 	MOV  	A,R3
-	SUBB 	A,e?1783+01H
-	MOV  	A,e?1783
+	SUBB 	A,e?2083+01H
+	MOV  	A,e?2083
 	XRL  	A,#080H
 	MOV  	R0,A
 	MOV  	A,R2
 	XRL  	A,#080H
 	SUBB 	A,R0
-	JNC  	?C0093
+	JNC  	?C0096
 ;         {//unsigned char temp;
-			; SOURCE LINE # 407
+			; SOURCE LINE # 460
 ;             if((ed>>j)&0x01)
-			; SOURCE LINE # 408
+			; SOURCE LINE # 461
 	MOV  	R7,AR3
-	MOV  	A,ed?1786+01H
-	MOV  	R6,ed?1786
+	MOV  	A,ed?2086+01H
+	MOV  	R6,ed?2086
 	MOV  	R0,AR7
 	INC  	R0
-	SJMP 	?C0139
-?C0138:
+	SJMP 	?C0142
+?C0141:
 	XCH  	A,R6
 	MOV  	C,ACC.7
 	RRC  	A
 	XCH  	A,R6
 	RRC  	A
-?C0139:
-	DJNZ 	R0,?C0138
-	JNB  	ACC.0,?C0101
+?C0142:
+	DJNZ 	R0,?C0141
+	JNB  	ACC.0,?C0104
 ;             { 
-			; SOURCE LINE # 409
+			; SOURCE LINE # 462
 ;        	       //temp = For_color&0x00ff
 ; 	           LCD_Write_DATA(For_color>>8 , For_color  );  //textcolor
-			; SOURCE LINE # 411
-	MOV  	A,For_color?1780
+			; SOURCE LINE # 464
+	MOV  	A,For_color?2080
 	MOV  	R7,A
-	MOV  	R5,For_color?1780+01H
+	MOV  	R5,For_color?2080+01H
 ; 	        }
-			; SOURCE LINE # 412
-	SJMP 	?C0144
-?C0101:
+			; SOURCE LINE # 465
+	SJMP 	?C0147
+?C0104:
 ;             else
 ;             {
-			; SOURCE LINE # 414
+			; SOURCE LINE # 467
 ;                 LCD_Write_DATA( Bk_color>>8 ,  Bk_color);  //backcolor
-			; SOURCE LINE # 415
-	MOV  	A,Bk_color?1781
+			; SOURCE LINE # 468
+	MOV  	A,Bk_color?2081
 	MOV  	R7,A
-	MOV  	R5,Bk_color?1781+01H
-?C0144:
+	MOV  	R5,Bk_color?2081+01H
+?C0147:
 	LCALL	_LCD_Write_DATA
 ; 	        }
-			; SOURCE LINE # 416
+			; SOURCE LINE # 469
 ;         }
-			; SOURCE LINE # 417
-?C0100:
+			; SOURCE LINE # 470
+?C0103:
 	INC  	R3
-	CJNE 	R3,#00H,?C0140
+	CJNE 	R3,#00H,?C0143
 	INC  	R2
-?C0140:
-	SJMP 	?C0098
+?C0143:
+	SJMP 	?C0101
 ;     }
-			; SOURCE LINE # 418
-?C0093:
-	INC  	i?1784+01H
-	MOV  	A,i?1784+01H
-	JNZ  	?C0141
-	INC  	i?1784
-?C0141:
-	LJMP 	?C0091
-?C0092:
+			; SOURCE LINE # 471
+?C0096:
+	INC  	i?2084+01H
+	MOV  	A,i?2084+01H
+	JNZ  	?C0144
+	INC  	i?2084
+?C0144:
+	LJMP 	?C0094
+?C0095:
 ; 	LCD_CS =1;  //关闭片选使能
-			; SOURCE LINE # 419
+			; SOURCE LINE # 472
 	SETB 	LCD_CS
 ; }
-			; SOURCE LINE # 420
+			; SOURCE LINE # 473
 	RET  	
 ; END OF _ChineseChar
 
@@ -37321,72 +37882,65 @@ _ChineseChar:
 ; void ChineseString(uint x,uint y,int size,uint For_color,uint Bk_color ,char *p)
 
 	RSEG  ?PR?_ChineseString?S6D0154
-L?0163:
-	USING	0
-	MOV  	R3,#01H
-	MOV  	R2,#00H
-	MOV  	R5,#046H
-	MOV  	R4,#00H
-	MOV  	R6,#00H
 _ChineseString:
 	USING	0
-			; SOURCE LINE # 423
-	MOV  	x?1893,R6
-	MOV  	x?1893+01H,R7
-	MOV  	y?1894,R4
-	MOV  	y?1894+01H,R5
-	MOV  	size?1895,R2
-	MOV  	size?1895+01H,R3
+			; SOURCE LINE # 476
+	MOV  	x?2193,R6
+	MOV  	x?2193+01H,R7
+	MOV  	y?2194,R4
+	MOV  	y?2194+01H,R5
+	MOV  	size?2195,R2
+	MOV  	size?2195+01H,R3
 ; {         
-			; SOURCE LINE # 424
-?C0104:
+			; SOURCE LINE # 477
+?C0107:
 ;     while(*p!='\0')
-			; SOURCE LINE # 425
-	MOV  	R3,p?1898
-	MOV  	R2,p?1898+01H
-	MOV  	R1,p?1898+02H
+			; SOURCE LINE # 478
+	MOV  	R3,p?2198
+	MOV  	R2,p?2198+01H
+	MOV  	R1,p?2198+02H
 	LCALL	?C?CLDPTR
 	MOV  	R1,A
-	JZ   	?C0106
+	JZ   	?C0109
 ;     {       
-			; SOURCE LINE # 426
+			; SOURCE LINE # 479
 ; 		ChineseChar(x,y,size,For_color,Bk_color,*p - 47);
-			; SOURCE LINE # 427
-	MOV  	?_ChineseChar?BYTE+06H,For_color?1896
-	MOV  	?_ChineseChar?BYTE+07H,For_color?1896+01H
-	MOV  	?_ChineseChar?BYTE+08H,Bk_color?1897
-	MOV  	?_ChineseChar?BYTE+09H,Bk_color?1897+01H
+			; SOURCE LINE # 480
+	MOV  	?_ChineseChar?BYTE+06H,For_color?2196
+	MOV  	?_ChineseChar?BYTE+07H,For_color?2196+01H
+	MOV  	?_ChineseChar?BYTE+08H,Bk_color?2197
+	MOV  	?_ChineseChar?BYTE+09H,Bk_color?2197+01H
 	ADD  	A,#0D1H
 	MOV  	?_ChineseChar?BYTE+0AH,A
-	MOV  	R3,size?1895+01H
-	MOV  	R2,size?1895
-	MOV  	R5,y?1894+01H
-	MOV  	R4,y?1894
-	MOV  	R7,x?1893+01H
-	MOV  	R6,x?1893
+	MOV  	R3,size?2195+01H
+	MOV  	R2,size?2195
+	MOV  	R5,y?2194+01H
+	MOV  	R4,y?2194
+	MOV  	R7,x?2193+01H
+	MOV  	R6,x?2193
 	LCALL	_ChineseChar
 ;         y+=24;
-			; SOURCE LINE # 428
+			; SOURCE LINE # 481
 	MOV  	A,#018H
-	ADD  	A,y?1894+01H
-	MOV  	y?1894+01H,A
+	ADD  	A,y?2194+01H
+	MOV  	y?2194+01H,A
 	CLR  	A
-	ADDC 	A,y?1894
-	MOV  	y?1894,A
+	ADDC 	A,y?2194
+	MOV  	y?2194,A
 ;         p++;
-			; SOURCE LINE # 429
+			; SOURCE LINE # 482
 	MOV  	A,#01H
-	ADD  	A,p?1898+02H
-	MOV  	p?1898+02H,A
+	ADD  	A,p?2198+02H
+	MOV  	p?2198+02H,A
 	CLR  	A
-	ADDC 	A,p?1898+01H
-	MOV  	p?1898+01H,A
+	ADDC 	A,p?2198+01H
+	MOV  	p?2198+01H,A
 ;     }
-			; SOURCE LINE # 430
-	SJMP 	?C0104
+			; SOURCE LINE # 483
+	SJMP 	?C0107
 ; }
-			; SOURCE LINE # 431
-?C0106:
+			; SOURCE LINE # 484
+?C0109:
 	RET  	
 ; END OF _ChineseString
 
@@ -37399,58 +37953,58 @@ _ChineseString:
 	RSEG  ?PR?_LCD_ShowChar?S6D0154
 _LCD_ShowChar:
 	USING	0
-			; SOURCE LINE # 436
-;---- Variable 'temp?19105' assigned to Register 'R1' ----
-	MOV  	size?19101,R2
-	MOV  	size?19101+01H,R3
-;---- Variable 'y?19100' assigned to Register 'R4/R5' ----
-;---- Variable 'x?1999' assigned to Register 'R6/R7' ----
+			; SOURCE LINE # 489
+;---- Variable 'temp?22105' assigned to Register 'R1' ----
+	MOV  	size?22101,R2
+	MOV  	size?22101+01H,R3
+;---- Variable 'y?22100' assigned to Register 'R4/R5' ----
+;---- Variable 'x?2299' assigned to Register 'R6/R7' ----
 ; {       
-			; SOURCE LINE # 437
+			; SOURCE LINE # 490
 ;     uchar temp , Bytes;
 ;     uchar pos,t;
 ;     uint  CHAR_W,CHAR_H;
 ;     //CHAR_W = 8;         //8*16
 ;     //CHAR_H = 16;
 ; 	LCD_CS =0;  //打开片选使能
-			; SOURCE LINE # 443
+			; SOURCE LINE # 496
 	CLR  	LCD_CS
 ; 
 ; 	if(size == 0)
-			; SOURCE LINE # 445
-	MOV  	A,size?19101+01H
-	ORL  	A,size?19101
-	JNZ  	?C0107
+			; SOURCE LINE # 498
+	MOV  	A,size?22101+01H
+	ORL  	A,size?22101
+	JNZ  	?C0110
 ; 	{
-			; SOURCE LINE # 446
+			; SOURCE LINE # 499
 ; 	    CHAR_W = 24;         //16*24
-			; SOURCE LINE # 447
-	MOV  	CHAR_W?19109,A
-	MOV  	CHAR_W?19109+01H,#018H
+			; SOURCE LINE # 500
+	MOV  	CHAR_W?22109,A
+	MOV  	CHAR_W?22109+01H,#018H
 ; 	    CHAR_H = 16;
-			; SOURCE LINE # 448
-	MOV  	CHAR_H?19110,A
-	MOV  	CHAR_H?19110+01H,#010H
+			; SOURCE LINE # 501
+	MOV  	CHAR_H?22110,A
+	MOV  	CHAR_H?22110+01H,#010H
 ; 	}
-			; SOURCE LINE # 449
-?C0107:
+			; SOURCE LINE # 502
+?C0110:
 ; 	else if(size == 1)
-			; SOURCE LINE # 450
+			; SOURCE LINE # 503
 ; 	{
-			; SOURCE LINE # 451
+			; SOURCE LINE # 504
 ; 
 ; 	}
-			; SOURCE LINE # 453
-?C0108:
+			; SOURCE LINE # 506
+?C0111:
 ; 
 ;     if(x>(LCD_SIZE_X-CHAR_W)||y>(LCD_SIZE_Y-CHAR_H))
-			; SOURCE LINE # 455
+			; SOURCE LINE # 508
 	CLR  	C
 	MOV  	A,#0F0H
-	SUBB 	A,CHAR_W?19109+01H
+	SUBB 	A,CHAR_W?22109+01H
 	MOV  	R3,A
 	CLR  	A
-	SUBB 	A,CHAR_W?19109
+	SUBB 	A,CHAR_W?22109
 	MOV  	R2,A
 	SETB 	C
 	MOV  	A,R7
@@ -37458,13 +38012,13 @@ _LCD_ShowChar:
 	MOV  	A,R6
 	SUBB 	A,R2
 	JC   	$ + 5H
-	LJMP 	?C0112
+	LJMP 	?C0115
 	CLR  	C
 	MOV  	A,#040H
-	SUBB 	A,CHAR_H?19110+01H
+	SUBB 	A,CHAR_H?22110+01H
 	MOV  	R3,A
 	MOV  	A,#01H
-	SUBB 	A,CHAR_H?19110
+	SUBB 	A,CHAR_H?22110
 	MOV  	R2,A
 	SETB 	C
 	MOV  	A,R5
@@ -37472,26 +38026,26 @@ _LCD_ShowChar:
 	MOV  	A,R4
 	SUBB 	A,R2
 	JC   	$ + 5H
-	LJMP 	?C0112
-?C0110:
+	LJMP 	?C0115
+?C0113:
 ;         return;
 ;    
 ;     Address_set(x, y, x+CHAR_W-1, y+CHAR_H-1);
-			; SOURCE LINE # 458
-	MOV  	A,CHAR_W?19109+01H
+			; SOURCE LINE # 511
+	MOV  	A,CHAR_W?22109+01H
 	ADD  	A,R7
 	XCH  	A,R3
-	MOV  	A,CHAR_W?19109
+	MOV  	A,CHAR_W?22109
 	ADDC 	A,R6
 	XCH  	A,R3
 	ADD  	A,#0FFH
 	XCH  	A,R3
 	ADDC 	A,#0FFH
 	MOV  	R2,A
-	MOV  	A,CHAR_H?19110+01H
+	MOV  	A,CHAR_H?22110+01H
 	ADD  	A,R5
 	MOV  	DPL,A
-	MOV  	A,CHAR_H?19110
+	MOV  	A,CHAR_H?22110
 	ADDC 	A,R4
 	MOV  	DPH,A
 	MOV  	A,DPL
@@ -37502,52 +38056,52 @@ _LCD_ShowChar:
 	MOV  	?_Address_set?BYTE+06H,A
 	LCALL	_Address_set
 ;     ch = ch-32;                       //按照ASCII编码顺序的到相应字母的编码
-			; SOURCE LINE # 459
+			; SOURCE LINE # 512
 	MOV  	A,#0E0H
-	ADD  	A,ch?19104
-	MOV  	ch?19104,A
+	ADD  	A,ch?22104
+	MOV  	ch?22104,A
 ;     Bytes = (CHAR_W*CHAR_H)/8;
-			; SOURCE LINE # 460
-	MOV  	R4,CHAR_H?19110
-	MOV  	R5,CHAR_H?19110+01H
-	MOV  	R6,CHAR_W?19109
-	MOV  	R7,CHAR_W?19109+01H
+			; SOURCE LINE # 513
+	MOV  	R4,CHAR_H?22110
+	MOV  	R5,CHAR_H?22110+01H
+	MOV  	R6,CHAR_W?22109
+	MOV  	R7,CHAR_W?22109+01H
 	LCALL	?C?IMUL
 	MOV  	A,R7
 	MOV  	R0,#03H
-?C0142:
+?C0145:
 	XCH  	A,R6
 	CLR  	C
 	RRC  	A
 	XCH  	A,R6
 	RRC  	A
-	DJNZ 	R0,?C0142
-;---- Variable 'Bytes?19106' assigned to Register 'R4' ----
+	DJNZ 	R0,?C0145
+;---- Variable 'Bytes?22106' assigned to Register 'R4' ----
 	MOV  	R4,A
 ;     for(pos=0;pos<Bytes;pos++)  //CHAR_H 	(CHAR_W*CHAR_H)/8
-			; SOURCE LINE # 461
-;---- Variable 'pos?19107' assigned to Register 'R3' ----
+			; SOURCE LINE # 514
+;---- Variable 'pos?22107' assigned to Register 'R3' ----
 	CLR  	A
 	MOV  	R3,A
-?C0113:
+?C0116:
 	MOV  	A,R3
 	CLR  	C
 	SUBB 	A,R4
-	JNC  	?C0114
+	JNC  	?C0117
 ;     {
-			; SOURCE LINE # 462
+			; SOURCE LINE # 515
 ;         //temp= Font8x16[ch][pos];
 ;         //temp= Font16x24[ch][pos];
 ; 		if(size == 0)
-			; SOURCE LINE # 465
-	MOV  	A,size?19101+01H
-	ORL  	A,size?19101
-	JNZ  	?C0116
+			; SOURCE LINE # 518
+	MOV  	A,size?22101+01H
+	ORL  	A,size?22101
+	JNZ  	?C0119
 ; 		{
-			; SOURCE LINE # 466
+			; SOURCE LINE # 519
 ; 			temp= Font16x24[ch][pos];
-			; SOURCE LINE # 467
-	MOV  	R7,ch?19104
+			; SOURCE LINE # 520
+	MOV  	R7,ch?22104
 	MOV  	A,R7
 	RLC  	A
 	SUBB 	A,ACC
@@ -37571,67 +38125,67 @@ _LCD_ShowChar:
 	MOVC 	A,@A+DPTR
 	MOV  	R1,A
 ; 		}
-			; SOURCE LINE # 468
-?C0116:
+			; SOURCE LINE # 521
+?C0119:
 ; 		else if(size == 1)
-			; SOURCE LINE # 469
+			; SOURCE LINE # 522
 ; 		{
-			; SOURCE LINE # 470
+			; SOURCE LINE # 523
 ; 			
 ; 		}
-			; SOURCE LINE # 472
-?C0117:
+			; SOURCE LINE # 525
+?C0120:
 ;         
 ;       
 ;         for(t=0;t<8;t++) //CHAR_W
-			; SOURCE LINE # 475
-;---- Variable 't?19108' assigned to Register 'R2' ----
+			; SOURCE LINE # 528
+;---- Variable 't?22108' assigned to Register 'R2' ----
 	CLR  	A
 	MOV  	R2,A
-?C0119:
-;         {                 
-			; SOURCE LINE # 476
-; 	       if(temp&0x80)
-			; SOURCE LINE # 477
-	MOV  	A,R1
-	JNB  	ACC.7,?C0122
-; 	           LCD_Write_DATA(For_color>>8 , For_color  );  //textcolor
-			; SOURCE LINE # 478
-	MOV  	A,For_color?19102
-	MOV  	R7,A
-	MOV  	R5,For_color?19102+01H
-	SJMP 	?C0145
 ?C0122:
+;         {                 
+			; SOURCE LINE # 529
+; 	       if(temp&0x80)
+			; SOURCE LINE # 530
+	MOV  	A,R1
+	JNB  	ACC.7,?C0125
+; 	           LCD_Write_DATA(For_color>>8 , For_color  );  //textcolor
+			; SOURCE LINE # 531
+	MOV  	A,For_color?22102
+	MOV  	R7,A
+	MOV  	R5,For_color?22102+01H
+	SJMP 	?C0148
+?C0125:
 ; 	       else 
 ; 	           LCD_Write_DATA(Bk_color>>8 , Bk_color );  //backcolor
-			; SOURCE LINE # 480
-	MOV  	A,Bk_color?19103
+			; SOURCE LINE # 533
+	MOV  	A,Bk_color?22103
 	MOV  	R7,A
-	MOV  	R5,Bk_color?19103+01H
-?C0145:
+	MOV  	R5,Bk_color?22103+01H
+?C0148:
 	LCALL	_LCD_Write_DATA
-?C0123:
+?C0126:
 ;             temp<<=1; 
-			; SOURCE LINE # 481
+			; SOURCE LINE # 534
 	MOV  	A,R1
 	ADD  	A,ACC
 	MOV  	R1,A
 ;         }
-			; SOURCE LINE # 482
+			; SOURCE LINE # 535
 	INC  	R2
-	CJNE 	R2,#08H,?C0119
+	CJNE 	R2,#08H,?C0122
 ;     }
-			; SOURCE LINE # 483
-?C0115:
+			; SOURCE LINE # 536
+?C0118:
 	INC  	R3
-	SJMP 	?C0113
-?C0114:
+	SJMP 	?C0116
+?C0117:
 ; 	LCD_CS =1;  //关闭片选使能
-			; SOURCE LINE # 484
+			; SOURCE LINE # 537
 	SETB 	LCD_CS
 ; }  
-			; SOURCE LINE # 485
-?C0112:
+			; SOURCE LINE # 538
+?C0115:
 	RET  	
 ; END OF _LCD_ShowChar
 
@@ -37641,8 +38195,11 @@ _LCD_ShowChar:
 ; void LCD_ShowString(uint x,uint y, uint size, uint For_color,uint Bk_color,char *p)
 
 	RSEG  ?PR?_LCD_ShowString?S6D0154
-L?0158:
+L?0149:
 	USING	0
+L?0150:
+	MOV  	R7,#07DH
+L?0151:
 	CLR  	A
 	MOV  	R3,A
 	MOV  	R2,A
@@ -37651,62 +38208,62 @@ L?0158:
 	MOV  	R6,A
 _LCD_ShowString:
 	USING	0
-			; SOURCE LINE # 489
-	MOV  	x?20111,R6
-	MOV  	x?20111+01H,R7
-	MOV  	y?20112,R4
-	MOV  	y?20112+01H,R5
-	MOV  	size?20113,R2
-	MOV  	size?20113+01H,R3
+			; SOURCE LINE # 542
+	MOV  	x?23111,R6
+	MOV  	x?23111+01H,R7
+	MOV  	y?23112,R4
+	MOV  	y?23112+01H,R5
+	MOV  	size?23113,R2
+	MOV  	size?23113+01H,R3
 ; {         
-			; SOURCE LINE # 490
-?C0124:
+			; SOURCE LINE # 543
+?C0127:
 ;     while(*p!='\0')
-			; SOURCE LINE # 491
-	MOV  	R3,p?20116
-	MOV  	R2,p?20116+01H
-	MOV  	R1,p?20116+02H
+			; SOURCE LINE # 544
+	MOV  	R3,p?23116
+	MOV  	R2,p?23116+01H
+	MOV  	R1,p?23116+02H
 	LCALL	?C?CLDPTR
 	MOV  	R1,A
-	JZ   	?C0126
+	JZ   	?C0129
 ;     {       
-			; SOURCE LINE # 492
+			; SOURCE LINE # 545
 ;         LCD_ShowChar(x,y,size, For_color,Bk_color,*p);
-			; SOURCE LINE # 493
-	MOV  	?_LCD_ShowChar?BYTE+06H,For_color?20114
-	MOV  	?_LCD_ShowChar?BYTE+07H,For_color?20114+01H
-	MOV  	?_LCD_ShowChar?BYTE+08H,Bk_color?20115
-	MOV  	?_LCD_ShowChar?BYTE+09H,Bk_color?20115+01H
+			; SOURCE LINE # 546
+	MOV  	?_LCD_ShowChar?BYTE+06H,For_color?23114
+	MOV  	?_LCD_ShowChar?BYTE+07H,For_color?23114+01H
+	MOV  	?_LCD_ShowChar?BYTE+08H,Bk_color?23115
+	MOV  	?_LCD_ShowChar?BYTE+09H,Bk_color?23115+01H
 	MOV  	?_LCD_ShowChar?BYTE+0AH,A
-	MOV  	R3,size?20113+01H
-	MOV  	R2,size?20113
-	MOV  	R5,y?20112+01H
-	MOV  	R4,y?20112
-	MOV  	R7,x?20111+01H
-	MOV  	R6,x?20111
+	MOV  	R3,size?23113+01H
+	MOV  	R2,size?23113
+	MOV  	R5,y?23112+01H
+	MOV  	R4,y?23112
+	MOV  	R7,x?23111+01H
+	MOV  	R6,x?23111
 	LCALL	_LCD_ShowChar
 ;         y+=16;
-			; SOURCE LINE # 494
+			; SOURCE LINE # 547
 	MOV  	A,#010H
-	ADD  	A,y?20112+01H
-	MOV  	y?20112+01H,A
+	ADD  	A,y?23112+01H
+	MOV  	y?23112+01H,A
 	CLR  	A
-	ADDC 	A,y?20112
-	MOV  	y?20112,A
+	ADDC 	A,y?23112
+	MOV  	y?23112,A
 ;         p++;
-			; SOURCE LINE # 495
+			; SOURCE LINE # 548
 	MOV  	A,#01H
-	ADD  	A,p?20116+02H
-	MOV  	p?20116+02H,A
+	ADD  	A,p?23116+02H
+	MOV  	p?23116+02H,A
 	CLR  	A
-	ADDC 	A,p?20116+01H
-	MOV  	p?20116+01H,A
+	ADDC 	A,p?23116+01H
+	MOV  	p?23116+01H,A
 ;     }
-			; SOURCE LINE # 496
-	SJMP 	?C0124
+			; SOURCE LINE # 549
+	SJMP 	?C0127
 ; }
-			; SOURCE LINE # 497
-?C0126:
+			; SOURCE LINE # 550
+?C0129:
 	RET  	
 ; END OF _LCD_ShowString
 
@@ -37718,64 +38275,64 @@ _LCD_ShowString:
 	RSEG  ?PR?LCD_Init?S6D0154
 LCD_Init:
 	USING	0
-			; SOURCE LINE # 501
+			; SOURCE LINE # 554
 ; {
-			; SOURCE LINE # 502
+			; SOURCE LINE # 555
 ; //    LCD_RST=1;
 ; //    delayms(5);
 ; 	LCD_RST=0;
-			; SOURCE LINE # 505
+			; SOURCE LINE # 558
 	CLR  	LCD_RST
 ; 	delayms(5);
-			; SOURCE LINE # 506
+			; SOURCE LINE # 559
 	MOV  	R7,#05H
 	MOV  	R6,#00H
 	LCALL	_delayms
 ; 	LCD_RST=1;
-			; SOURCE LINE # 507
+			; SOURCE LINE # 560
 	SETB 	LCD_RST
 ; //	delayms(5);
 ; 	LCD_CS =0;  //打开片选使能
-			; SOURCE LINE # 509
+			; SOURCE LINE # 562
 	CLR  	LCD_CS
 ;     //---------------------------------
 ; 	LCD_Write_COM(0x00,0x10); LCD_Write_DATA(0x00,0x00);  // Power Control 1  current consumption  STB
-			; SOURCE LINE # 511
+			; SOURCE LINE # 564
 	MOV  	R5,#010H
 	CLR  	A
-	LCALL	L?0155
+	LCALL	L?0161
 ; 	delayms(10);
-			; SOURCE LINE # 512
+			; SOURCE LINE # 565
 	MOV  	R7,#0AH
 	MOV  	R6,A
 ; 	
 ; 	LCD_Write_COM(0x00,0x11); LCD_Write_DATA(0x00,0x1c);  // Power Control 2
-			; SOURCE LINE # 514
-	LCALL	L?0151
+			; SOURCE LINE # 567
+	LCALL	L?0157
 	MOV  	R5,#01CH
 	LCALL	_LCD_Write_DATA
 ; 	LCD_Write_COM(0x00,0x12); LCD_Write_DATA(0x12,0x12);  // Power Control 3  BT2-0, DC11-10, DC21-20, DC31-30
-			; SOURCE LINE # 515
+			; SOURCE LINE # 568
 	MOV  	R5,#012H
 	LCALL	_LCD_Write_COM
 	MOV  	R7,#012H
 	LCALL	_LCD_Write_DATA
 ; 	LCD_Write_COM(0x00,0x13); LCD_Write_DATA(0x00,0x41);  // Power Control 4  DCR_EX=0, DCR2-0, GVD6-0
-			; SOURCE LINE # 516
+			; SOURCE LINE # 569
 	INC  	R5
 	MOV  	R7,A
 	LCALL	_LCD_Write_COM
 	MOV  	R5,#041H
 	LCALL	_LCD_Write_DATA
 ; 	LCD_Write_COM(0x00,0x14); LCD_Write_DATA(0x40,0x50);  // Power Control 5  VCOMG=0, VCM6-0, VCMR=0, VML6-0
-			; SOURCE LINE # 517
+			; SOURCE LINE # 570
 	MOV  	R5,#014H
 	LCALL	_LCD_Write_COM
 	MOV  	R5,#050H
 	MOV  	R7,#040H
 	LCALL	_LCD_Write_DATA
 ; 	LCD_Write_COM(0x00,0x10); LCD_Write_DATA(0x08,0x00);  // Power Control 1 
-			; SOURCE LINE # 518
+			; SOURCE LINE # 571
 	MOV  	R5,#010H
 	MOV  	R7,A
 	LCALL	_LCD_Write_COM
@@ -37783,49 +38340,49 @@ LCD_Init:
 	MOV  	R7,#08H
 	LCALL	_LCD_Write_DATA
 ; 	LCD_Write_COM(0x00,0x11); LCD_Write_DATA(0x01,0x1c);  // Power Control 2
-			; SOURCE LINE # 519
+			; SOURCE LINE # 572
 	MOV  	R5,#011H
 	MOV  	R7,A
 	LCALL	_LCD_Write_COM
 	INC  	R7
 ; 	delayms(300);//300ms
-			; SOURCE LINE # 520
+			; SOURCE LINE # 573
 ; 	LCD_Write_COM(0x00,0x11); LCD_Write_DATA(0x03,0x1c);  // Power Control 2
-			; SOURCE LINE # 521
-	LCALL	L?0149
+			; SOURCE LINE # 574
+	LCALL	L?0155
 	MOV  	R7,#03H
 ; 	delayms(300);//300ms
-			; SOURCE LINE # 522
+			; SOURCE LINE # 575
 ; 	LCD_Write_COM(0x00,0x11); LCD_Write_DATA(0x07,0x1c);  // Power Control 2
-			; SOURCE LINE # 523
-	LCALL	L?0149
+			; SOURCE LINE # 576
+	LCALL	L?0155
 	MOV  	R5,#01CH
 	MOV  	R7,#07H
 ; 	delayms(300);//300ms
-			; SOURCE LINE # 524
+			; SOURCE LINE # 577
 ; 	LCD_Write_COM(0x00,0x11); LCD_Write_DATA(0x0f,0x1c);  // Power Control 2
-			; SOURCE LINE # 525
-	LCALL	L?0150
+			; SOURCE LINE # 578
+	LCALL	L?0156
 	MOV  	R5,#01CH
 	MOV  	R7,#0FH
 	LCALL	_LCD_Write_DATA
 ; 	delayms(600);//600ms
-			; SOURCE LINE # 526
+			; SOURCE LINE # 579
 	MOV  	R7,#058H
 	MOV  	R6,#02H
 ; 	LCD_Write_COM(0x00,0x11); LCD_Write_DATA(0x0f,0x39);  // Power Control 2
-			; SOURCE LINE # 527
-	LCALL	L?0151
+			; SOURCE LINE # 580
+	LCALL	L?0157
 	MOV  	R5,#039H
 	MOV  	R7,#0FH
 	LCALL	_LCD_Write_DATA
 ; 	delayms(500);//500ms
-			; SOURCE LINE # 528
+			; SOURCE LINE # 581
 	MOV  	R7,#0F4H
 	MOV  	R6,#01H
 	LCALL	_delayms
 ; 	LCD_Write_COM(0x00,0x01); LCD_Write_DATA(0x01,0x28);  // Driver Output Control
-			; SOURCE LINE # 529
+			; SOURCE LINE # 582
 	MOV  	R5,#01H
 	CLR  	A
 	MOV  	R7,A
@@ -37834,7 +38391,7 @@ LCD_Init:
 	INC  	R7
 	LCALL	_LCD_Write_DATA
 ; 	LCD_Write_COM(0x00,0x02); LCD_Write_DATA(0x01,0x00);  // LCD-Driving-Waveform Control
-			; SOURCE LINE # 530
+			; SOURCE LINE # 583
 	MOV  	R5,#02H
 	DEC  	R7
 	LCALL	_LCD_Write_COM
@@ -37842,7 +38399,7 @@ LCD_Init:
 	INC  	R7
 	LCALL	_LCD_Write_DATA
 ; 	LCD_Write_COM(0x00,0x03); LCD_Write_DATA(0x10,0x30);  // Entry Mode
-			; SOURCE LINE # 531
+			; SOURCE LINE # 584
 	MOV  	R5,#03H
 	DEC  	R7
 	LCALL	_LCD_Write_COM
@@ -37850,14 +38407,14 @@ LCD_Init:
 	MOV  	R7,#010H
 	LCALL	_LCD_Write_DATA
 ; 	LCD_Write_COM(0x00,0x08); LCD_Write_DATA(0x08,0x08);  // Frame Cycle Control 
-			; SOURCE LINE # 532
+			; SOURCE LINE # 585
 	MOV  	R5,#08H
 	MOV  	R7,A
 	LCALL	_LCD_Write_COM
 	MOV  	R7,#08H
 	LCALL	_LCD_Write_DATA
 ; 	LCD_Write_COM(0x00,0x0b); LCD_Write_DATA(0x11,0x05);  // Frame Cycle Control
-			; SOURCE LINE # 533
+			; SOURCE LINE # 586
 	MOV  	R5,#0BH
 	MOV  	R7,A
 	LCALL	_LCD_Write_COM
@@ -37865,56 +38422,56 @@ LCD_Init:
 	MOV  	R7,#011H
 	LCALL	_LCD_Write_DATA
 ; 	LCD_Write_COM(0x00,0x0c); LCD_Write_DATA(0x00,0x00);  // External Display Interface Control 
-			; SOURCE LINE # 534
+			; SOURCE LINE # 587
 	MOV  	R5,#0CH
-	LCALL	L?0155
+	LCALL	L?0161
 ;     //---------------------------------
 ;     LCD_Write_COM(0x00,0x15); LCD_Write_DATA(0x00,0x20);  //VCI Recycling (R15H)		//		VCIR=010	 0X0020
-			; SOURCE LINE # 536
+			; SOURCE LINE # 589
 	MOV  	R5,#015H
 	LCALL	_LCD_Write_COM
 	MOV  	R5,#020H
 	LCALL	_LCD_Write_DATA
 ; 	LCD_Write_COM(0x00,0x30); LCD_Write_DATA(0x00,0x00);  //		SCN 0	Start from G1
-			; SOURCE LINE # 537
+			; SOURCE LINE # 590
 	MOV  	R5,#030H
-	LCALL	L?0157
+	LCALL	L?0163
 ; 	LCD_Write_COM(0x00,0x34); LCD_Write_DATA(0x01,0x3f);  //		SE1 = 100111111( 319)
-			; SOURCE LINE # 538
+			; SOURCE LINE # 591
 	MOV  	R5,#034H
 	LCALL	_LCD_Write_COM
 	MOV  	R5,#03FH
 	INC  	R7
 	LCALL	_LCD_Write_DATA
 ; 	LCD_Write_COM(0x00,0x35); LCD_Write_DATA(0x00,0x00);  //		SS1 = 000000000
-			; SOURCE LINE # 539
+			; SOURCE LINE # 592
 	MOV  	R5,#035H
 	DEC  	R7
-	LCALL	L?0157
+	LCALL	L?0163
 ; 	LCD_Write_COM(0x00,0x36); LCD_Write_DATA(0x00,0xef);  //		HEA = 011101111(239)
-			; SOURCE LINE # 540
+			; SOURCE LINE # 593
 	MOV  	R5,#036H
 	LCALL	_LCD_Write_COM
 	MOV  	R5,#0EFH
 	LCALL	_LCD_Write_DATA
 ; 	LCD_Write_COM(0x00,0x37); LCD_Write_DATA(0x00,0x00);  //		HSA = 000000000	
-			; SOURCE LINE # 541
+			; SOURCE LINE # 594
 	MOV  	R5,#037H
-	LCALL	L?0157
+	LCALL	L?0163
 ; 	LCD_Write_COM(0x00,0x38); LCD_Write_DATA(0x01,0x3f);  //		VEA = 100111111( 319)
-			; SOURCE LINE # 542
+			; SOURCE LINE # 595
 	MOV  	R5,#038H
 	LCALL	_LCD_Write_COM
 	MOV  	R5,#03FH
 	INC  	R7
 	LCALL	_LCD_Write_DATA
 ;     LCD_Write_COM(0x00,0x39); LCD_Write_DATA(0x00,0x00);  //		VSA = 000000000	
-			; SOURCE LINE # 543
+			; SOURCE LINE # 596
 	MOV  	R5,#039H
 	DEC  	R7
-	LCALL	L?0157
+	LCALL	L?0163
 ;     LCD_Write_COM(0x00,0x50); LCD_Write_DATA(0x01,0x01);  // Gamma Control
-			; SOURCE LINE # 544
+			; SOURCE LINE # 597
 	MOV  	R5,#050H
 	LCALL	_LCD_Write_COM
 	MOV  	R5,#01H
@@ -37922,7 +38479,7 @@ LCD_Init:
 	LCALL	_LCD_Write_DATA
 ;     //---------------------------------
 ; 	LCD_Write_COM(0x00,0x51); LCD_Write_DATA(0x09,0x03);
-			; SOURCE LINE # 546
+			; SOURCE LINE # 599
 	MOV  	R5,#051H
 	DEC  	R7
 	LCALL	_LCD_Write_COM
@@ -37930,7 +38487,7 @@ LCD_Init:
 	MOV  	R7,#09H
 	LCALL	_LCD_Write_DATA
 ; 	LCD_Write_COM(0x00,0x52); LCD_Write_DATA(0x0b,0x08);
-			; SOURCE LINE # 547
+			; SOURCE LINE # 600
 	MOV  	R5,#052H
 	MOV  	R7,A
 	LCALL	_LCD_Write_COM
@@ -37938,7 +38495,7 @@ LCD_Init:
 	MOV  	R7,#0BH
 	LCALL	_LCD_Write_DATA
 ; 	LCD_Write_COM(0x00,0x53); LCD_Write_DATA(0x08,0x05);
-			; SOURCE LINE # 548
+			; SOURCE LINE # 601
 	MOV  	R5,#053H
 	MOV  	R7,A
 	LCALL	_LCD_Write_COM
@@ -37946,7 +38503,7 @@ LCD_Init:
 	MOV  	R7,#08H
 	LCALL	_LCD_Write_DATA
 ; 	LCD_Write_COM(0x00,0x54); LCD_Write_DATA(0x01,0x01);
-			; SOURCE LINE # 549
+			; SOURCE LINE # 602
 	MOV  	R5,#054H
 	MOV  	R7,A
 	LCALL	_LCD_Write_COM
@@ -37954,7 +38511,7 @@ LCD_Init:
 	INC  	R7
 	LCALL	_LCD_Write_DATA
 ; 	LCD_Write_COM(0x00,0x55); LCD_Write_DATA(0x0d,0x06);
-			; SOURCE LINE # 550
+			; SOURCE LINE # 603
 	MOV  	R5,#055H
 	DEC  	R7
 	LCALL	_LCD_Write_COM
@@ -37962,7 +38519,7 @@ LCD_Init:
 	MOV  	R7,#0DH
 	LCALL	_LCD_Write_DATA
 ; 	LCD_Write_COM(0x00,0x56); LCD_Write_DATA(0x0e,0x0a);
-			; SOURCE LINE # 551
+			; SOURCE LINE # 604
 	MOV  	R5,#056H
 	MOV  	R7,A
 	LCALL	_LCD_Write_COM
@@ -37970,7 +38527,7 @@ LCD_Init:
 	MOV  	R7,#0EH
 	LCALL	_LCD_Write_DATA
 ; 	LCD_Write_COM(0x00,0x57); LCD_Write_DATA(0x01,0x00);
-			; SOURCE LINE # 552
+			; SOURCE LINE # 605
 	MOV  	R5,#057H
 	MOV  	R7,A
 	LCALL	_LCD_Write_COM
@@ -37978,7 +38535,7 @@ LCD_Init:
 	INC  	R7
 	LCALL	_LCD_Write_DATA
 ; 	LCD_Write_COM(0x00,0x58); LCD_Write_DATA(0x1f,0x0b);
-			; SOURCE LINE # 553
+			; SOURCE LINE # 606
 	MOV  	R5,#058H
 	DEC  	R7
 	LCALL	_LCD_Write_COM
@@ -37986,7 +38543,7 @@ LCD_Init:
 	MOV  	R7,#01FH
 	LCALL	_LCD_Write_DATA
 ; 	LCD_Write_COM(0x00,0x59); LCD_Write_DATA(0x02,0x01);
-			; SOURCE LINE # 554
+			; SOURCE LINE # 607
 	MOV  	R5,#059H
 	MOV  	R7,A
 	LCALL	_LCD_Write_COM
@@ -37995,29 +38552,29 @@ LCD_Init:
 	LCALL	_LCD_Write_DATA
 ; 	//---------------------------------
 ; 	LCD_Write_COM(0x00,0x20); LCD_Write_DATA(0x00,0x00);  //Set RAM Address
-			; SOURCE LINE # 556
+			; SOURCE LINE # 609
 	MOV  	R5,#020H
-	LCALL	L?0156
+	LCALL	L?0162
 ; 	LCD_Write_COM(0x00,0x21); LCD_Write_DATA(0x00,0x00);  //Set RAM Address
-			; SOURCE LINE # 557
+			; SOURCE LINE # 610
 	MOV  	R5,#021H
-	LCALL	L?0157
+	LCALL	L?0163
 ; 	//0x22		  RAM Data Write
 ; 	//LCD_CtrlWrite(0x0022);
 ; 	LCD_Write_COM(0x00,0x0f); LCD_Write_DATA(0x1f,0x01);  // Start Oscillation
-			; SOURCE LINE # 560
+			; SOURCE LINE # 613
 	MOV  	R5,#0FH
 	LCALL	_LCD_Write_COM
 	MOV  	R5,#01H
 	MOV  	R7,#01FH
 	LCALL	_LCD_Write_DATA
 ; 	delayms(300);//300ms
-			; SOURCE LINE # 561
+			; SOURCE LINE # 614
 	MOV  	R7,#02CH
 	MOV  	R6,#01H
 	LCALL	_delayms
 ; 	LCD_Write_COM(0x00,0x07); LCD_Write_DATA(0x00,0x16);  // Display Control
-			; SOURCE LINE # 562
+			; SOURCE LINE # 615
 	MOV  	R5,#07H
 	CLR  	A
 	MOV  	R7,A
@@ -38025,12 +38582,12 @@ LCD_Init:
 	MOV  	R5,#016H
 	LCALL	_LCD_Write_DATA
 ; 	delayms(200);//200ms
-			; SOURCE LINE # 563
+			; SOURCE LINE # 616
 	MOV  	R7,#0C8H
 	MOV  	R6,A
 	LCALL	_delayms
 ; 	LCD_Write_COM(0x00,0x07); LCD_Write_DATA(0x00,0x17);
-			; SOURCE LINE # 564
+			; SOURCE LINE # 617
 	MOV  	R5,#07H
 	CLR  	A
 	MOV  	R7,A
@@ -38039,10 +38596,10 @@ LCD_Init:
 	LCALL	_LCD_Write_DATA
 ; 	//---------------------------------
 ; 	LCD_CS =1;
-			; SOURCE LINE # 566
+			; SOURCE LINE # 619
 	SETB 	LCD_CS
 ; }
-			; SOURCE LINE # 567
+			; SOURCE LINE # 620
 	RET  	
 ; END OF LCD_Init
 
