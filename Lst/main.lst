@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   MAIN                                                                  02/16/2014 14:30:26 PAGE 1   
+C51 COMPILER V7.50   MAIN                                                                  02/16/2014 16:48:46 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   52   1          ChineseChar(24,60,1,colors[0],colors[7],2);     //!
   53   1          
   54   1          ChineseChar( 48,60,1,colors[1],colors[7],3);    //
-C51 COMPILER V7.50   MAIN                                                                  02/16/2014 14:30:26 PAGE 2   
+C51 COMPILER V7.50   MAIN                                                                  02/16/2014 16:48:46 PAGE 2   
 
   55   1          ChineseChar( 72,60,1,colors[2],colors[7],4);    //
   56   1          ChineseChar( 96,60,1,colors[3],colors[2],5);    //
@@ -105,95 +105,93 @@ line level    source
   93   1          //LCD_ShowString(0,90,colors[0],colors[5],"WWW.PRINTER.com");
   94   1          //LCD_ShowString(216,120,colors[4],colors[7],":");
   95   1          
-  96   1              LCD_ShowString(0,180,colors[7],colors[2],"www.s6d0154.com");//www.s6d0154.com.net若超出字符不予显示
-  97   1          //LCD_ShowString(12,180,colors[0],colors[7],"TELL:");
-  98   1          
-  99   1          LCD_ShowString(0,210,colors[2],colors[7],"T: 010-12345678");        
- 100   1          LCD_ShowString(0,240,colors[2],colors[7],"abcdefJhiJKLMNOP"); 
- 101   1          LCD_ShowString(0,265,colors[2],colors[7],"pqrstuvwxyz!@#$"); 
- 102   1          LCD_ShowString(0,290,colors[2],colors[7],"<>CDEF^&*()/,[]");
- 103   1          //---------------------------------
- 104   1              LCD_CS =1;  //关闭片选使能
- 105   1      }
- 106          //******************************************************************
- 107          //  主程序
- 108          //------------------------------------------------------------------
- 109          void TestDelay(uchar timer)
- 110          {
- 111   1      //  uint DelayTime;
- 112   1      
- 113   1        etx0=0;
- 114   1        TH0=T0_H;
- 115   1        TL0=T0_L;
- 116   1        if (1==timer)
-C51 COMPILER V7.50   MAIN                                                                  02/16/2014 14:30:26 PAGE 3   
+  96   1          
+  97   1          LCD_ShowString(0,0,1,colors[2],colors[7],"T: 010-12345678");        
+  98   1          LCD_ShowString(20,0,1,colors[2],colors[7],"abcdefJhiJKLMNOP"); 
+  99   1          LCD_ShowString(40,0,1,colors[2],colors[7],"pqrstuvwxyz!@#$"); 
+ 100   1          LCD_ShowString(60,0,1,colors[2],colors[7],"<>CDEF^&*()/,[]");
+ 101   1          //---------------------------------
+ 102   1              LCD_CS =1;  //关闭片选使能
+ 103   1      }
+ 104          //******************************************************************
+ 105          //  主程序
+ 106          //------------------------------------------------------------------
+ 107          void TestDelay(uchar timer)
+ 108          {
+ 109   1      //  uint DelayTime;
+ 110   1      
+ 111   1        etx0=0;
+ 112   1        TH0=T0_H;
+ 113   1        TL0=T0_L;
+ 114   1        if (1==timer)
+ 115   1        {
+ 116   2          TR0=1;
+C51 COMPILER V7.50   MAIN                                                                  02/16/2014 16:48:46 PAGE 3   
 
- 117   1        {
- 118   2          TR0=1;
- 119   2          Delay(1);
- 120   2          TR0=0;
- 121   2        }
- 122   1        else
- 123   1        {
- 124   2          TR0=1;
- 125   2          delayms(1);
- 126   2          TR0=0;
- 127   2        }
- 128   1      //  DelayTime=(TH0<<8)|TL0;
- 129   1        SerialSend(etx0,2);
- 130   1      }
- 131          
- 132          unsigned int etx0;
- 133          uchar Display[16]={0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,
- 134                             0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x00};
- 135          void HEXtoASC(uint HEX, uchar index)
- 136          {
- 137   1        uchar i, temp;
- 138   1        for (i=4;i!=0;i--)
- 139   1        {
- 140   2          if (4==i)
- 141   2                temp=HEX>>12;
- 142   2          else if (3==i)
- 143   2                temp=HEX>>8;
- 144   2          else if (2==i)
- 145   2                temp=((uchar)HEX)>>4;
- 146   2              else
- 147   2                temp=HEX;
- 148   2              temp&=0x0f;
- 149   2              if (temp>9)
- 150   2                Display[index]=temp+'A'-10;
- 151   2              else
- 152   2                Display[index]=temp+'0';
- 153   2              index++;
- 154   2        }
- 155   1      }
- 156          
- 157          void main(void)
- 158          {
- 159   1              InitSys();
- 160   1          LCD_Init();
- 161   1              Display_White();
+ 117   2          Delay(1);
+ 118   2          TR0=0;
+ 119   2        }
+ 120   1        else
+ 121   1        {
+ 122   2          TR0=1;
+ 123   2          delayms(1);
+ 124   2          TR0=0;
+ 125   2        }
+ 126   1      //  DelayTime=(TH0<<8)|TL0;
+ 127   1        SerialSend(etx0,2);
+ 128   1      }
+ 129          
+ 130          unsigned int etx0;
+ 131          uchar Display[16]={0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,
+ 132                             0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x00};
+ 133          void HEXtoASC(uint HEX, uchar index)
+ 134          {
+ 135   1        uchar i, temp;
+ 136   1        for (i=4;i!=0;i--)
+ 137   1        {
+ 138   2          if (4==i)
+ 139   2                temp=HEX>>12;
+ 140   2          else if (3==i)
+ 141   2                temp=HEX>>8;
+ 142   2          else if (2==i)
+ 143   2                temp=((uchar)HEX)>>4;
+ 144   2              else
+ 145   2                temp=HEX;
+ 146   2              temp&=0x0f;
+ 147   2              if (temp>9)
+ 148   2                Display[index]=temp+'A'-10;
+ 149   2              else
+ 150   2                Display[index]=temp+'0';
+ 151   2              index++;
+ 152   2        }
+ 153   1      }
+ 154          
+ 155          void main(void)
+ 156          {
+ 157   1              InitSys();
+ 158   1          LCD_Init();
+ 159   1              Display_White();
+ 160   1      
+ 161   1              Display_Running();
  162   1      
- 163   1              Display_Loding();
- 164   1      
- 165   1          Delay(3000);     
- 166   1          while(1)
- 167   1          {
- 168   2        
- 169   2          }
- 170   1      }
+ 163   1          Delay(3000);     
+ 164   1          while(1)
+ 165   1          {
+ 166   2        
+ 167   2          }
+ 168   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   1437    ----
-   CONSTANT SIZE    =     81    ----
+   CODE SIZE        =   1427    ----
+   CONSTANT SIZE    =     65    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =     18    ----
-C51 COMPILER V7.50   MAIN                                                                  02/16/2014 14:30:26 PAGE 4   
-
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
+C51 COMPILER V7.50   MAIN                                                                  02/16/2014 16:48:46 PAGE 4   
+
 END OF MODULE INFORMATION.
 
 

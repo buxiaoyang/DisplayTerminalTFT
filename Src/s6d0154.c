@@ -240,26 +240,15 @@ void Display_Loading_Image()
 void Display_Running()
 {
 	Display_Running_Image();
-	ChineseChar(50,79,2,colors[4],colors[7],1);		//正
-    ChineseChar(50,122,2,colors[4],colors[7],2);	//在
-    ChineseChar(50,165,2,colors[4],colors[7],3);	//启
-    ChineseChar(50,208,2,colors[4],colors[7],4);	//动
-
-	ChineseChar( 48,60,1,colors[1],colors[7],3);    //
-    ChineseChar( 72,60,1,colors[2],colors[7],4);    //
-    ChineseChar( 96,60,1,colors[3],colors[7],5);    //
-    ChineseChar(120,60,1,colors[4],colors[7],6);	//
-    ChineseChar(144,60,1,colors[5],colors[7],7);	//
-    ChineseChar(168,60,1,colors[6],colors[7],8);	//
-    ChineseChar(192,60,1,colors[5],colors[7],9);	//片
-
-    //LCD_ShowString(12,180,colors[0],colors[7],"TELL:");
     
-    LCD_ShowString(0,210,colors[2],colors[7],"T: 010-12345678");	
-    LCD_ShowString(0,240,colors[2],colors[7],"abcdefJhiJKLMNOP"); 
-    LCD_ShowString(0,265,colors[2],colors[7],"pqrstuvwxyz!@#$"); 
-    LCD_ShowString(0,290,colors[2],colors[7],"<>CDEF^&*()/,[]");
-
+    LCD_ShowString(5,5,0,colors[4],colors[7]," !\"#$%&`()*+,-./012");	
+    LCD_ShowString(35,5,0,colors[4],colors[7],"3456789:;<=>?@ABCDE"); 
+    LCD_ShowString(65,5,0,colors[4],colors[7],"FGHIJKLMNOPQRSTUVWX"); 
+    LCD_ShowString(95,5,0,colors[4],colors[7],"YZ[\]^_'abcdefghijk");
+	LCD_ShowString(125,5,0,colors[4],colors[7],"lmnopqrstuvwxyz{|}~");
+	ChineseString(155,70,1,colors[4],colors[7],"0123456789");
+	ChineseString(185,70,1,colors[4],colors[7],":;<=>?@ABC");
+	ChineseString(215,70,1,colors[4],colors[7],"DEFGHIJKLM");
 }
 
 void Display_Running_Image()
@@ -429,21 +418,40 @@ void ChineseChar(uint x,uint y,int size,uint For_color,uint Bk_color ,char c)
     }
 	LCD_CS =1;  //关闭片选使能
 }
+
+
+void ChineseString(uint x,uint y,int size,uint For_color,uint Bk_color ,char *p)
+{         
+    while(*p!='\0')
+    {       
+		ChineseChar(x,y,size,For_color,Bk_color,*p - 47);
+        y+=24;
+        p++;
+    }
+}
+
 //******************************************************************
 //  字符显示子函数
 //------------------------------------------------------------------
-void LCD_ShowChar(uint x,uint y,uint For_color,uint Bk_color, char ch)
+void LCD_ShowChar(uint x,uint y,uint size, For_color,uint Bk_color, char ch)
 {       
     uchar temp , Bytes;
     uchar pos,t;
     uint  CHAR_W,CHAR_H;
-   
     //CHAR_W = 8;         //8*16
     //CHAR_H = 16;
-
-    CHAR_W = 16;         //16*24
-    CHAR_H = 24;
 	LCD_CS =0;  //打开片选使能
+
+	if(size == 0)
+	{
+	    CHAR_W = 24;         //16*24
+	    CHAR_H = 16;
+	}
+	else if(size == 1)
+	{
+
+	}
+
     if(x>(LCD_SIZE_X-CHAR_W)||y>(LCD_SIZE_Y-CHAR_H))
         return;
    
@@ -454,7 +462,15 @@ void LCD_ShowChar(uint x,uint y,uint For_color,uint Bk_color, char ch)
     {
         //temp= Font8x16[ch][pos];
         //temp= Font16x24[ch][pos];
-        temp= Font16x24[ch][pos];
+		if(size == 0)
+		{
+			temp= Font16x24[ch][pos];
+		}
+		else if(size == 1)
+		{
+			
+		}
+        
       
         for(t=0;t<8;t++) //CHAR_W
         {                 
@@ -470,13 +486,12 @@ void LCD_ShowChar(uint x,uint y,uint For_color,uint Bk_color, char ch)
 //******************************************************************
 //  显示字符串子函数    x,y:起点坐标    *p:字符串起始地址
 //------------------------------------------------------------------
-void LCD_ShowString(uint x,uint y,uint For_color,uint Bk_color,char *p)
+void LCD_ShowString(uint x,uint y, uint size, uint For_color,uint Bk_color,char *p)
 {         
     while(*p!='\0')
     {       
-        LCD_ShowChar(x,y,For_color,Bk_color,*p);
-        //x+=8;
-        x+=16;
+        LCD_ShowChar(x,y,size, For_color,Bk_color,*p);
+        y+=16;
         p++;
     }
 }

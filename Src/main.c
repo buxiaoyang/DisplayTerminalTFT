@@ -93,13 +93,11 @@ void ViewTFT(void)
     //LCD_ShowString(0,90,colors[0],colors[5],"WWW.PRINTER.com");
     //LCD_ShowString(216,120,colors[4],colors[7],":");
     
-	LCD_ShowString(0,180,colors[7],colors[2],"www.s6d0154.com");//www.s6d0154.com.net若超出字符不予显示
-    //LCD_ShowString(12,180,colors[0],colors[7],"TELL:");
     
-    LCD_ShowString(0,210,colors[2],colors[7],"T: 010-12345678");	
-    LCD_ShowString(0,240,colors[2],colors[7],"abcdefJhiJKLMNOP"); 
-    LCD_ShowString(0,265,colors[2],colors[7],"pqrstuvwxyz!@#$"); 
-    LCD_ShowString(0,290,colors[2],colors[7],"<>CDEF^&*()/,[]");
+    LCD_ShowString(0,0,1,colors[2],colors[7],"T: 010-12345678");	
+    LCD_ShowString(20,0,1,colors[2],colors[7],"abcdefJhiJKLMNOP"); 
+    LCD_ShowString(40,0,1,colors[2],colors[7],"pqrstuvwxyz!@#$"); 
+    LCD_ShowString(60,0,1,colors[2],colors[7],"<>CDEF^&*()/,[]");
     //---------------------------------
 	LCD_CS =1;  //关闭片选使能
 }

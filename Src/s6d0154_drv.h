@@ -17,10 +17,10 @@ void LCD_Init(void);    //≥ı ºªØs6d0154 TFT
 extern  uint colors[];
 //------------------------------------------------------------------
 
-void LCD_ShowString(uint x,uint y,uint For_color,uint Bk_color,char *p);
-void LCD_ShowChar(uint x,uint y,uint For_color,uint Bk_color, char ch);
+void LCD_ShowString(uint x,uint y, uint size, uint For_color,uint Bk_color,char *p);
+void LCD_ShowChar(uint x,uint y,uint size, For_color,uint Bk_color, char ch);
 void ChineseChar(uint x,uint y,int size,uint For_color,uint Bk_color ,char c);
-
+void ChineseString(uint x,uint y,int size,uint For_color,uint Bk_color ,char *p);
 //void LCD_Init(void);
 //void delayms(int count);
 //void LCD_Writ_Bus(char VH,char VL);
