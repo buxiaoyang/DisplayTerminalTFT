@@ -160,7 +160,7 @@ void main(void)
     LCD_Init();
 	Display_White();
 
-	Display_Loding();
+	Display_Running();
 
     Delay(3000);     
     while(1)

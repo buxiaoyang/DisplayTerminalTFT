@@ -41,7 +41,10 @@ void Display_Black(void);
 void Display_White(void);
 //void delay(long tt);
 void Display_Loding(void);
-void Display_Image(void);
+void Display_Loading_Image(void);
+
+void Display_Running(void);
+void Display_Running_Image(void);
 //******************************************************************
 //  
 //------------------------------------------------------------------
