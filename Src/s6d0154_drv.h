@@ -45,6 +45,10 @@ void Display_Loading_Image(void);
 
 void Display_Running(void);
 void Display_Running_Image(void);
+
+void Display_Running1(void);
+void Display_Running2(void);
+void Display_Running3(void);
 //******************************************************************
 //  
 //------------------------------------------------------------------

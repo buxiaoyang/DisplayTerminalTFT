@@ -156,13 +156,15 @@ void main(void)
 {
 	InitSys();
     LCD_Init();
-	Display_White();
-
-	Display_Running();
-
-    Delay(3000);     
     while(1)
     {
-  
+  	   Display_Loding();
+	   Delay(10000);  
+	   Display_Running1();
+	   Delay(20000); 
+	   Display_Running2();
+	   Delay(20000); 
+	   Display_Running3();
+	   Delay(20000);  
     }
 }

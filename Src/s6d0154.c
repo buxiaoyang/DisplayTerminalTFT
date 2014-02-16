@@ -191,6 +191,7 @@ void Display_Black(void)
 
 void Display_Loding()
 {
+	Display_White();
 	Display_Loading_Image();
 	ChineseChar(50,79,2,colors[4],colors[7],1);		//е§
     ChineseChar(50,122,2,colors[4],colors[7],2);	//дк
@@ -239,9 +240,10 @@ void Display_Loading_Image()
 
 void Display_Running()
 {
+	Display_White();
 	Display_Running_Image();
-    
-    LCD_ShowString(5,5,0,colors[4],colors[7]," !\"#$%&`()*+,-./012");	
+    /*
+	LCD_ShowString(5,5,0,colors[4],colors[7]," !\"#$%&`()*+,-./012");	
     LCD_ShowString(35,5,0,colors[4],colors[7],"3456789:;<=>?@ABCDE"); 
     LCD_ShowString(65,5,0,colors[4],colors[7],"FGHIJKLMNOPQRSTUVWX"); 
     LCD_ShowString(95,5,0,colors[4],colors[7],"YZ[\]^_'abcdefghijk");
@@ -249,6 +251,57 @@ void Display_Running()
 	ChineseString(155,70,1,colors[4],colors[7],"0123456789");
 	ChineseString(185,70,1,colors[4],colors[7],":;<=>?@ABC");
 	ChineseString(215,70,1,colors[4],colors[7],"DEFGHIJKLM");
+	*/
+	LCD_ShowString(215,70,0,colors[4],colors[7],"What is a Raspberry Pi?");	
+	LCD_ShowString(185,70,0,colors[4],colors[7],"3456789:;<=>?@ABCDE"); 
+	LCD_ShowString(155,70,0,colors[4],colors[7],"FGHIJKLMNOPQRSTUVWX"); 
+	LCD_ShowString(125,5,0,colors[4],colors[7],"YZ[\]^_'abcdefghijk");
+	LCD_ShowString(95,5,0,colors[4],colors[7],"lmnopqrstuvwxyz{|}~");
+	LCD_ShowString(65,5,0,colors[4],colors[7],"FGHIJKLMNOPQRSTUVWX"); 
+	LCD_ShowString(35,5,0,colors[4],colors[7],"YZ[\]^_'abcdefghijk");
+	LCD_ShowString(5,5,0,colors[4],colors[7],"lmnopqrstuvwxyz{|}~");
+}
+
+void Display_Running1()
+{
+	Display_White();
+	Display_Running_Image();
+	LCD_ShowString(215,70,0,colors[4],colors[7],	"What is a Raspb");	
+	LCD_ShowString(185,70,0,colors[4],colors[7],	"erry Pi?"); 
+	LCD_ShowString(155,70,0,colors[4],colors[7],	"The Raspberry P"); 
+	LCD_ShowString(125,5,0,colors[4],colors[7],		"i is a credit-card ");
+	LCD_ShowString(95,5,0,colors[4],colors[7],		"sized computer that");
+	LCD_ShowString(65,5,0,colors[4],colors[7],		" plugs into your TV"); 
+	LCD_ShowString(35,5,0,colors[4],colors[7],		" and a keyboard. It");
+	LCD_ShowString(5,5,0,colors[4],colors[7],		" is a capable littl");
+}
+
+void Display_Running2()
+{
+	Display_White();
+	Display_Running_Image();
+	LCD_ShowString(215,70,0,colors[4],colors[7],"e computer whic");	
+	LCD_ShowString(185,70,0,colors[4],colors[7],"h can be used i"); 
+	LCD_ShowString(155,70,0,colors[4],colors[7],"n electronics p"); 
+	LCD_ShowString(125,5,0,colors[4],colors[7],	"rojects, and for ma");
+	LCD_ShowString(95,5,0,colors[4],colors[7],	"ny of the things th");
+	LCD_ShowString(65,5,0,colors[4],colors[7],	"at your desktop PC "); 
+	LCD_ShowString(35,5,0,colors[4],colors[7],	"does, like spreadsh");
+	LCD_ShowString(5,5,0,colors[4],colors[7],	"eets, word-processi");
+}
+
+void Display_Running3()
+{
+	Display_White();
+	Display_Running_Image();
+	LCD_ShowString(215,70,0,colors[4],colors[7],"ng and games. I");	
+	LCD_ShowString(185,70,0,colors[4],colors[7],"t also plays hig"); 
+	LCD_ShowString(155,70,0,colors[4],colors[7],"h-definition vid"); 
+	LCD_ShowString(125,5,0,colors[4],colors[7],"eo. We want to see i");
+	LCD_ShowString(95,5,0,colors[4],colors[7],"t being used by kids");
+	LCD_ShowString(65,5,0,colors[4],colors[7]," all over the world "); 
+	LCD_ShowString(35,5,0,colors[4],colors[7],"to learn programming");
+	LCD_ShowString(5,5,0,colors[4],colors[7],".");
 }
 
 void Display_Running_Image()
