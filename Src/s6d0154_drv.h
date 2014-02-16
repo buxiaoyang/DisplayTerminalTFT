@@ -41,7 +41,7 @@ void Display_Black(void);
 void Display_White(void);
 //void delay(long tt);
 void Display_Loding(void);
-void Display_Image(unsigned int x0, unsigned int y0, unsigned int x1, unsigned int y1);
+void Display_Image(void);
 //******************************************************************
 //  
 //------------------------------------------------------------------

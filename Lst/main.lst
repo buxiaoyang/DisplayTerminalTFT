@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   MAIN                                                                  02/16/2014 14:08:17 PAGE 1   
+C51 COMPILER V7.50   MAIN                                                                  02/16/2014 14:30:26 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   52   1          ChineseChar(24,60,1,colors[0],colors[7],2);     //!
   53   1          
   54   1          ChineseChar( 48,60,1,colors[1],colors[7],3);    //
-C51 COMPILER V7.50   MAIN                                                                  02/16/2014 14:08:17 PAGE 2   
+C51 COMPILER V7.50   MAIN                                                                  02/16/2014 14:30:26 PAGE 2   
 
   55   1          ChineseChar( 72,60,1,colors[2],colors[7],4);    //
   56   1          ChineseChar( 96,60,1,colors[3],colors[2],5);    //
@@ -126,7 +126,7 @@ line level    source
  114   1        TH0=T0_H;
  115   1        TL0=T0_L;
  116   1        if (1==timer)
-C51 COMPILER V7.50   MAIN                                                                  02/16/2014 14:08:17 PAGE 3   
+C51 COMPILER V7.50   MAIN                                                                  02/16/2014 14:30:26 PAGE 3   
 
  117   1        {
  118   2          TR0=1;
@@ -190,7 +190,7 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =     18    ----
-C51 COMPILER V7.50   MAIN                                                                  02/16/2014 14:08:17 PAGE 4   
+C51 COMPILER V7.50   MAIN                                                                  02/16/2014 14:30:26 PAGE 4   
 
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
