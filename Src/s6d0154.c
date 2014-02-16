@@ -188,29 +188,41 @@ void Display_Black(void)
         //Write_Data_18(0xff,0xff,0xc0);
     }
 }
+
+void Display_Loding()
+{
+	Display_Image(100,115,219,214);
+	
+	ChineseChar(50,79,2,colors[4],colors[7],1);	//晶
+    ChineseChar(50,122,2,colors[4],colors[7],2);	//液
+    ChineseChar(50,165,2,colors[4],colors[7],3);	//心
+    ChineseChar(50,208,2,colors[4],colors[7],4);	//伤
+}
+
 //******************************************************************
 //  图片显示(仅240*80dot模式)
 //------------------------------------------------------------------
-void Display_Image()
+void Display_Image(unsigned int x0, unsigned int y0, unsigned int x1, unsigned int y1)
 {
-    unsigned char i,j,t;
-   
+    unsigned char i,j,t, i0, j0;
 	LCD_CS =0;  //打开片选使能
 	//Address_set(0,0,239,319);
 	//Address_set(119,119,239,200);
-	Address_set(100,120,219,199);
+	Address_set(x0,y0,x1,y1);
+	i0 = x1 - x0 +1;
+	j0 = y1 - y0;
     LCD_DC=1;
     for(t=1;t!=0;t--)  //显示4次->填满240x320空间
     {
 #pragma asm
-		mov DPTR, #Image
+		mov DPTR, #RaspberryPiLogoBig
 #pragma endasm
 //        unsigned int  k=0;
         
-        for(j=0;j<80;j++)
+        for(j=0;j<j0;j++)
         {
 
-            for(i=120;i!=0;i--)
+            for(i=i0;i!=0;i--)
             {
                 LCD_WR = 0;
 #pragma asm

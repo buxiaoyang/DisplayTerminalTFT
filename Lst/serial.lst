@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   SERIAL                                                                02/16/2014 00:15:44 PAGE 1   
+C51 COMPILER V7.50   SERIAL                                                                02/16/2014 14:08:18 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE SERIAL
@@ -62,7 +62,7 @@ line level    source
   52   2          {
   53   3            LenToSend--;
   54   3            if (0==LenToSend)
-C51 COMPILER V7.50   SERIAL                                                                02/16/2014 00:15:44 PAGE 2   
+C51 COMPILER V7.50   SERIAL                                                                02/16/2014 14:08:18 PAGE 2   
 
   55   3              SBUF=DataToSend>>8;
   56   3            else

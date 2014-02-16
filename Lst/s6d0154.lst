@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   S6D0154                                                               02/16/2014 00:15:43 PAGE 1   
+C51 COMPILER V7.50   S6D0154                                                               02/16/2014 14:08:17 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE S6D0154
@@ -62,7 +62,7 @@ line level    source
   52   1              LCD_WR = 1;
   53   1              LCD_CS = 1;
   54   1      }
-C51 COMPILER V7.50   S6D0154                                                               02/16/2014 00:15:43 PAGE 2   
+C51 COMPILER V7.50   S6D0154                                                               02/16/2014 14:08:17 PAGE 2   
 
   55          /*
   56          void Write_DAT_18(unsigned int i,unsigned int j,unsigned int k)
@@ -126,7 +126,7 @@ line level    source
  114   2                  {
  115   3                  Write_DATA(0x07,0xe0);
  116   3                  //Write_Data_18(0x03,0xf0,0x00);
-C51 COMPILER V7.50   S6D0154                                                               02/16/2014 00:15:43 PAGE 3   
+C51 COMPILER V7.50   S6D0154                                                               02/16/2014 14:08:17 PAGE 3   
 
  117   3              }
  118   2          }
@@ -190,7 +190,7 @@ line level    source
  176   3                          //Write_DATA_18(0x00,0x00,0x00);
  177   3                  }
  178   2                  for(k=0;k<1;k++)
-C51 COMPILER V7.50   S6D0154                                                               02/16/2014 00:15:43 PAGE 4   
+C51 COMPILER V7.50   S6D0154                                                               02/16/2014 14:08:17 PAGE 4   
 
  179   2                  {
  180   3                      Write_DATA(0xff,0xff);
@@ -204,325 +204,337 @@ line level    source
  188   2              //Write_Data_18(0xff,0xff,0xc0);
  189   2          }
  190   1      }
- 191          //******************************************************************
- 192          //  图片显示(仅240*80dot模式)
- 193          //------------------------------------------------------------------
- 194          void Display_Image()
- 195          {
- 196   1          unsigned char i,j,t;
- 197   1         
- 198   1              LCD_CS =0;  //打开片选使能
- 199   1              //Address_set(0,0,239,319);
- 200   1              //Address_set(119,119,239,200);
- 201   1              Address_set(100,120,219,199);
- 202   1          LCD_DC=1;
- 203   1          for(t=1;t!=0;t--)  //显示4次->填满240x320空间
- 204   1          {
- 205   2      #pragma asm
- 206   2                      mov DPTR, #Image
- 207   2      #pragma endasm
- 208   2      //        unsigned int  k=0;
- 209   2              
- 210   2              for(j=0;j<80;j++)
- 211   2              {
- 212   3      
- 213   3                  for(i=120;i!=0;i--)
- 214   3                  {
- 215   4                      LCD_WR = 0;
- 216   4      #pragma asm
- 217   4                      clr A
- 218   4                      movc A, @A+DPTR
- 219   4                      mov P2, A
- 220   4                      inc DPTR
- 221   4                      clr A
- 222   4                      movc A, @A+DPTR
- 223   4                      mov P0, A
- 224   4                      inc DPTR
- 225   4      #pragma endasm
- 226   4                      LCD_WR = 1;
- 227   4      //                Write_DATA(Image[k++],Image[k++]);
- 228   4                  }
- 229   3              }
- 230   2          }
- 231   1      }
- 232          //******************************************************************
- 233          //  
- 234          //------------------------------------------------------------------
- 235          void LCD_Writ_Bus(char VH,char VL)      //并行数据写入函数
- 236          {
- 237   1          LCD_DataPortH=VH;     //高位P口
- 238   1              LCD_DataPortL=VL;         //低位P口     
- 239   1              LCD_WR=0;
- 240   1              LCD_WR=1; 
-C51 COMPILER V7.50   S6D0154                                                               02/16/2014 00:15:43 PAGE 5   
+ 191          
+ 192          void Display_Loding()
+ 193          {
+ 194   1              Display_Image(100,115,219,214);
+ 195   1              
+ 196   1              ChineseChar(50,79,2,colors[4],colors[7],1);     //晶
+ 197   1          ChineseChar(50,122,2,colors[4],colors[7],2);        //液
+ 198   1          ChineseChar(50,165,2,colors[4],colors[7],3);        //心
+ 199   1          ChineseChar(50,208,2,colors[4],colors[7],4);        //伤
+ 200   1      }
+ 201          
+ 202          //******************************************************************
+ 203          //  图片显示(仅240*80dot模式)
+ 204          //------------------------------------------------------------------
+ 205          void Display_Image(unsigned int x0, unsigned int y0, unsigned int x1, unsigned int y1)
+ 206          {
+ 207   1          unsigned char i,j,t, i0, j0;
+ 208   1              LCD_CS =0;  //打开片选使能
+ 209   1              //Address_set(0,0,239,319);
+ 210   1              //Address_set(119,119,239,200);
+ 211   1              Address_set(x0,y0,x1,y1);
+ 212   1              i0 = x1 - x0 +1;
+ 213   1              j0 = y1 - y0;
+ 214   1          LCD_DC=1;
+ 215   1          for(t=1;t!=0;t--)  //显示4次->填满240x320空间
+ 216   1          {
+ 217   2      #pragma asm
+ 218   2                      mov DPTR, #RaspberryPiLogoBig
+ 219   2      #pragma endasm
+ 220   2      //        unsigned int  k=0;
+ 221   2              
+ 222   2              for(j=0;j<j0;j++)
+ 223   2              {
+ 224   3      
+ 225   3                  for(i=i0;i!=0;i--)
+ 226   3                  {
+ 227   4                      LCD_WR = 0;
+ 228   4      #pragma asm
+ 229   4                      clr A
+ 230   4                      movc A, @A+DPTR
+ 231   4                      mov P2, A
+ 232   4                      inc DPTR
+ 233   4                      clr A
+ 234   4                      movc A, @A+DPTR
+ 235   4                      mov P0, A
+ 236   4                      inc DPTR
+ 237   4      #pragma endasm
+ 238   4                      LCD_WR = 1;
+ 239   4      //                Write_DATA(Image[k++],Image[k++]);
+ 240   4                  }
+C51 COMPILER V7.50   S6D0154                                                               02/16/2014 14:08:17 PAGE 5   
 
- 241   1      }
- 242          void LCD_Write_COM(char VH,char VL)         //发送命令
- 243          {       
- 244   1          LCD_DC=0;
- 245   1              LCD_Writ_Bus(VH,VL);
- 246   1      }
- 247          void LCD_Write_DATA(char VH,char VL)    //发送数据
+ 241   3              }
+ 242   2          }
+ 243   1      }
+ 244          //******************************************************************
+ 245          //  
+ 246          //------------------------------------------------------------------
+ 247          void LCD_Writ_Bus(char VH,char VL)      //并行数据写入函数
  248          {
- 249   1          LCD_DC=1;
- 250   1              LCD_Writ_Bus(VH,VL);
- 251   1      }
- 252          //******************************************************************
- 253          //  
- 254          //------------------------------------------------------------------
- 255          void Pant(char VH,char VL)
- 256          {
- 257   1              unsigned char i;
- 258   1              unsigned char j;
- 259   1              
- 260   1              LCD_CS =0;  //打开片选使能
- 261   1              Address_set(0,0,239,319);
- 262   1          LCD_DataPortH=VH;     //高位P口
- 263   1              LCD_DataPortL=VL;         //低位P口     
- 264   1          LCD_DC=1;
- 265   1          for(i=160;i!=0;i--)
- 266   1              {
- 267   2              for (j=240;j!=0;j--)
- 268   2              {
- 269   3                  LCD_WR=0;
- 270   3                  LCD_WR=1; 
- 271   3                  LCD_WR=0;
- 272   3                  LCD_WR=1; 
- 273   3                  }
- 274   2          }
- 275   1          LCD_CS =1;  //关闭片选使能
- 276   1      }
- 277          void Address_set(unsigned int x1,unsigned int y1,unsigned int x2,unsigned int y2)
- 278          {
- 279   1      
- 280   1          LCD_Write_COM(0x00,0x20);LCD_Write_DATA(x1>>8,x1);  //设置X坐标位置
- 281   1          LCD_Write_COM(0x00,0x21);LCD_Write_DATA(y1>>8,y1);  //设置Y坐标位置
- 282   1                       
- 283   1          LCD_Write_COM(0x00,0x37);LCD_Write_DATA(x1>>8,x1);  //开始X
- 284   1              LCD_Write_COM(0x00,0x39);LCD_Write_DATA(y1>>8,y1);  //开始Y
- 285   1          LCD_Write_COM(0x00,0x36);LCD_Write_DATA(x2>>8,x2);  //结束X
- 286   1              LCD_Write_COM(0x00,0x38);LCD_Write_DATA(y2>>8,y2);  //结束Y
- 287   1      
- 288   1              LCD_Write_COM(0x00,0x22);                                                                                
- 289   1      }
- 290          //******************************************************************
- 291          //  写汉字子函数
- 292          //------------------------------------------------------------------
- 293          void ChineseChar(uint x,uint y,int size,uint For_color,uint Bk_color ,char c)
- 294          {
- 295   1      
- 296   1          int e,i,j;
- 297   1          int  ed;
- 298   1         
- 299   1          uint  ncols;
- 300   1          uint  nrows;
- 301   1          uint  nbytes;
- 302   1      
-C51 COMPILER V7.50   S6D0154                                                               02/16/2014 00:15:43 PAGE 6   
+ 249   1          LCD_DataPortH=VH;     //高位P口
+ 250   1              LCD_DataPortL=VL;         //低位P口     
+ 251   1              LCD_WR=0;
+ 252   1              LCD_WR=1; 
+ 253   1      }
+ 254          void LCD_Write_COM(char VH,char VL)         //发送命令
+ 255          {       
+ 256   1          LCD_DC=0;
+ 257   1              LCD_Writ_Bus(VH,VL);
+ 258   1      }
+ 259          void LCD_Write_DATA(char VH,char VL)    //发送数据
+ 260          {
+ 261   1          LCD_DC=1;
+ 262   1              LCD_Writ_Bus(VH,VL);
+ 263   1      }
+ 264          //******************************************************************
+ 265          //  
+ 266          //------------------------------------------------------------------
+ 267          void Pant(char VH,char VL)
+ 268          {
+ 269   1              unsigned char i;
+ 270   1              unsigned char j;
+ 271   1              
+ 272   1              LCD_CS =0;  //打开片选使能
+ 273   1              Address_set(0,0,239,319);
+ 274   1          LCD_DataPortH=VH;     //高位P口
+ 275   1              LCD_DataPortL=VL;         //低位P口     
+ 276   1          LCD_DC=1;
+ 277   1          for(i=160;i!=0;i--)
+ 278   1              {
+ 279   2              for (j=240;j!=0;j--)
+ 280   2              {
+ 281   3                  LCD_WR=0;
+ 282   3                  LCD_WR=1; 
+ 283   3                  LCD_WR=0;
+ 284   3                  LCD_WR=1; 
+ 285   3                  }
+ 286   2          }
+ 287   1          LCD_CS =1;  //关闭片选使能
+ 288   1      }
+ 289          void Address_set(unsigned int x1,unsigned int y1,unsigned int x2,unsigned int y2)
+ 290          {
+ 291   1      
+ 292   1          LCD_Write_COM(0x00,0x20);LCD_Write_DATA(x1>>8,x1);  //设置X坐标位置
+ 293   1          LCD_Write_COM(0x00,0x21);LCD_Write_DATA(y1>>8,y1);  //设置Y坐标位置
+ 294   1                       
+ 295   1          LCD_Write_COM(0x00,0x37);LCD_Write_DATA(x1>>8,x1);  //开始X
+ 296   1              LCD_Write_COM(0x00,0x39);LCD_Write_DATA(y1>>8,y1);  //开始Y
+ 297   1          LCD_Write_COM(0x00,0x36);LCD_Write_DATA(x2>>8,x2);  //结束X
+ 298   1              LCD_Write_COM(0x00,0x38);LCD_Write_DATA(y2>>8,y2);  //结束Y
+ 299   1      
+ 300   1              LCD_Write_COM(0x00,0x22);                                                                                
+ 301   1      }
+ 302          //******************************************************************
+C51 COMPILER V7.50   S6D0154                                                               02/16/2014 14:08:17 PAGE 6   
 
- 303   1          uchar *pfont;
- 304   1          uchar *pchar;
- 305   1          uchar *fonttable[]={(uchar *)hz16,(uchar *)hz24 , (uchar *)hz32};
- 306   1         
- 307   1          pfont=(uchar *)fonttable[size];
- 308   1      
- 309   1                       LCD_CS =0;  //打开片选使能
- 310   1          if(size==0)
- 311   1          {
- 312   2              ncols =16-1;
- 313   2              nrows =16-1;
- 314   2              nbytes =32;      //(16*16)/8
- 315   2          }
- 316   1          else
- 317   1          {    
- 318   2              if(size==1)
- 319   2              {
- 320   3                  ncols =24-1;
- 321   3                  nrows =24-1;
- 322   3                  nbytes =72;  //(24*24)/8
- 323   3              }
- 324   2              else
- 325   2              {
- 326   3                  if(size==2)
- 327   3                  {
- 328   4                      ncols =32-1;
- 329   4                      nrows =32-1;
- 330   4                      nbytes =132;   //(32*32)/8
- 331   4                  }
- 332   3              }
- 333   2          }
- 334   1          pchar=pfont + (nbytes*(c-1));
- 335   1      
- 336   1          Address_set(x,  y, x+nrows,y+ncols);
- 337   1          //---------------------------------
- 338   1          for(i=0;i<nbytes;i++)
- 339   1          {
- 340   2              ed=*pchar++;
- 341   2              if(size==0)
- 342   2              {
- 343   3                  if(i%2==0)
- 344   3                      e=8;
- 345   3                  else
- 346   3                      e=4;
- 347   3              }
- 348   2              else
- 349   2                  e=8;
- 350   2              for(j=0;j<e;j++)
- 351   2              {//unsigned char temp;
- 352   3                  if((ed>>j)&0x01)
- 353   3                  { 
- 354   4                     //temp = For_color&0x00ff
- 355   4                         LCD_Write_DATA(For_color>>8 , For_color  );  //textcolor
- 356   4                      }
+ 303          //  写汉字子函数
+ 304          //------------------------------------------------------------------
+ 305          void ChineseChar(uint x,uint y,int size,uint For_color,uint Bk_color ,char c)
+ 306          {
+ 307   1      
+ 308   1          int e,i,j;
+ 309   1          int  ed;
+ 310   1         
+ 311   1          uint  ncols;
+ 312   1          uint  nrows;
+ 313   1          uint  nbytes;
+ 314   1      
+ 315   1          uchar *pfont;
+ 316   1          uchar *pchar;
+ 317   1          uchar *fonttable[]={(uchar *)hz16,(uchar *)hz24 , (uchar *)hz32};
+ 318   1         
+ 319   1          pfont=(uchar *)fonttable[size];
+ 320   1      
+ 321   1                       LCD_CS =0;  //打开片选使能
+ 322   1          if(size==0)
+ 323   1          {
+ 324   2              ncols =16-1;
+ 325   2              nrows =16-1;
+ 326   2              nbytes =32;      //(16*16)/8
+ 327   2          }
+ 328   1          else
+ 329   1          {    
+ 330   2              if(size==1)
+ 331   2              {
+ 332   3                  ncols =24-1;
+ 333   3                  nrows =24-1;
+ 334   3                  nbytes =72;  //(24*24)/8
+ 335   3              }
+ 336   2              else
+ 337   2              {
+ 338   3                  if(size==2)
+ 339   3                  {
+ 340   4                      ncols =32-1;
+ 341   4                      nrows =32-1;
+ 342   4                      nbytes =132;   //(32*32)/8
+ 343   4                  }
+ 344   3              }
+ 345   2          }
+ 346   1          pchar=pfont + (nbytes*(c-1));
+ 347   1      
+ 348   1          Address_set(x,  y, x+nrows,y+ncols);
+ 349   1          //---------------------------------
+ 350   1          for(i=0;i<nbytes;i++)
+ 351   1          {
+ 352   2              ed=*pchar++;
+ 353   2              if(size==0)
+ 354   2              {
+ 355   3                  if(i%2==0)
+ 356   3                      e=8;
  357   3                  else
- 358   3                  {
- 359   4                      LCD_Write_DATA( Bk_color>>8 ,  Bk_color);  //backcolor
- 360   4                      }
- 361   3              }
- 362   2          }
- 363   1              LCD_CS =1;  //关闭片选使能
- 364   1      }
-C51 COMPILER V7.50   S6D0154                                                               02/16/2014 00:15:43 PAGE 7   
+ 358   3                      e=4;
+ 359   3              }
+ 360   2              else
+ 361   2                  e=8;
+ 362   2              for(j=0;j<e;j++)
+ 363   2              {//unsigned char temp;
+ 364   3                  if((ed>>j)&0x01)
+C51 COMPILER V7.50   S6D0154                                                               02/16/2014 14:08:17 PAGE 7   
 
- 365          //******************************************************************
- 366          //  字符显示子函数
- 367          //------------------------------------------------------------------
- 368          void LCD_ShowChar(uint x,uint y,uint For_color,uint Bk_color, char ch)
- 369          {       
- 370   1          uchar temp , Bytes;
- 371   1          uchar pos,t;
- 372   1          uint  CHAR_W,CHAR_H;
- 373   1         
- 374   1          //CHAR_W = 8;         //8*16
- 375   1          //CHAR_H = 16;
- 376   1      
- 377   1          CHAR_W = 16;         //16*24
- 378   1          CHAR_H = 24;
- 379   1      
- 380   1          if(x>(LCD_SIZE_X-CHAR_W)||y>(LCD_SIZE_Y-CHAR_H))
- 381   1              return;
- 382   1         
- 383   1          Address_set(x, y, x+CHAR_W-1, y+CHAR_H-1);
- 384   1          ch = ch-32;                       //按照ASCII编码顺序的到相应字母的编码
- 385   1          Bytes = (CHAR_W*CHAR_H)/8;
- 386   1          for(pos=0;pos<Bytes;pos++)  //CHAR_H        (CHAR_W*CHAR_H)/8
- 387   1          {
- 388   2              //temp= Font8x16[ch][pos];
- 389   2              //temp= Font16x24[ch][pos];
- 390   2              temp= Font16x24[ch][pos];
- 391   2            
- 392   2              for(t=0;t<8;t++) //CHAR_W
- 393   2              {                 
- 394   3                     if(temp&0x80)
- 395   3                         LCD_Write_DATA(For_color>>8 , For_color  );  //textcolor
- 396   3                     else 
- 397   3                         LCD_Write_DATA(Bk_color>>8 , Bk_color );  //backcolor
- 398   3                  temp<<=1; 
- 399   3              }
- 400   2          }
- 401   1      }  
- 402          //******************************************************************
- 403          //  显示字符串子函数    x,y:起点坐标    *p:字符串起始地址
- 404          //------------------------------------------------------------------
- 405          void LCD_ShowString(uint x,uint y,uint For_color,uint Bk_color,char *p)
- 406          {         
- 407   1          while(*p!='\0')
- 408   1          {       
- 409   2              LCD_ShowChar(x,y,For_color,Bk_color,*p);
- 410   2              //x+=8;
- 411   2              x+=16;
- 412   2              p++;
- 413   2          }
- 414   1      }
- 415          //******************************************************************
- 416          //  
- 417          //------------------------------------------------------------------
- 418          void LCD_Init(void)
- 419          {
- 420   1      //    LCD_RST=1;
- 421   1      //    delayms(5);
- 422   1              LCD_RST=0;
- 423   1              delayms(5);
- 424   1              LCD_RST=1;
- 425   1      //      delayms(5);
- 426   1              LCD_CS =0;  //打开片选使能
-C51 COMPILER V7.50   S6D0154                                                               02/16/2014 00:15:43 PAGE 8   
+ 365   3                  { 
+ 366   4                     //temp = For_color&0x00ff
+ 367   4                         LCD_Write_DATA(For_color>>8 , For_color  );  //textcolor
+ 368   4                      }
+ 369   3                  else
+ 370   3                  {
+ 371   4                      LCD_Write_DATA( Bk_color>>8 ,  Bk_color);  //backcolor
+ 372   4                      }
+ 373   3              }
+ 374   2          }
+ 375   1              LCD_CS =1;  //关闭片选使能
+ 376   1      }
+ 377          //******************************************************************
+ 378          //  字符显示子函数
+ 379          //------------------------------------------------------------------
+ 380          void LCD_ShowChar(uint x,uint y,uint For_color,uint Bk_color, char ch)
+ 381          {       
+ 382   1          uchar temp , Bytes;
+ 383   1          uchar pos,t;
+ 384   1          uint  CHAR_W,CHAR_H;
+ 385   1         
+ 386   1          //CHAR_W = 8;         //8*16
+ 387   1          //CHAR_H = 16;
+ 388   1      
+ 389   1          CHAR_W = 16;         //16*24
+ 390   1          CHAR_H = 24;
+ 391   1      
+ 392   1          if(x>(LCD_SIZE_X-CHAR_W)||y>(LCD_SIZE_Y-CHAR_H))
+ 393   1              return;
+ 394   1         
+ 395   1          Address_set(x, y, x+CHAR_W-1, y+CHAR_H-1);
+ 396   1          ch = ch-32;                       //按照ASCII编码顺序的到相应字母的编码
+ 397   1          Bytes = (CHAR_W*CHAR_H)/8;
+ 398   1          for(pos=0;pos<Bytes;pos++)  //CHAR_H        (CHAR_W*CHAR_H)/8
+ 399   1          {
+ 400   2              //temp= Font8x16[ch][pos];
+ 401   2              //temp= Font16x24[ch][pos];
+ 402   2              temp= Font16x24[ch][pos];
+ 403   2            
+ 404   2              for(t=0;t<8;t++) //CHAR_W
+ 405   2              {                 
+ 406   3                     if(temp&0x80)
+ 407   3                         LCD_Write_DATA(For_color>>8 , For_color  );  //textcolor
+ 408   3                     else 
+ 409   3                         LCD_Write_DATA(Bk_color>>8 , Bk_color );  //backcolor
+ 410   3                  temp<<=1; 
+ 411   3              }
+ 412   2          }
+ 413   1      }  
+ 414          //******************************************************************
+ 415          //  显示字符串子函数    x,y:起点坐标    *p:字符串起始地址
+ 416          //------------------------------------------------------------------
+ 417          void LCD_ShowString(uint x,uint y,uint For_color,uint Bk_color,char *p)
+ 418          {         
+ 419   1          while(*p!='\0')
+ 420   1          {       
+ 421   2              LCD_ShowChar(x,y,For_color,Bk_color,*p);
+ 422   2              //x+=8;
+ 423   2              x+=16;
+ 424   2              p++;
+ 425   2          }
+ 426   1      }
+C51 COMPILER V7.50   S6D0154                                                               02/16/2014 14:08:17 PAGE 8   
 
- 427   1          //---------------------------------
- 428   1              LCD_Write_COM(0x00,0x10); LCD_Write_DATA(0x00,0x00);  // Power Control 1  current consumption  STB
- 429   1              delayms(10);
- 430   1              
- 431   1              LCD_Write_COM(0x00,0x11); LCD_Write_DATA(0x00,0x1c);  // Power Control 2
- 432   1              LCD_Write_COM(0x00,0x12); LCD_Write_DATA(0x12,0x12);  // Power Control 3  BT2-0, DC11-10, DC21-20, DC31-3
+ 427          //******************************************************************
+ 428          //  
+ 429          //------------------------------------------------------------------
+ 430          void LCD_Init(void)
+ 431          {
+ 432   1      //    LCD_RST=1;
+ 433   1      //    delayms(5);
+ 434   1              LCD_RST=0;
+ 435   1              delayms(5);
+ 436   1              LCD_RST=1;
+ 437   1      //      delayms(5);
+ 438   1              LCD_CS =0;  //打开片选使能
+ 439   1          //---------------------------------
+ 440   1              LCD_Write_COM(0x00,0x10); LCD_Write_DATA(0x00,0x00);  // Power Control 1  current consumption  STB
+ 441   1              delayms(10);
+ 442   1              
+ 443   1              LCD_Write_COM(0x00,0x11); LCD_Write_DATA(0x00,0x1c);  // Power Control 2
+ 444   1              LCD_Write_COM(0x00,0x12); LCD_Write_DATA(0x12,0x12);  // Power Control 3  BT2-0, DC11-10, DC21-20, DC31-3
              -0
- 433   1              LCD_Write_COM(0x00,0x13); LCD_Write_DATA(0x00,0x41);  // Power Control 4  DCR_EX=0, DCR2-0, GVD6-0
- 434   1              LCD_Write_COM(0x00,0x14); LCD_Write_DATA(0x40,0x50);  // Power Control 5  VCOMG=0, VCM6-0, VCMR=0, VML6-0
- 435   1              LCD_Write_COM(0x00,0x10); LCD_Write_DATA(0x08,0x00);  // Power Control 1 
- 436   1              LCD_Write_COM(0x00,0x11); LCD_Write_DATA(0x01,0x1c);  // Power Control 2
- 437   1              delayms(300);//300ms
- 438   1              LCD_Write_COM(0x00,0x11); LCD_Write_DATA(0x03,0x1c);  // Power Control 2
- 439   1              delayms(300);//300ms
- 440   1              LCD_Write_COM(0x00,0x11); LCD_Write_DATA(0x07,0x1c);  // Power Control 2
- 441   1              delayms(300);//300ms
- 442   1              LCD_Write_COM(0x00,0x11); LCD_Write_DATA(0x0f,0x1c);  // Power Control 2
- 443   1              delayms(600);//600ms
- 444   1              LCD_Write_COM(0x00,0x11); LCD_Write_DATA(0x0f,0x39);  // Power Control 2
- 445   1              delayms(500);//500ms
- 446   1              LCD_Write_COM(0x00,0x01); LCD_Write_DATA(0x01,0x28);  // Driver Output Control
- 447   1              LCD_Write_COM(0x00,0x02); LCD_Write_DATA(0x01,0x00);  // LCD-Driving-Waveform Control
- 448   1              LCD_Write_COM(0x00,0x03); LCD_Write_DATA(0x10,0x30);  // Entry Mode
- 449   1              LCD_Write_COM(0x00,0x08); LCD_Write_DATA(0x08,0x08);  // Frame Cycle Control 
- 450   1              LCD_Write_COM(0x00,0x0b); LCD_Write_DATA(0x11,0x05);  // Frame Cycle Control
- 451   1              LCD_Write_COM(0x00,0x0c); LCD_Write_DATA(0x00,0x00);  // External Display Interface Control 
- 452   1          //---------------------------------
- 453   1          LCD_Write_COM(0x00,0x15); LCD_Write_DATA(0x00,0x20);  //VCI Recycling (R15H)                //              VCIR=010         0X0020
- 454   1              LCD_Write_COM(0x00,0x30); LCD_Write_DATA(0x00,0x00);  //                SCN 0   Start from G1
- 455   1              LCD_Write_COM(0x00,0x34); LCD_Write_DATA(0x01,0x3f);  //                SE1 = 100111111( 319)
- 456   1              LCD_Write_COM(0x00,0x35); LCD_Write_DATA(0x00,0x00);  //                SS1 = 000000000
- 457   1              LCD_Write_COM(0x00,0x36); LCD_Write_DATA(0x00,0xef);  //                HEA = 011101111(239)
- 458   1              LCD_Write_COM(0x00,0x37); LCD_Write_DATA(0x00,0x00);  //                HSA = 000000000 
- 459   1              LCD_Write_COM(0x00,0x38); LCD_Write_DATA(0x01,0x3f);  //                VEA = 100111111( 319)
- 460   1          LCD_Write_COM(0x00,0x39); LCD_Write_DATA(0x00,0x00);  //            VSA = 000000000 
- 461   1          LCD_Write_COM(0x00,0x50); LCD_Write_DATA(0x01,0x01);  // Gamma Control
- 462   1          //---------------------------------
- 463   1              LCD_Write_COM(0x00,0x51); LCD_Write_DATA(0x09,0x03);
- 464   1              LCD_Write_COM(0x00,0x52); LCD_Write_DATA(0x0b,0x08);
- 465   1              LCD_Write_COM(0x00,0x53); LCD_Write_DATA(0x08,0x05);
- 466   1              LCD_Write_COM(0x00,0x54); LCD_Write_DATA(0x01,0x01);
- 467   1              LCD_Write_COM(0x00,0x55); LCD_Write_DATA(0x0d,0x06);
- 468   1              LCD_Write_COM(0x00,0x56); LCD_Write_DATA(0x0e,0x0a);
- 469   1              LCD_Write_COM(0x00,0x57); LCD_Write_DATA(0x01,0x00);
- 470   1              LCD_Write_COM(0x00,0x58); LCD_Write_DATA(0x1f,0x0b);
- 471   1              LCD_Write_COM(0x00,0x59); LCD_Write_DATA(0x02,0x01);
- 472   1              //---------------------------------
- 473   1              LCD_Write_COM(0x00,0x20); LCD_Write_DATA(0x00,0x00);  //Set RAM Address
- 474   1              LCD_Write_COM(0x00,0x21); LCD_Write_DATA(0x00,0x00);  //Set RAM Address
- 475   1              //0x22            RAM Data Write
- 476   1              //LCD_CtrlWrite(0x0022);
- 477   1              LCD_Write_COM(0x00,0x0f); LCD_Write_DATA(0x1f,0x01);  // Start Oscillation
- 478   1              delayms(300);//300ms
- 479   1              LCD_Write_COM(0x00,0x07); LCD_Write_DATA(0x00,0x16);  // Display Control
- 480   1              delayms(200);//200ms
- 481   1              LCD_Write_COM(0x00,0x07); LCD_Write_DATA(0x00,0x17);
- 482   1              //---------------------------------
- 483   1              LCD_CS =1;
- 484   1      }
- 485          //******************************************************************
- 486          //  
- 487          //------------------------------------------------------------------
-C51 COMPILER V7.50   S6D0154                                                               02/16/2014 00:15:43 PAGE 9   
+ 445   1              LCD_Write_COM(0x00,0x13); LCD_Write_DATA(0x00,0x41);  // Power Control 4  DCR_EX=0, DCR2-0, GVD6-0
+ 446   1              LCD_Write_COM(0x00,0x14); LCD_Write_DATA(0x40,0x50);  // Power Control 5  VCOMG=0, VCM6-0, VCMR=0, VML6-0
+ 447   1              LCD_Write_COM(0x00,0x10); LCD_Write_DATA(0x08,0x00);  // Power Control 1 
+ 448   1              LCD_Write_COM(0x00,0x11); LCD_Write_DATA(0x01,0x1c);  // Power Control 2
+ 449   1              delayms(300);//300ms
+ 450   1              LCD_Write_COM(0x00,0x11); LCD_Write_DATA(0x03,0x1c);  // Power Control 2
+ 451   1              delayms(300);//300ms
+ 452   1              LCD_Write_COM(0x00,0x11); LCD_Write_DATA(0x07,0x1c);  // Power Control 2
+ 453   1              delayms(300);//300ms
+ 454   1              LCD_Write_COM(0x00,0x11); LCD_Write_DATA(0x0f,0x1c);  // Power Control 2
+ 455   1              delayms(600);//600ms
+ 456   1              LCD_Write_COM(0x00,0x11); LCD_Write_DATA(0x0f,0x39);  // Power Control 2
+ 457   1              delayms(500);//500ms
+ 458   1              LCD_Write_COM(0x00,0x01); LCD_Write_DATA(0x01,0x28);  // Driver Output Control
+ 459   1              LCD_Write_COM(0x00,0x02); LCD_Write_DATA(0x01,0x00);  // LCD-Driving-Waveform Control
+ 460   1              LCD_Write_COM(0x00,0x03); LCD_Write_DATA(0x10,0x30);  // Entry Mode
+ 461   1              LCD_Write_COM(0x00,0x08); LCD_Write_DATA(0x08,0x08);  // Frame Cycle Control 
+ 462   1              LCD_Write_COM(0x00,0x0b); LCD_Write_DATA(0x11,0x05);  // Frame Cycle Control
+ 463   1              LCD_Write_COM(0x00,0x0c); LCD_Write_DATA(0x00,0x00);  // External Display Interface Control 
+ 464   1          //---------------------------------
+ 465   1          LCD_Write_COM(0x00,0x15); LCD_Write_DATA(0x00,0x20);  //VCI Recycling (R15H)                //              VCIR=010         0X0020
+ 466   1              LCD_Write_COM(0x00,0x30); LCD_Write_DATA(0x00,0x00);  //                SCN 0   Start from G1
+ 467   1              LCD_Write_COM(0x00,0x34); LCD_Write_DATA(0x01,0x3f);  //                SE1 = 100111111( 319)
+ 468   1              LCD_Write_COM(0x00,0x35); LCD_Write_DATA(0x00,0x00);  //                SS1 = 000000000
+ 469   1              LCD_Write_COM(0x00,0x36); LCD_Write_DATA(0x00,0xef);  //                HEA = 011101111(239)
+ 470   1              LCD_Write_COM(0x00,0x37); LCD_Write_DATA(0x00,0x00);  //                HSA = 000000000 
+ 471   1              LCD_Write_COM(0x00,0x38); LCD_Write_DATA(0x01,0x3f);  //                VEA = 100111111( 319)
+ 472   1          LCD_Write_COM(0x00,0x39); LCD_Write_DATA(0x00,0x00);  //            VSA = 000000000 
+ 473   1          LCD_Write_COM(0x00,0x50); LCD_Write_DATA(0x01,0x01);  // Gamma Control
+ 474   1          //---------------------------------
+ 475   1              LCD_Write_COM(0x00,0x51); LCD_Write_DATA(0x09,0x03);
+ 476   1              LCD_Write_COM(0x00,0x52); LCD_Write_DATA(0x0b,0x08);
+ 477   1              LCD_Write_COM(0x00,0x53); LCD_Write_DATA(0x08,0x05);
+ 478   1              LCD_Write_COM(0x00,0x54); LCD_Write_DATA(0x01,0x01);
+ 479   1              LCD_Write_COM(0x00,0x55); LCD_Write_DATA(0x0d,0x06);
+ 480   1              LCD_Write_COM(0x00,0x56); LCD_Write_DATA(0x0e,0x0a);
+ 481   1              LCD_Write_COM(0x00,0x57); LCD_Write_DATA(0x01,0x00);
+ 482   1              LCD_Write_COM(0x00,0x58); LCD_Write_DATA(0x1f,0x0b);
+ 483   1              LCD_Write_COM(0x00,0x59); LCD_Write_DATA(0x02,0x01);
+ 484   1              //---------------------------------
+ 485   1              LCD_Write_COM(0x00,0x20); LCD_Write_DATA(0x00,0x00);  //Set RAM Address
+ 486   1              LCD_Write_COM(0x00,0x21); LCD_Write_DATA(0x00,0x00);  //Set RAM Address
+ 487   1              //0x22            RAM Data Write
+C51 COMPILER V7.50   S6D0154                                                               02/16/2014 14:08:17 PAGE 9   
 
- 488          
- 489          
- 490          
+ 488   1              //LCD_CtrlWrite(0x0022);
+ 489   1              LCD_Write_COM(0x00,0x0f); LCD_Write_DATA(0x1f,0x01);  // Start Oscillation
+ 490   1              delayms(300);//300ms
+ 491   1              LCD_Write_COM(0x00,0x07); LCD_Write_DATA(0x00,0x16);  // Display Control
+ 492   1              delayms(200);//200ms
+ 493   1              LCD_Write_COM(0x00,0x07); LCD_Write_DATA(0x00,0x17);
+ 494   1              //---------------------------------
+ 495   1              LCD_CS =1;
+ 496   1      }
+ 497          //******************************************************************
+ 498          //  
+ 499          //------------------------------------------------------------------
+ 500          
+ 501          
+ 502          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   1708    ----
-   CONSTANT SIZE    =  28377    ----
+   CODE SIZE        =   1854    ----
+   CONSTANT SIZE    =  32937    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =     16      73
+   DATA SIZE        =     16      81
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
