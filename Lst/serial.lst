@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   SERIAL                                                                02/16/2014 17:30:07 PAGE 1   
+C51 COMPILER V7.50   SERIAL                                                                02/17/2014 22:14:38 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE SERIAL
@@ -8,83 +8,104 @@ COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Src\serial.c BROWSE INCDIR(.\Src) D
 
 line level    source
 
-   1          #include "STC_NEW_8051.H"
-   2          #include "SERIAL.H"
-   3          #include "HEAD.H"
-   4          
-   5          unsigned char get_i=0;  //读取数据的计数
-   6          unsigned char LenToSend=0;
-   7          unsigned int DataToSend;
-   8          //******************************************************************
-   9          //  STC89/12(MPC89/82)软复位程序
-  10          //------------------------------------------------------------------
-  11          
-  12          #define    RELOAD_COUNT    0xe6    //12MHz,0xf3, 12T,SMOD=0,2400bps; 24MHz 0xe6
-  13          #define    Self_Define_ISP_Download_Command    0x7f
-  14          //#define    RELOAD_COUNT    0xfd    //11.0592MHz,12T,SMOD=0,9600bps
-  15          //#define    Self_Define_ISP_Download_Command    0x0d
-  16          
-  17          void soft_reset_to_ISP_Monitor(void)
-  18          {
-  19   1        IAP_CONTR = 0x60;   //0110，0000  软复位到系统ISP监控区
-  20   1      }
-  21          
-  22          void UART_Interrupt_Receive(void) interrupt 4 //using 1
-  23          {
-  24   1        unsigned char k;
-  25   1        
-  26   1        if(RI==1)
-  27   1        {
-  28   2          RI   =    0;
-  29   2          k    =    SBUF;
-  30   2          if((k==Self_Define_ISP_Download_Command)||(0x1f==k))        //是自定义下载命令
-  31   2          {
-  32   3            get_i++;
-  33   3            if (10==get_i)
-  34   3            {
-  35   4              Delay(200); //zxy
-  36   4              soft_reset_to_ISP_Monitor();    //软复位到系统ISP监控区
-  37   4            }
-  38   3          }
-  39   2          else
-  40   2          {
-  41   3            if ((0==TI)&&(0==LenToSend))
-  42   3            {
-  43   4              SBUF=0xa5;  //Serial OK !!!
-  44   4            }
-  45   3            get_i=0;
-  46   3          }
-  47   2        }
-  48   1        else
-  49   1        {
-  50   2          TI = 0;
-  51   2          if (0!=LenToSend)
-  52   2          {
-  53   3            LenToSend--;
-  54   3            if (0==LenToSend)
-C51 COMPILER V7.50   SERIAL                                                                02/16/2014 17:30:07 PAGE 2   
+   1          /************************************************************/
+   2          /*项目：DisplayTerminalTFT
+   3          /*模块：串口模块
+   4          /*日期：2014年2月17日
+   5          /*修改：卜晓旸
+   6          /************************************************************/
+   7          
+   8          #include "reg52stc.h"
+   9          #include "serial.h"
+  10          
+  11          /******************** 全局变量定义 *******************/
+  12          uchar get_i=0;  //读取数据的计数
+  13          uchar LenToSend=0;
+  14          uint DataToSend;
+  15          #define    RELOAD_COUNT    0xe6    //12MHz,0xf3, 12T,SMOD=0,2400bps; 24MHz 0xe6
+  16          #define    Self_Define_ISP_Download_Command    0x7f
+  17          
+  18          /******************** 延迟函数ms *******************/
+  19          void delayms(uint tt)
+  20          {
+  21   1          uchar i;
+  22   1              uchar j;
+  23   1          while(tt>0)
+  24   1          {
+  25   2              tt--;
+  26   2              for(j=0;j<5;j++)
+  27   2                  {
+  28   3                          for(i=0;i<168;i++)
+  29   3                              {
+  30   4                              }
+  31   3              }
+  32   2          }
+  33   1      }
+  34          
+  35          /******************** 软复位函数 *******************/
+  36          void soft_reset_to_ISP_Monitor(void)
+  37          {
+  38   1              IAP_CONTR = 0x60;   //0110，0000  软复位到系统ISP监控区
+  39   1      }
+  40          
+  41          /******************** 串口接收中断函数 *******************/
+  42          void UART_Interrupt_Receive(void) interrupt 4 //using 1
+  43          {
+  44   1              uchar k;
+  45   1              if(RI==1)
+  46   1              {
+  47   2                      RI = 0;
+  48   2                      k = SBUF;
+  49   2                      if((k==Self_Define_ISP_Download_Command)||(0x1f==k))        //是自定义下载命令
+  50   2                      {
+  51   3                              get_i++;
+  52   3                              if (10==get_i)
+  53   3                              {
+  54   4                                      delayms(200); //zxy
+C51 COMPILER V7.50   SERIAL                                                                02/17/2014 22:14:38 PAGE 2   
 
-  55   3              SBUF=DataToSend>>8;
-  56   3            else
-  57   3              SBUF=DataToSend;
-  58   3          }
-  59   2        }
-  60   1      }
-  61          
-  62          void SerialSend(unsigned int Data, unsigned char Len)
-  63          {
-  64   1        if (0==TI)
-  65   1        {
-  66   2          SBUF=Data;
-  67   2          Len--;
-  68   2        }
-  69   1        LenToSend=Len;
-  70   1        DataToSend=Data;
-  71   1      }
+  55   4                                      soft_reset_to_ISP_Monitor();    //软复位到系统ISP监控区
+  56   4                              }
+  57   3                      }
+  58   2                      else
+  59   2                      {
+  60   3                              if ((0==TI)&&(0==LenToSend))
+  61   3                              {
+  62   4                                      SBUF=0xa5;  //Serial OK !!!
+  63   4                              }
+  64   3                              get_i=0;
+  65   3                      }
+  66   2              }
+  67   1              else
+  68   1              {
+  69   2                      TI = 0;
+  70   2                      if (0!=LenToSend)
+  71   2                      {
+  72   3                              LenToSend--;
+  73   3                              if (0==LenToSend)
+  74   3                                      SBUF=DataToSend>>8;
+  75   3                              else
+  76   3                                      SBUF=DataToSend;
+  77   3                      }
+  78   2              }
+  79   1      }
+  80          
+  81          /******************** 串口发送函数 *******************/
+  82          void SerialSend(uint Data, uchar Len)
+  83          {
+  84   1              if (0==TI)
+  85   1              {
+  86   2                      SBUF=Data;
+  87   2                      Len--;
+  88   2              }
+  89   1              LenToSend=Len;
+  90   1              DataToSend=Data;
+  91   1      }
+  92          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    140    ----
+   CODE SIZE        =    144    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

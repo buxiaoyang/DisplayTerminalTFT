@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   MAIN                                                                  02/16/2014 17:30:05 PAGE 1   
+C51 COMPILER V7.50   MAIN                                                                  02/17/2014 22:14:28 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE MAIN
@@ -8,190 +8,83 @@ COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Src\main.c BROWSE INCDIR(.\Src) DEB
 
 line level    source
 
-   1          //******************************************************************
-   2          //  CPU:STC11L60XE
-   3          //  CRY:11.0592Mhz
-   4          //  LCM:s6d0154-2.6 TFT
-   5          //  PCB:v1
-   6          //  NAM:彩屏程序                                            20120906
-   7          //******************************************************************
-   8          //#include <REG54.H>
-   9          //#include <reg51.h>
-  10          #include "STC_NEW_8051.H"
-  11          #define uchar unsigned char
-  12          #define uint unsigned int
-  13          
-  14          #include "HEAD.H"
-  15          
-  16          //#include"init_tft.h"
-  17          #include"s6d0154_drv.h"
-  18          
-  19          //---------------------------------
-  20          #define T0_H 0xF8 //0xFC  1ms from 12MHz 998 to 24MHz 1998
-  21          #define T0_L 0x32 //0x1A
-  22          #define T1_H 0xfe
-  23          #define T1_L 0x31
-  24          #include <serial.h> //串口功能
-  25          #include <SysTem.H>
-  26          //****************************************************************
-  27          //  延时1ms程序
-  28          //****************************************************************
-  29          //           fosc=12MHz;count=10;j=5, i=62; Keil uV2=9.977ms
-  30          //STC12c4042:fosc=12Mhz;count=1; j=10,i=169;KEIL750 =1.000ms!!!不准!!!实际长了
-  31          //STC12c5410AD:内置5.756373M;count=10;j=10,i=78;KEIL750=10.000ms!
-  32          void Delay(unsigned int count)// delay=1ms*count 12MHz with 11L60XE
-  33          {
-  34   1          unsigned char i,j;
-  35   1          while(count--!=0)
-  36   1          {   for(j=0;j<10;j++)
-  37   2                  {    for(i=0;i<168;i++);
-  38   3      }   }   }
-  39          //******************************************************************
-  40          //  在TFT上显示字符
-  41          //------------------------------------------------------------------
-  42          void ViewTFT(void)
-  43          {
-  44   1          LCD_CS =0;  //打开片选使能
-  45   1          //---------------------------------
-  46   1          ChineseChar(14+46,10,2,colors[2],colors[7],1);      //晶
-  47   1          ChineseChar(46+46,10,2,colors[2],colors[7],2);      //液
-  48   1          ChineseChar(78+46,10,2,colors[2],colors[7],3);      //心
-  49   1          ChineseChar(110+46,10,2,colors[2],colors[7],4);     //伤
-  50   1              //---------------------------------
-  51   1          ChineseChar( 0,60,1,colors[0],colors[7],1);     //靠
-  52   1          ChineseChar(24,60,1,colors[0],colors[7],2);     //!
-  53   1          
-  54   1          ChineseChar( 48,60,1,colors[1],colors[7],3);    //
-C51 COMPILER V7.50   MAIN                                                                  02/16/2014 17:30:05 PAGE 2   
+   1          /************************************************************/
+   2          /*项目：DisplayTerminalTFT
+   3          /*模块：主函数
+   4          /*CPU:  STC11L60XE
+   5          /*晶振: 24Mhz
+   6          /*液晶: s6d0154-2.6 TFT
+   7          /*日期：2014年2月17日
+   8          /*修改：卜晓旸
+   9          /************************************************************/
+  10          
+  11          #include "reg52stc.h"
+  12          #include "s6d0154.h"
+  13          #include "serial.h"
+  14          
+  15          /******************** 定时器定义 *******************/
+  16          #define T0_H 0xF8 //0xFC  1ms from 12MHz 998 to 24MHz 1998
+  17          #define T0_L 0x32 //0x1A
+  18          #define T1_H 0xfe
+  19          #define T1_L 0x31
+  20          
+  21          /******************** 定时器0中断函数 *******************/
+  22          void time0() interrupt 1 //using 1
+  23          {
+  24   1          TR0=0;
+  25   1          TH0=T0_H;   
+  26   1          TL0=T0_L;   
+  27   1          TR0=1;
+  28   1      }
+  29          
+  30          /******************** 系统初始化函数 *******************/
+  31          void InitSys(void)
+  32          {
+  33   1          EA=0;
+  34   1          TCON=0x05;  //1->0 == EX0 INT !!!
+  35   1          TMOD=0x21;  //time0:16bit;time1:serial
+  36   1          TH1=0xe6;    //12MHz,0xf3, 12T,SMOD=0,2400bps; 24MHz 0xe6
+  37   1          TL1=0xe6;
+  38   1          PCON=0x00; 
+  39   1          SCON=0x70; //MODE:1;   串口10位异步收发，定时器控制
+  40   1          ES=1;      //串口中断开
+  41   1          ET1=0;
+  42   1          TR1=1;
+  43   1          ET0=1;
+  44   1          EA=1;
+  45   1      }
+  46          
+  47          /******************** 主函数 *******************/
+  48          void main(void)
+  49          {
+  50   1              InitSys();
+  51   1          LCD_Init();
+  52   1          while(1)
+  53   1          {
+  54   2                 Display_Loding();
+C51 COMPILER V7.50   MAIN                                                                  02/17/2014 22:14:28 PAGE 2   
 
-  55   1          ChineseChar( 72,60,1,colors[2],colors[7],4);    //
-  56   1          ChineseChar( 96,60,1,colors[3],colors[2],5);    //
-  57   1          ChineseChar(120,60,1,colors[4],colors[7],6);        //
-  58   1          ChineseChar(144,60,1,colors[5],colors[7],7);        //
-  59   1          ChineseChar(168,60,1,colors[6],colors[7],8);        //
-  60   1          ChineseChar(192,60,1,colors[5],colors[2],9);        //片
-  61   1              //---------------------------------
-  62   1          ChineseChar( 0,90,1,colors[4],colors[7],10);    //
-  63   1              ChineseChar(24,90,1,colors[4],colors[7],11);    //
-  64   1              ChineseChar(48,90,1,colors[6],colors[7],12);    //
-  65   1              ChineseChar(72,90,1,colors[6],colors[7],13);    //
-  66   1              
-  67   1              ChineseChar( 96,90,1,colors[2],colors[7],14);   //
-  68   1              ChineseChar(120,90,1,colors[2],colors[7],15);   //
-  69   1              ChineseChar(144,90,1,colors[2],colors[7],16);   //
-  70   1              ChineseChar(168,90,1,colors[4],colors[7],17);   //
-  71   1              ChineseChar(192,90,1,colors[4],colors[7],18);   //
-  72   1              //---------------------------------
-  73   1          ChineseChar( 0,120,1,colors[4],colors[7],19);   //
-  74   1              ChineseChar(24,120,1,colors[5],colors[2],20);   //
-  75   1              ChineseChar(48,120,1,colors[5],colors[2],21);   //
-  76   1              ChineseChar(72,120,1,colors[5],colors[2],22);   //
-  77   1              
-  78   1              ChineseChar( 96,120,1,colors[2],colors[7],23);  //
-  79   1              ChineseChar(120,120,1,colors[2],colors[7],24);  //
-  80   1              ChineseChar(144,120,1,colors[2],colors[7],25);  //
-  81   1              ChineseChar(168,120,1,colors[4],colors[7],26);  //
-  82   1              ChineseChar(192,120,1,colors[4],colors[7],27);  //
-  83   1              //---------------------------------
-  84   1          ChineseChar( 0,150,1,colors[4],colors[7],28);   //
-  85   1              ChineseChar(24,150,1,colors[1],colors[7],29);   //
-  86   1              ChineseChar(48,150,1,colors[2],colors[7],30);   //
-  87   1              ChineseChar(72,150,1,colors[3],colors[2],31);   //
-  88   1              
-  89   1              ChineseChar( 96,150,1,colors[2],colors[7],32);  //?
-  90   1              //---------------------------------
-  91   1          
-  92   1          //LCD_ShowString(12,60,colors[0],colors[7],"-");
-  93   1          //LCD_ShowString(0,90,colors[0],colors[5],"WWW.PRINTER.com");
-  94   1          //LCD_ShowString(216,120,colors[4],colors[7],":");
-  95   1          
-  96   1          
-  97   1          LCD_ShowString(0,0,1,colors[2],colors[7],"T: 010-12345678");        
-  98   1          LCD_ShowString(20,0,1,colors[2],colors[7],"abcdefJhiJKLMNOP"); 
-  99   1          LCD_ShowString(40,0,1,colors[2],colors[7],"pqrstuvwxyz!@#$"); 
- 100   1          LCD_ShowString(60,0,1,colors[2],colors[7],"<>CDEF^&*()/,[]");
- 101   1          //---------------------------------
- 102   1              LCD_CS =1;  //关闭片选使能
- 103   1      }
- 104          //******************************************************************
- 105          //  主程序
- 106          //------------------------------------------------------------------
- 107          void TestDelay(uchar timer)
- 108          {
- 109   1      //  uint DelayTime;
- 110   1      
- 111   1        etx0=0;
- 112   1        TH0=T0_H;
- 113   1        TL0=T0_L;
- 114   1        if (1==timer)
- 115   1        {
- 116   2          TR0=1;
-C51 COMPILER V7.50   MAIN                                                                  02/16/2014 17:30:05 PAGE 3   
-
- 117   2          Delay(1);
- 118   2          TR0=0;
- 119   2        }
- 120   1        else
- 121   1        {
- 122   2          TR0=1;
- 123   2          delayms(1);
- 124   2          TR0=0;
- 125   2        }
- 126   1      //  DelayTime=(TH0<<8)|TL0;
- 127   1        SerialSend(etx0,2);
- 128   1      }
- 129          
- 130          unsigned int etx0;
- 131          uchar Display[16]={0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,
- 132                             0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x00};
- 133          void HEXtoASC(uint HEX, uchar index)
- 134          {
- 135   1        uchar i, temp;
- 136   1        for (i=4;i!=0;i--)
- 137   1        {
- 138   2          if (4==i)
- 139   2                temp=HEX>>12;
- 140   2          else if (3==i)
- 141   2                temp=HEX>>8;
- 142   2          else if (2==i)
- 143   2                temp=((uchar)HEX)>>4;
- 144   2              else
- 145   2                temp=HEX;
- 146   2              temp&=0x0f;
- 147   2              if (temp>9)
- 148   2                Display[index]=temp+'A'-10;
- 149   2              else
- 150   2                Display[index]=temp+'0';
- 151   2              index++;
- 152   2        }
- 153   1      }
- 154          
- 155          void main(void)
- 156          {
- 157   1              InitSys();
- 158   1          LCD_Init();
- 159   1          while(1)
- 160   1          {
- 161   2                 Display_Loding();
- 162   2                 Delay(10000);  
- 163   2                 Display_Running1();
- 164   2                 Delay(20000); 
- 165   2                 Display_Running2();
- 166   2                 Delay(20000); 
- 167   2                 Display_Running3();
- 168   2                 Delay(20000);  
- 169   2          }
- 170   1      }
+  55   2                 delayms(10000);
+  56   2                 Display_Running();
+  57   2                 delayms(20000);   
+  58   2                 Display_Running1();
+  59   2                 delayms(20000); 
+  60   2                 Display_Running2();
+  61   2                 delayms(20000); 
+  62   2                 Display_Running3();
+  63   2                 delayms(20000);  
+  64   2          }
+  65   1      }
+  66          
+  67          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   1446    ----
-   CONSTANT SIZE    =     65    ----
+   CODE SIZE        =    100    ----
+   CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =     18    ----
-C51 COMPILER V7.50   MAIN                                                                  02/16/2014 17:30:05 PAGE 4   
-
+   DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

@@ -50,7 +50,7 @@ void Write_COMD(uint i,uint j)
 /******************** 刷屏程序 红 *******************/
 void Display_Red(void)
 {  
-	int i,j,k=0;
+	uint i,j,k=0;
 	LCD_CS =0;  //打开片选使能
 	Address_set(0,0,239,319);
 	Write_COMD(0x00,0x22); 
@@ -67,7 +67,7 @@ void Display_Red(void)
 /******************** 刷屏程序 绿 *******************/
 void Display_Green(void)
 {  
-	int i,j;
+	uint i,j;
 	LCD_CS =0;  //打开片选使能
 	Address_set(0,0,239,319);
 	Write_COMD(0x00,0x22); 
@@ -84,7 +84,7 @@ void Display_Green(void)
 /******************** 刷屏程序 蓝 *******************/
 void Display_Blue(void)
 {  
-	int i,j;
+	uint i,j;
 	LCD_CS =0;  //打开片选使能
 	Write_COMD(0x00,0x20);
 	Write_DATA(0x00,0x00);
@@ -104,7 +104,7 @@ void Display_Blue(void)
 /******************** 刷屏程序 白 *******************/
 void Display_White(void)
 {
-    int i,j;
+    uint i,j;
 	LCD_CS =0;  //打开片选使能
 	Address_set(0,0,239,319);
     for(i=0;i<320;i++)
@@ -121,7 +121,7 @@ void Display_White(void)
 /******************** 刷屏程序 黑 *******************/
 void Display_Black(void)
 {  
-    int i,j,k;
+    uint i,j,k;
 	LCD_CS =0;  //打开片选使能
 	Address_set(0,0,239,319);
     for(i=0;i<240;i++)
@@ -165,8 +165,8 @@ void Address_set(uint x1,uint y1,uint x2,uint y2)
 /******************** 写汉字函数 *******************/
 void ChineseChar(uint x,uint y,int size,uint For_color,uint Bk_color ,char c)
 {
-    int e,i,j;
-    int  ed;
+    uint e,i,j;
+    uint  ed;
     uint  ncols;
     uint  nrows;
     uint  nbytes;
