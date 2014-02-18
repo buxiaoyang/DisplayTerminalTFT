@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   SERIAL                                                                02/17/2014 22:14:38 PAGE 1   
+C51 COMPILER V7.50   SERIAL                                                                02/18/2014 21:12:47 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE SERIAL
@@ -62,7 +62,7 @@ line level    source
   52   3                              if (10==get_i)
   53   3                              {
   54   4                                      delayms(200); //zxy
-C51 COMPILER V7.50   SERIAL                                                                02/17/2014 22:14:38 PAGE 2   
+C51 COMPILER V7.50   SERIAL                                                                02/18/2014 21:12:47 PAGE 2   
 
   55   4                                      soft_reset_to_ISP_Monitor();    //软复位到系统ISP监控区
   56   4                              }

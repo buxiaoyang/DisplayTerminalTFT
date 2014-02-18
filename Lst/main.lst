@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   MAIN                                                                  02/17/2014 22:14:28 PAGE 1   
+C51 COMPILER V7.50   MAIN                                                                  02/18/2014 21:12:42 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE MAIN
@@ -59,28 +59,31 @@ line level    source
   49          {
   50   1              InitSys();
   51   1          LCD_Init();
-  52   1          while(1)
-  53   1          {
-  54   2                 Display_Loding();
-C51 COMPILER V7.50   MAIN                                                                  02/17/2014 22:14:28 PAGE 2   
+  52   1              Display_Running();
+  53   1          while(1)
+  54   1          {
+C51 COMPILER V7.50   MAIN                                                                  02/18/2014 21:12:42 PAGE 2   
 
-  55   2                 delayms(10000);
-  56   2                 Display_Running();
-  57   2                 delayms(20000);   
-  58   2                 Display_Running1();
-  59   2                 delayms(20000); 
-  60   2                 Display_Running2();
+  55   2                      /*
+  56   2                 Display_Loding();
+  57   2                 delayms(10000);
+  58   2                 
+  59   2                 delayms(20000);   
+  60   2                 Display_Running1();
   61   2                 delayms(20000); 
-  62   2                 Display_Running3();
-  63   2                 delayms(20000);  
-  64   2          }
-  65   1      }
-  66          
-  67          
+  62   2                 Display_Running2();
+  63   2                 delayms(20000); 
+  64   2                 Display_Running3();
+  65   2                 delayms(20000); 
+  66   2                 */ 
+  67   2          }
+  68   1      }
+  69          
+  70          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    100    ----
+   CODE SIZE        =     53    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

@@ -343,14 +343,9 @@ void Display_Running()
 {
 	Display_White();
 	Display_Running_Image();
-	LCD_ShowString(5,5,0,colors[4],colors[7]," !\"#$%&`()*+,-./012");	
-	LCD_ShowString(35,5,0,colors[4],colors[7],"3456789:;<=>?@ABCDE"); 
-	LCD_ShowString(65,5,0,colors[4],colors[7],"FGHIJKLMNOPQRSTUVWX"); 
-	LCD_ShowString(95,5,0,colors[4],colors[7],"YZ[\]^_'abcdefghijk");
-	LCD_ShowString(125,5,0,colors[4],colors[7],"lmnopqrstuvwxyz{|}~");
-	ChineseString(155,70,1,colors[4],colors[7],"0123456789");
-	ChineseString(185,70,1,colors[4],colors[7],":;<=>?@ABC");
-	ChineseString(215,70,1,colors[4],colors[7],"DEFGHIJKLM");
+	ChineseString(215,70,1,colors[4],colors[7],"KL");
+	LCD_ShowString(215,118,0,colors[4],colors[7], ":");
+	ChineseString(215,134,1,colors[4],colors[1],"MN");
 }
 
 /******************** œ‘ æ≤‚ ‘∫Ø ˝1 *******************/
