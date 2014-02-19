@@ -57,7 +57,7 @@ Options 1,0,0  // Target 'Target 1'
  BrunUsr 0 0 <>
  BrunUsr 1 0 <>
  SVCSID <>
- MODEL5=0
+ MODEL5=1
  RTOS5=0
  ROMSZ5=2
  DHOLD5=0

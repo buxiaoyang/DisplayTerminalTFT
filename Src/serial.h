@@ -11,6 +11,8 @@
 #define uchar unsigned char
 #define uint unsigned int
 
+
+uchar DisplayData[];
 /******************** º¯Êı¶¨Òå *******************/
 void SerialSend(uint Data, uchar len);
 void delayms(uint tt);

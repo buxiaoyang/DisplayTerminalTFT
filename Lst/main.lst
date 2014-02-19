@@ -1,10 +1,10 @@
-C51 COMPILER V7.50   MAIN                                                                  02/18/2014 21:12:42 PAGE 1   
+C51 COMPILER V7.50   MAIN                                                                  02/19/2014 15:20:28 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE MAIN
 OBJECT MODULE PLACED IN .\Obj\main.obj
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Src\main.c BROWSE INCDIR(.\Src) DEBUG OBJECTEXTEND PRINT(.\Lst\main.lst) OB
-                    -JECT(.\Obj\main.obj)
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Src\main.c COMPACT BROWSE INCDIR(.\Src) DEBUG OBJECTEXTEND PRINT(.\Lst\main
+                    -.lst) OBJECT(.\Obj\main.obj)
 
 line level    source
 
@@ -62,28 +62,18 @@ line level    source
   52   1              Display_Running();
   53   1          while(1)
   54   1          {
-C51 COMPILER V7.50   MAIN                                                                  02/18/2014 21:12:42 PAGE 2   
+C51 COMPILER V7.50   MAIN                                                                  02/19/2014 15:20:28 PAGE 2   
 
-  55   2                      /*
-  56   2                 Display_Loding();
-  57   2                 delayms(10000);
-  58   2                 
-  59   2                 delayms(20000);   
-  60   2                 Display_Running1();
-  61   2                 delayms(20000); 
-  62   2                 Display_Running2();
-  63   2                 delayms(20000); 
-  64   2                 Display_Running3();
-  65   2                 delayms(20000); 
-  66   2                 */ 
-  67   2          }
-  68   1      }
-  69          
-  70          
+  55   2                 Display_Running_Refresh();
+  56   2                 delayms(1000); 
+  57   2          }
+  58   1      }
+  59          
+  60          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     53    ----
+   CODE SIZE        =     63    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

@@ -52,18 +52,8 @@ void main(void)
 	Display_Running();
     while(1)
     {
-		/*
-  	   Display_Loding();
-	   delayms(10000);
-	   
-	   delayms(20000);   
-	   Display_Running1();
-	   delayms(20000); 
-	   Display_Running2();
-	   delayms(20000); 
-	   Display_Running3();
-	   delayms(20000); 
-	   */ 
+  	   Display_Running_Refresh();
+	   delayms(1000); 
     }
 }
 

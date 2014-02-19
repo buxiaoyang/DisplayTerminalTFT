@@ -42,6 +42,7 @@ void Display_White(void);
 void Display_Loding(void);
 void Display_Loading_Image(void);
 void Display_Running(void);
+void Display_Running_Refresh(void);
 void Display_Running_Image(void);
 void Display_Running1(void);
 void Display_Running2(void);

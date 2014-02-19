@@ -343,10 +343,125 @@ void Display_Running()
 {
 	Display_White();
 	Display_Running_Image();
-	ChineseString(215,70,1,colors[4],colors[7],"KL");
-	LCD_ShowString(215,118,0,colors[4],colors[7], ":");
-	ChineseString(215,134,1,colors[4],colors[1],"MN");
+
+	//LCD_ShowString(215,90,0,colors[4],colors[7], "2014");	//2014
+	ChineseString(215,154,1,colors[4],colors[7],"8"); //年
+	//LCD_ShowString(215,188,0,colors[4],colors[7], "02");	//02
+	ChineseString(215,220,1,colors[4],colors[7],"9"); //月
+	//LCD_ShowString(215,254,0,colors[4],colors[7], "19");	//19
+	ChineseString(215,286,1,colors[4],colors[7],"2"); //日
+
+	ChineseString(175,70,1,colors[4],colors[7],"KL"); //状态
+	LCD_ShowString(175,118,0,colors[4],colors[7], ":");	//:
+	//ChineseString(175,134,1,colors[4],colors[1],"MN"); //正常
+	//ChineseString(175,134,1,colors[4],colors[0],">?"); //错误
+	ChineseString(175,200,1,colors[4],colors[7],"ST"); //服务
+	LCD_ShowString(175,248,0,colors[4],colors[7], ":");	//:
+	//ChineseString(175,264,1,colors[4],colors[1],"MN"); //正常
+
+	LCD_ShowString(135,5,0,colors[4],colors[7], "CPU:");	//CPU:
+	//LCD_ShowString(135,69,0,colors[4],colors[7], "56%");	//56%
+	LCD_ShowString(135,101,0,colors[4],colors[7], "%");	//%
+	ChineseString(135,160,1,colors[4],colors[7],"67"); //内存
+	LCD_ShowString(135,208,0,colors[4],colors[7], ":");	//:
+	//LCD_ShowString(135,224,0,colors[4],colors[7], "64%");	//64%
+	LCD_ShowString(135,256,0,colors[4],colors[7], "%");	//%
+
+	ChineseString(95,5,1,colors[4],colors[7],"OP"); //上传
+	LCD_ShowString(95,53,0,colors[4],colors[7], ":");	//:
+	//LCD_ShowString(95,69,0,colors[4],colors[7], "024kb");	//024KB/s
+	LCD_ShowString(95,117,0,colors[4],colors[7], "kb");	//KB
+	ChineseString(95,160,1,colors[4],colors[7],"QR"); //下载
+	LCD_ShowString(95,208,0,colors[4],colors[7], ":");	//:
+	//LCD_ShowString(95,224,0,colors[4],colors[7], "036kb");	//036KB/s
+	LCD_ShowString(95,272,0,colors[4],colors[7], "kb");	//KB
+
+	ChineseString(55,5,1,colors[4],colors[7],"45"); //温度
+	LCD_ShowString(55,53,0,colors[4],colors[7], ":");	//:
+	//LCD_ShowString(55,69,0,colors[4],colors[7], "13C");	//13C
+	LCD_ShowString(55,101,0,colors[4],colors[7], "C");	//C
+	ChineseString(55,160,1,colors[4],colors[7],"01"); //时间
+	LCD_ShowString(55,208,0,colors[4],colors[7], ":");	//:
+	//LCD_ShowString(55,224,0,colors[4],colors[7], "13:36");	//13:36
+
+	ChineseString(15,5,1,colors[4],colors[7],"@A"); //地址
+	LCD_ShowString(15,53,0,colors[4],colors[7], ":");	//:
+	//LCD_ShowString(15,69,0,colors[4],colors[7], "192.168.255.255");	//192.168.1.1
 }
+
+/******************** 显示测试函数 *******************/
+void Display_Running_Refresh()
+{
+	//年
+	LCD_ShowChar(215,90,0,colors[4],colors[7], DisplayData[0]);	//2014
+	LCD_ShowChar(215,106,0,colors[4],colors[7], DisplayData[1]);	//2014
+	LCD_ShowChar(215,122,0,colors[4],colors[7], DisplayData[2]);	//2014
+	LCD_ShowChar(215,138,0,colors[4],colors[7], DisplayData[3]);	//2014
+	//月
+	LCD_ShowChar(215,188,0,colors[4],colors[7], DisplayData[4]);	//02
+	LCD_ShowChar(215,204,0,colors[4],colors[7], DisplayData[5]);	//02
+	//日
+	LCD_ShowChar(215,254,0,colors[4],colors[7], DisplayData[6]);	//19
+	LCD_ShowChar(215,270,0,colors[4],colors[7], DisplayData[7]);	//19
+	//状态
+	if(DisplayData[15] == 'N')
+	{
+		ChineseString(175,134,1,colors[4],colors[1],"MN"); //正常
+	}
+	else
+	{
+		ChineseString(175,134,1,colors[4],colors[0],">?"); //错误
+	}
+	//服务
+	if(DisplayData[17] == 'N')
+	{
+		ChineseString(175,264,1,colors[4],colors[1],"MN"); //正常
+	}
+	else
+	{
+		ChineseString(175,264,1,colors[4],colors[0],">?"); //错误
+	}
+	//CPU
+	LCD_ShowChar(135,69,0,colors[4],colors[7], DisplayData[19]);	//56
+	LCD_ShowChar(135,85,0,colors[4],colors[7], DisplayData[20]);	//56
+	//内存
+	LCD_ShowChar(135,224,0,colors[4],colors[7], DisplayData[22]);//64
+	LCD_ShowChar(135,240,0,colors[4],colors[7], DisplayData[23]);//64
+	//上传
+	LCD_ShowChar(95,69,0,colors[4],colors[7], DisplayData[25]);	//024
+	LCD_ShowChar(95,85,0,colors[4],colors[7], DisplayData[26]);	//024
+	LCD_ShowChar(95,101,0,colors[4],colors[7], DisplayData[27]);	//024
+	//下载
+	LCD_ShowChar(95,224,0,colors[4],colors[7], DisplayData[29]);//036
+	LCD_ShowChar(95,240,0,colors[4],colors[7], DisplayData[30]);//036
+	LCD_ShowChar(95,256,0,colors[4],colors[7], DisplayData[31]);//036
+	//温度
+	LCD_ShowChar(55,69,0,colors[4],colors[7], DisplayData[33]);	//13
+	LCD_ShowChar(55,85,0,colors[4],colors[7], DisplayData[34]);	//13
+	//时间
+	LCD_ShowChar(55,224,0,colors[4],colors[7], DisplayData[9]);	//13:36
+	LCD_ShowChar(55,240,0,colors[4],colors[7], DisplayData[10]);	//13:36
+	LCD_ShowChar(55,256,0,colors[4],colors[7], DisplayData[11]);	//13:36
+	LCD_ShowChar(55,270,0,colors[4],colors[7], DisplayData[12]);	//13:36
+	LCD_ShowChar(55,286,0,colors[4],colors[7], DisplayData[13]);	//13:36
+	//IP地址
+	LCD_ShowChar(15,69,0,colors[4],colors[7], DisplayData[36]);	//192.168.1.1
+	LCD_ShowChar(15,85,0,colors[4],colors[7], DisplayData[37]);	//192.168.1.1
+	LCD_ShowChar(15,101,0,colors[4],colors[7],DisplayData[38]);	//192.168.1.1
+	LCD_ShowChar(15,117,0,colors[4],colors[7], DisplayData[39]);	//192.168.1.1
+	LCD_ShowChar(15,133,0,colors[4],colors[7], DisplayData[40]);	//192.168.1.1
+	LCD_ShowChar(15,149,0,colors[4],colors[7], DisplayData[41]);	//192.168.1.1
+	LCD_ShowChar(15,165,0,colors[4],colors[7], DisplayData[42]);	//192.168.1.1
+	LCD_ShowChar(15,181,0,colors[4],colors[7], DisplayData[43]);	//192.168.1.1
+	LCD_ShowChar(15,197,0,colors[4],colors[7], DisplayData[44]);	//192.168.1.1
+	LCD_ShowChar(15,213,0,colors[4],colors[7], DisplayData[45]);	//192.168.1.1
+	LCD_ShowChar(15,229,0,colors[4],colors[7], DisplayData[46]);	//192.168.1.1
+	LCD_ShowChar(15,245,0,colors[4],colors[7], DisplayData[47]);	//192.168.1.1
+	LCD_ShowChar(15,261,0,colors[4],colors[7], DisplayData[48]);	//192.168.1.1
+	LCD_ShowChar(15,277,0,colors[4],colors[7], DisplayData[49]);	//192.168.1.1
+	LCD_ShowChar(15,293,0,colors[4],colors[7], DisplayData[50]);	//192.168.1.1
+}
+
 
 /******************** 显示测试函数1 *******************/
 void Display_Running1()
