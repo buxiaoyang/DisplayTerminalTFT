@@ -18,6 +18,7 @@
 #define T1_H 0xfe
 #define T1_L 0x31
 
+extern uint readSerialTimeOut; 
 /******************** 定时器0中断函数 *******************/
 void time0() interrupt 1 //using 1
 {
@@ -52,9 +53,14 @@ void main(void)
 	Display_Running();
     while(1)
     {
-  	   Display_Running_Refresh();
-	   delayms(1000);
-	   //DisplayData[0] ++; 
+		Display_Running_Refresh();
+		delayms(1000);
+		readSerialTimeOut++;
+		if(readSerialTimeOut > 50)
+		{
+			DisplayData[15] = 'E';
+			DisplayData[17] = 'E';
+		} 
     }
 }
 

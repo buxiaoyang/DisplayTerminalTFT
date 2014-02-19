@@ -32,7 +32,7 @@ linking...
     SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SERIALSEND?SERIAL
-Program Size: data=9.0 xdata=144 code=45712
+Program Size: data=9.0 xdata=144 code=45716
 creating hex file from ".\Obj\DisplayTerminalTFT"...
 ".\Obj\DisplayTerminalTFT" - 0 Error(s), 9 Warning(s).
 Build target 'Target 1'
@@ -41,6 +41,23 @@ compiling main.c...
 compiling s6d0154.c...
 assembling .\Obj\s6d0154.src...
 compiling serial.c...
+SRC\SERIAL.C(47): error C141: syntax error near ')'
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling s6d0154.c...
+assembling .\Obj\s6d0154.src...
+compiling serial.c...
+SRC\SERIAL.C(47): error C141: syntax error near ')'
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling s6d0154.c...
+assembling .\Obj\s6d0154.src...
+compiling serial.c...
+SRC\SERIAL.C(47): warning C280: 'da': unreferenced local variable
 linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?DISPLAY_RED?S6D0154
@@ -60,15 +77,16 @@ linking...
     SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SERIALSEND?SERIAL
-Program Size: data=9.0 xdata=144 code=45712
+Program Size: data=9.0 xdata=149 code=45751
 creating hex file from ".\Obj\DisplayTerminalTFT"...
-".\Obj\DisplayTerminalTFT" - 0 Error(s), 9 Warning(s).
+".\Obj\DisplayTerminalTFT" - 0 Error(s), 10 Warning(s).
 Build target 'Target 1'
 assembling STARTUP.A51...
 compiling main.c...
 compiling s6d0154.c...
 assembling .\Obj\s6d0154.src...
 compiling serial.c...
+SRC\SERIAL.C(47): warning C280: 'input': unreferenced local variable
 linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?DISPLAY_RED?S6D0154
@@ -88,15 +106,16 @@ linking...
     SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SERIALSEND?SERIAL
-Program Size: data=9.0 xdata=144 code=45712
+Program Size: data=9.0 xdata=149 code=45751
 creating hex file from ".\Obj\DisplayTerminalTFT"...
-".\Obj\DisplayTerminalTFT" - 0 Error(s), 9 Warning(s).
+".\Obj\DisplayTerminalTFT" - 0 Error(s), 10 Warning(s).
 Build target 'Target 1'
 assembling STARTUP.A51...
 compiling main.c...
 compiling s6d0154.c...
 assembling .\Obj\s6d0154.src...
 compiling serial.c...
+SRC\SERIAL.C(47): warning C280: 'input': unreferenced local variable
 linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?DISPLAY_RED?S6D0154
@@ -116,15 +135,16 @@ linking...
     SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SERIALSEND?SERIAL
-Program Size: data=9.0 xdata=144 code=45712
+Program Size: data=9.0 xdata=149 code=45771
 creating hex file from ".\Obj\DisplayTerminalTFT"...
-".\Obj\DisplayTerminalTFT" - 0 Error(s), 9 Warning(s).
+".\Obj\DisplayTerminalTFT" - 0 Error(s), 10 Warning(s).
 Build target 'Target 1'
 assembling STARTUP.A51...
 compiling main.c...
 compiling s6d0154.c...
 assembling .\Obj\s6d0154.src...
 compiling serial.c...
+SRC\SERIAL.C(47): warning C280: 'input': unreferenced local variable
 linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?DISPLAY_RED?S6D0154
@@ -144,16 +164,23 @@ linking...
     SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SERIALSEND?SERIAL
-Program Size: data=9.0 xdata=144 code=45712
+Program Size: data=9.0 xdata=149 code=45756
 creating hex file from ".\Obj\DisplayTerminalTFT"...
-".\Obj\DisplayTerminalTFT" - 0 Error(s), 9 Warning(s).
+".\Obj\DisplayTerminalTFT" - 0 Error(s), 10 Warning(s).
 Build target 'Target 1'
 assembling STARTUP.A51...
 compiling main.c...
 compiling s6d0154.c...
 assembling .\Obj\s6d0154.src...
 compiling serial.c...
+SRC\SERIAL.C(47): warning C280: 'input': unreferenced local variable
 linking...
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  READSERIALTIMEOUT
+    MODULE:  .\Obj\s6d0154.obj (S6D0154)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  READSERIALTIMEOUT
+    MODULE:  .\Obj\serial.obj (SERIAL)
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?DISPLAY_RED?S6D0154
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
@@ -172,16 +199,22 @@ linking...
     SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SERIALSEND?SERIAL
-Program Size: data=9.0 xdata=144 code=45712
-creating hex file from ".\Obj\DisplayTerminalTFT"...
-".\Obj\DisplayTerminalTFT" - 0 Error(s), 9 Warning(s).
+Program Size: data=9.0 xdata=153 code=45762
+Target not created
 Build target 'Target 1'
 assembling STARTUP.A51...
 compiling main.c...
 compiling s6d0154.c...
 assembling .\Obj\s6d0154.src...
 compiling serial.c...
+SRC\SERIAL.C(47): warning C280: 'input': unreferenced local variable
 linking...
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  READSERIALTIMEOUT
+    MODULE:  .\Obj\s6d0154.obj (S6D0154)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  READSERIALTIMEOUT
+    MODULE:  .\Obj\serial.obj (SERIAL)
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?DISPLAY_RED?S6D0154
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
@@ -200,16 +233,22 @@ linking...
     SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SERIALSEND?SERIAL
-Program Size: data=9.0 xdata=144 code=45712
-creating hex file from ".\Obj\DisplayTerminalTFT"...
-".\Obj\DisplayTerminalTFT" - 0 Error(s), 9 Warning(s).
+Program Size: data=9.0 xdata=153 code=45762
+Target not created
 Build target 'Target 1'
 assembling STARTUP.A51...
 compiling main.c...
 compiling s6d0154.c...
 assembling .\Obj\s6d0154.src...
 compiling serial.c...
+SRC\SERIAL.C(47): warning C280: 'input': unreferenced local variable
 linking...
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  READSERIALTIMEOUT
+    MODULE:  .\Obj\s6d0154.obj (S6D0154)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  READSERIALTIMEOUT
+    MODULE:  .\Obj\serial.obj (SERIAL)
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?DISPLAY_RED?S6D0154
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
@@ -228,16 +267,22 @@ linking...
     SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SERIALSEND?SERIAL
-Program Size: data=9.0 xdata=144 code=45694
-creating hex file from ".\Obj\DisplayTerminalTFT"...
-".\Obj\DisplayTerminalTFT" - 0 Error(s), 9 Warning(s).
+Program Size: data=9.0 xdata=153 code=45762
+Target not created
 Build target 'Target 1'
 assembling STARTUP.A51...
 compiling main.c...
 compiling s6d0154.c...
 assembling .\Obj\s6d0154.src...
 compiling serial.c...
+SRC\SERIAL.C(48): warning C280: 'input': unreferenced local variable
 linking...
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  READSERIALTIMEOUT
+    MODULE:  .\Obj\s6d0154.obj (S6D0154)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  READSERIALTIMEOUT
+    MODULE:  .\Obj\serial.obj (SERIAL)
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?DISPLAY_RED?S6D0154
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
@@ -256,9 +301,8 @@ linking...
     SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SERIALSEND?SERIAL
-Program Size: data=9.0 xdata=144 code=45712
-creating hex file from ".\Obj\DisplayTerminalTFT"...
-".\Obj\DisplayTerminalTFT" - 0 Error(s), 9 Warning(s).
+Program Size: data=9.0 xdata=153 code=45762
+Target not created
 Build target 'Target 1'
 assembling STARTUP.A51...
 compiling main.c...
@@ -266,6 +310,12 @@ compiling s6d0154.c...
 assembling .\Obj\s6d0154.src...
 compiling serial.c...
 linking...
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  READSERIALTIMEOUT
+    MODULE:  .\Obj\s6d0154.obj (S6D0154)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  READSERIALTIMEOUT
+    MODULE:  .\Obj\serial.obj (SERIAL)
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?DISPLAY_RED?S6D0154
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
@@ -284,9 +334,8 @@ linking...
     SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SERIALSEND?SERIAL
-Program Size: data=9.0 xdata=144 code=45712
-creating hex file from ".\Obj\DisplayTerminalTFT"...
-".\Obj\DisplayTerminalTFT" - 0 Error(s), 9 Warning(s).
+Program Size: data=9.0 xdata=152 code=45737
+Target not created
 Build target 'Target 1'
 assembling STARTUP.A51...
 compiling main.c...
@@ -294,6 +343,12 @@ compiling s6d0154.c...
 assembling .\Obj\s6d0154.src...
 compiling serial.c...
 linking...
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  READTIMEOUT
+    MODULE:  .\Obj\s6d0154.obj (S6D0154)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  READTIMEOUT
+    MODULE:  .\Obj\serial.obj (SERIAL)
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?DISPLAY_RED?S6D0154
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
@@ -312,9 +367,8 @@ linking...
     SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SERIALSEND?SERIAL
-Program Size: data=9.0 xdata=144 code=45712
-creating hex file from ".\Obj\DisplayTerminalTFT"...
-".\Obj\DisplayTerminalTFT" - 0 Error(s), 9 Warning(s).
+Program Size: data=9.0 xdata=152 code=45737
+Target not created
 Build target 'Target 1'
 assembling STARTUP.A51...
 compiling main.c...
@@ -350,6 +404,12 @@ compiling s6d0154.c...
 assembling .\Obj\s6d0154.src...
 compiling serial.c...
 linking...
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  READTIMEOUT
+    MODULE:  .\Obj\s6d0154.obj (S6D0154)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  READTIMEOUT
+    MODULE:  .\Obj\serial.obj (SERIAL)
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?DISPLAY_RED?S6D0154
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
@@ -368,7 +428,151 @@ linking...
     SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SERIALSEND?SERIAL
-Program Size: data=9.0 xdata=144 code=45721
+Program Size: data=9.0 xdata=152 code=45726
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+SRC\SERIAL.H(16): error C129: missing ';' before 'unsigned'
+compiling s6d0154.c...
+SRC\SERIAL.H(16): error C129: missing ';' before 'unsigned'
+compiling serial.c...
+SRC\SERIAL.H(16): error C129: missing ';' before 'unsigned'
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling s6d0154.c...
+assembling .\Obj\s6d0154.src...
+compiling serial.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RED?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_GREEN?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_BLUE?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_BLACK?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_LODING?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING1?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING2?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSEND?SERIAL
+Program Size: data=9.0 xdata=148 code=45726
+creating hex file from ".\Obj\DisplayTerminalTFT"...
+".\Obj\DisplayTerminalTFT" - 0 Error(s), 9 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+SRC\MAIN.C(57): error C202: 'readTimeOut': undefined identifier
+compiling s6d0154.c...
+compiling serial.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling s6d0154.c...
+assembling .\Obj\s6d0154.src...
+compiling serial.c...
+linking...
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  READTIMEOUT
+    MODULE:  .\Obj\s6d0154.obj (S6D0154)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  READTIMEOUT
+    MODULE:  .\Obj\serial.obj (SERIAL)
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RED?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_GREEN?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_BLUE?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_BLACK?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_LODING?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING1?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING2?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSEND?SERIAL
+Program Size: data=9.0 xdata=152 code=45745
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling s6d0154.c...
+assembling .\Obj\s6d0154.src...
+compiling serial.c...
+linking...
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  READTIMEOUT
+    MODULE:  .\Obj\s6d0154.obj (S6D0154)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  READTIMEOUT
+    MODULE:  .\Obj\serial.obj (SERIAL)
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RED?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_GREEN?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_BLUE?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_BLACK?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_LODING?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING1?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING2?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSEND?SERIAL
+Program Size: data=9.0 xdata=152 code=45745
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+SRC\MAIN.C(57): error C202: 'readTimeOut': undefined identifier
+compiling s6d0154.c...
+compiling serial.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling s6d0154.c...
+assembling .\Obj\s6d0154.src...
+compiling serial.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RED?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_GREEN?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_BLUE?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_BLACK?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_LODING?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING1?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING2?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSEND?SERIAL
+Program Size: data=9.0 xdata=148 code=45726
 creating hex file from ".\Obj\DisplayTerminalTFT"...
 ".\Obj\DisplayTerminalTFT" - 0 Error(s), 9 Warning(s).
 Build target 'Target 1'
@@ -396,7 +600,7 @@ linking...
     SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SERIALSEND?SERIAL
-Program Size: data=9.0 xdata=144 code=45721
+Program Size: data=9.0 xdata=148 code=45737
 creating hex file from ".\Obj\DisplayTerminalTFT"...
 ".\Obj\DisplayTerminalTFT" - 0 Error(s), 9 Warning(s).
 Build target 'Target 1'
@@ -424,7 +628,151 @@ linking...
     SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SERIALSEND?SERIAL
-Program Size: data=9.0 xdata=144 code=45721
+Program Size: data=9.0 xdata=148 code=45753
+creating hex file from ".\Obj\DisplayTerminalTFT"...
+".\Obj\DisplayTerminalTFT" - 0 Error(s), 9 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling s6d0154.c...
+assembling .\Obj\s6d0154.src...
+compiling serial.c...
+SRC\SERIAL.C(48): warning C280: 'input': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RED?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_GREEN?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_BLUE?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_BLACK?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_LODING?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING1?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING2?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSEND?SERIAL
+Program Size: data=9.0 xdata=149 code=45778
+creating hex file from ".\Obj\DisplayTerminalTFT"...
+".\Obj\DisplayTerminalTFT" - 0 Error(s), 10 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling s6d0154.c...
+assembling .\Obj\s6d0154.src...
+compiling serial.c...
+SRC\SERIAL.C(48): warning C280: 'input': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RED?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_GREEN?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_BLUE?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_BLACK?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_LODING?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING1?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING2?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSEND?SERIAL
+Program Size: data=9.0 xdata=149 code=45778
+creating hex file from ".\Obj\DisplayTerminalTFT"...
+".\Obj\DisplayTerminalTFT" - 0 Error(s), 10 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling s6d0154.c...
+assembling .\Obj\s6d0154.src...
+compiling serial.c...
+SRC\SERIAL.C(48): warning C280: 'input': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RED?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_GREEN?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_BLUE?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_BLACK?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_LODING?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING1?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING2?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSEND?SERIAL
+Program Size: data=9.0 xdata=149 code=45778
+creating hex file from ".\Obj\DisplayTerminalTFT"...
+".\Obj\DisplayTerminalTFT" - 0 Error(s), 10 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling s6d0154.c...
+assembling .\Obj\s6d0154.src...
+compiling serial.c...
+SRC\SERIAL.C(48): warning C280: 'input': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RED?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_GREEN?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_BLUE?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_BLACK?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_LODING?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING1?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING2?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSEND?SERIAL
+Program Size: data=9.0 xdata=149 code=45781
+creating hex file from ".\Obj\DisplayTerminalTFT"...
+".\Obj\DisplayTerminalTFT" - 0 Error(s), 10 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling s6d0154.c...
+assembling .\Obj\s6d0154.src...
+compiling serial.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RED?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_GREEN?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_BLUE?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_BLACK?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_LODING?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING1?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING2?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSEND?SERIAL
+Program Size: data=9.0 xdata=198 code=45975
 creating hex file from ".\Obj\DisplayTerminalTFT"...
 ".\Obj\DisplayTerminalTFT" - 0 Error(s), 9 Warning(s).
 Build target 'Target 1'
@@ -452,7 +800,7 @@ linking...
     SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SERIALSEND?SERIAL
-Program Size: data=9.0 xdata=144 code=45716
+Program Size: data=9.0 xdata=198 code=45983
 creating hex file from ".\Obj\DisplayTerminalTFT"...
 ".\Obj\DisplayTerminalTFT" - 0 Error(s), 9 Warning(s).
 Build target 'Target 1'
@@ -480,6 +828,34 @@ linking...
     SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SERIALSEND?SERIAL
-Program Size: data=9.0 xdata=144 code=45716
+Program Size: data=9.0 xdata=198 code=45987
+creating hex file from ".\Obj\DisplayTerminalTFT"...
+".\Obj\DisplayTerminalTFT" - 0 Error(s), 9 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling s6d0154.c...
+assembling .\Obj\s6d0154.src...
+compiling serial.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RED?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_GREEN?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_BLUE?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_BLACK?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_LODING?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING1?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING2?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY_RUNNING3?S6D0154
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSEND?SERIAL
+Program Size: data=9.0 xdata=198 code=45987
 creating hex file from ".\Obj\DisplayTerminalTFT"...
 ".\Obj\DisplayTerminalTFT" - 0 Error(s), 9 Warning(s).

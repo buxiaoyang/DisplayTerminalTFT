@@ -13,8 +13,9 @@
 
 //年     月  日  时      分       状态  服务  cpu    内存    上传      下载      温度    IP地址
 //0123	 45	 67	 9 10  12 13	   15	 17	  19 20	 22 23	25 26 27   29 30 31	 33 34	 36~50
-uchar DisplayData[] = "20140219,13:26,N,N,45,64,034,089,13,192.168.025.001";
-//数据格式 DATA20140219,13:26,N,N,45,64,034,089,13,192.168.025.001END
+uchar DisplayData[51] = "20140219,13:26,N,N,45,64,034,089,13,192.168.025.001";
+uchar DisplayDataTemp[51] = "20140219,13:26,N,N,45,64,034,089,13,192.168.025.001";
+//数据格式 BGI20140219,13:26,N,N,45,64,034,089,13,192.168.025.001STOOOO
 
 /******************** 全局变量定义 *******************/
 uchar get_i=0;  //读取数据的计数
@@ -23,6 +24,9 @@ uint DataToSend;
 #define    RELOAD_COUNT    0xe6    //12MHz,0xf3, 12T,SMOD=0,2400bps; 24MHz 0xe6
 #define    Self_Define_ISP_Download_Command    0x7f
 
+uchar readSerialCurrent = 0;
+uchar readSerialNumber = 0;
+uint readSerialTimeOut = 0; 
 /******************** 延迟函数ms *******************/
 void delayms(uint tt)
 {
@@ -38,6 +42,60 @@ void delayms(uint tt)
 			}
         }
     }
+}
+
+
+/******************** 串口数据处理函数 *******************/
+void readSerialProcess(uchar input)
+{
+	uchar i;
+	switch(readSerialCurrent)
+	{
+		case 0:
+			if(input == 'B')
+				readSerialCurrent ++;
+		break;	
+		case 1:
+			if(input == 'G')
+				readSerialCurrent ++;	
+			else
+				readSerialCurrent = 0;
+		break;	
+		case 2:
+			if(input == 'I')
+				readSerialCurrent ++;	
+			else
+				readSerialCurrent = 0;	
+		break; 
+		case 3:	 //read serial
+			DisplayDataTemp[readSerialNumber] = input;
+			readSerialNumber ++;	
+			if(input == 'S')
+				readSerialCurrent ++;
+			if(readSerialNumber > 51)
+				readSerialCurrent = 0;
+		break;
+		case 4:
+			if(input == 'T')
+				readSerialCurrent ++;	
+			else
+				readSerialCurrent = 0;
+		case 5:
+			if(input == 'O')
+				readSerialCurrent ++;	
+			else
+				readSerialCurrent = 0;
+		case 6:
+			for(i=0; i<51; i++)
+			{
+				DisplayData[i] = DisplayDataTemp[i];	
+			}
+			readSerialTimeOut = 0;
+			readSerialCurrent = 0;	
+		break;
+		default:
+			readSerialCurrent = 0;
+	}
 }
 
 /******************** 软复位函数 *******************/
@@ -71,6 +129,7 @@ void UART_Interrupt_Receive(void) interrupt 4 //using 1
 			}
 			get_i=0;
 		}
+		readSerialProcess(k);
 	}
 	else
 	{
@@ -83,7 +142,7 @@ void UART_Interrupt_Receive(void) interrupt 4 //using 1
 			else
 				SBUF=DataToSend;
 		}
-	}
+	}	
 }
 
 /******************** 串口发送函数 *******************/

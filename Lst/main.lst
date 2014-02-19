@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   MAIN                                                                  02/19/2014 16:34:20 PAGE 1   
+C51 COMPILER V7.50   MAIN                                                                  02/19/2014 21:06:17 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE MAIN
@@ -28,53 +28,59 @@ line level    source
   18          #define T1_H 0xfe
   19          #define T1_L 0x31
   20          
-  21          /******************** 定时器0中断函数 *******************/
-  22          void time0() interrupt 1 //using 1
-  23          {
-  24   1          TR0=0;
-  25   1          TH0=T0_H;   
-  26   1          TL0=T0_L;   
-  27   1          TR0=1;
-  28   1      }
-  29          
-  30          /******************** 系统初始化函数 *******************/
-  31          void InitSys(void)
-  32          {
-  33   1          EA=0;
-  34   1          TCON=0x05;  //1->0 == EX0 INT !!!
-  35   1          TMOD=0x21;  //time0:16bit;time1:serial
-  36   1          TH1=0xe6;    //12MHz,0xf3, 12T,SMOD=0,2400bps; 24MHz 0xe6
-  37   1          TL1=0xe6;
-  38   1          PCON=0x00; 
-  39   1          SCON=0x70; //MODE:1;   串口10位异步收发，定时器控制
-  40   1          ES=1;      //串口中断开
-  41   1          ET1=0;
-  42   1          TR1=1;
-  43   1          ET0=1;
-  44   1          EA=1;
-  45   1      }
-  46          
-  47          /******************** 主函数 *******************/
-  48          void main(void)
-  49          {
-  50   1              InitSys();
-  51   1          LCD_Init();
-  52   1              Display_Running();
-  53   1          while(1)
-  54   1          {
-C51 COMPILER V7.50   MAIN                                                                  02/19/2014 16:34:20 PAGE 2   
+  21          extern uint readSerialTimeOut; 
+  22          /******************** 定时器0中断函数 *******************/
+  23          void time0() interrupt 1 //using 1
+  24          {
+  25   1          TR0=0;
+  26   1          TH0=T0_H;   
+  27   1          TL0=T0_L;   
+  28   1          TR0=1;
+  29   1      }
+  30          
+  31          /******************** 系统初始化函数 *******************/
+  32          void InitSys(void)
+  33          {
+  34   1          EA=0;
+  35   1          TCON=0x05;  //1->0 == EX0 INT !!!
+  36   1          TMOD=0x21;  //time0:16bit;time1:serial
+  37   1          TH1=0xe6;    //12MHz,0xf3, 12T,SMOD=0,2400bps; 24MHz 0xe6
+  38   1          TL1=0xe6;
+  39   1          PCON=0x00; 
+  40   1          SCON=0x70; //MODE:1;   串口10位异步收发，定时器控制
+  41   1          ES=1;      //串口中断开
+  42   1          ET1=0;
+  43   1          TR1=1;
+  44   1          ET0=1;
+  45   1          EA=1;
+  46   1      }
+  47          
+  48          /******************** 主函数 *******************/
+  49          void main(void)
+  50          {
+  51   1              InitSys();
+  52   1          LCD_Init();
+  53   1              Display_Running();
+  54   1          while(1)
+C51 COMPILER V7.50   MAIN                                                                  02/19/2014 21:06:17 PAGE 2   
 
-  55   2                 Display_Running_Refresh();
-  56   2                 delayms(1000);
-  57   2                 //DisplayData[0] ++; 
-  58   2          }
-  59   1      }
-  60          
-  61          
+  55   1          {
+  56   2                      Display_Running_Refresh();
+  57   2                      delayms(1000);
+  58   2                      readSerialTimeOut++;
+  59   2                      if(readSerialTimeOut > 50)
+  60   2                      {
+  61   3                              DisplayData[15] = 'E';
+  62   3                              DisplayData[17] = 'E';
+  63   3                      } 
+  64   2          }
+  65   1      }
+  66          
+  67          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     63    ----
+   CODE SIZE        =     93    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
