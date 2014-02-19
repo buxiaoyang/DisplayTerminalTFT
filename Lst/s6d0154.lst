@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   S6D0154                                                               02/19/2014 15:20:29 PAGE 1   
+C51 COMPILER V7.50   S6D0154                                                               02/19/2014 16:34:20 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE S6D0154
@@ -23,10 +23,10 @@ line level    source
   13          #include "serial.h"
   14          
   15          /******************** 颜色定义 *******************/
-  16          //   0      1      2      3      4      5      6      7
-  17          //  红     绿     蓝     黄     黑     青     紫     白
+  16          //   0      1      2      3      4      5      6      7    8
+  17          //  红     绿     蓝     黄     黑     青     紫     白    灰
   18          uint colors[]={
-  19                  0xf800,0x07e0,0x001f,0xffe0,0x0000,0x07ff,0xf81f,0xffff
+  19                  0xf800,0x07e0,0x001f,0xffe0,0x0000,0x07ff,0xf81f,0xffff,0xdf5d
   20          };
   21          
   22          /******************** 写数据函数 *******************/
@@ -62,7 +62,7 @@ line level    source
   52          {  
   53   1              uint i,j,k=0;
   54   1              LCD_CS =0;  //打开片选使能
-C51 COMPILER V7.50   S6D0154                                                               02/19/2014 15:20:29 PAGE 2   
+C51 COMPILER V7.50   S6D0154                                                               02/19/2014 16:34:20 PAGE 2   
 
   55   1              Address_set(0,0,239,319);
   56   1              Write_COMD(0x00,0x22); 
@@ -126,7 +126,7 @@ line level    source
  114   3                  Write_DATA(0xff,0xff);
  115   3                  //Write_Data_18(0xff,0xff,0xc0);
  116   3              }
-C51 COMPILER V7.50   S6D0154                                                               02/19/2014 15:20:29 PAGE 3   
+C51 COMPILER V7.50   S6D0154                                                               02/19/2014 16:34:20 PAGE 3   
 
  117   2          }
  118   1              LCD_CS = 1;  //关闭片选使能
@@ -190,7 +190,7 @@ line level    source
  176   1          pfont=(uchar *)fonttable[size];
  177   1              LCD_CS =0;  //打开片选使能
  178   1          if(size==0)
-C51 COMPILER V7.50   S6D0154                                                               02/19/2014 15:20:29 PAGE 4   
+C51 COMPILER V7.50   S6D0154                                                               02/19/2014 16:34:20 PAGE 4   
 
  179   1          {
  180   2              ncols =16-1;
@@ -254,7 +254,7 @@ line level    source
  238   2              p++;
  239   2          }
  240   1      }
-C51 COMPILER V7.50   S6D0154                                                               02/19/2014 15:20:29 PAGE 5   
+C51 COMPILER V7.50   S6D0154                                                               02/19/2014 16:34:20 PAGE 5   
 
  241          
  242          /******************** 字符显示函数 *******************/
@@ -318,7 +318,7 @@ line level    source
  300   1              Display_Loading_Image();
  301   1              ChineseChar(50,79,2,colors[4],colors[7],1);             //正
  302   1          ChineseChar(50,122,2,colors[4],colors[7],2);        //在
-C51 COMPILER V7.50   S6D0154                                                               02/19/2014 15:20:29 PAGE 6   
+C51 COMPILER V7.50   S6D0154                                                               02/19/2014 16:34:20 PAGE 6   
 
  303   1          ChineseChar(50,165,2,colors[4],colors[7],3);        //启
  304   1          ChineseChar(50,208,2,colors[4],colors[7],4);        //动
@@ -379,31 +379,31 @@ line level    source
  359   1              LCD_ShowString(175,248,0,colors[4],colors[7], ":");     //:
  360   1              //ChineseString(175,264,1,colors[4],colors[1],"MN"); //正常
  361   1      
- 362   1              LCD_ShowString(135,5,0,colors[4],colors[7], "CPU:");    //CPU:
+ 362   1              LCD_ShowString(55,5,0,colors[4],colors[7], "CPU:");     //CPU:
  363   1              //LCD_ShowString(135,69,0,colors[4],colors[7], "56%");  //56%
- 364   1              LCD_ShowString(135,101,0,colors[4],colors[7], "%");     //%
-C51 COMPILER V7.50   S6D0154                                                               02/19/2014 15:20:29 PAGE 7   
+ 364   1              LCD_ShowString(55,101,0,colors[4],colors[3], "%  ");    //%
+C51 COMPILER V7.50   S6D0154                                                               02/19/2014 16:34:20 PAGE 7   
 
- 365   1              ChineseString(135,160,1,colors[4],colors[7],"67"); //内存
- 366   1              LCD_ShowString(135,208,0,colors[4],colors[7], ":");     //:
+ 365   1              ChineseString(55,160,1,colors[4],colors[7],"67"); //内存
+ 366   1              LCD_ShowString(55,208,0,colors[4],colors[7], ":");      //:
  367   1              //LCD_ShowString(135,224,0,colors[4],colors[7], "64%"); //64%
- 368   1              LCD_ShowString(135,256,0,colors[4],colors[7], "%");     //%
+ 368   1              LCD_ShowString(55,256,0,colors[4],colors[3], "%  ");    //%
  369   1      
  370   1              ChineseString(95,5,1,colors[4],colors[7],"OP"); //上传
  371   1              LCD_ShowString(95,53,0,colors[4],colors[7], ":");       //:
  372   1              //LCD_ShowString(95,69,0,colors[4],colors[7], "024kb"); //024KB/s
- 373   1              LCD_ShowString(95,117,0,colors[4],colors[7], "kb");     //KB
+ 373   1              LCD_ShowString(95,117,0,colors[4],colors[3], "kb");     //KB
  374   1              ChineseString(95,160,1,colors[4],colors[7],"QR"); //下载
  375   1              LCD_ShowString(95,208,0,colors[4],colors[7], ":");      //:
  376   1              //LCD_ShowString(95,224,0,colors[4],colors[7], "036kb");        //036KB/s
- 377   1              LCD_ShowString(95,272,0,colors[4],colors[7], "kb");     //KB
+ 377   1              LCD_ShowString(95,272,0,colors[4],colors[3], "kb");     //KB
  378   1      
- 379   1              ChineseString(55,5,1,colors[4],colors[7],"45"); //温度
- 380   1              LCD_ShowString(55,53,0,colors[4],colors[7], ":");       //:
+ 379   1              ChineseString(135,5,1,colors[4],colors[7],"45"); //温度
+ 380   1              LCD_ShowString(135,53,0,colors[4],colors[7], ":");      //:
  381   1              //LCD_ShowString(55,69,0,colors[4],colors[7], "13C");   //13C
- 382   1              LCD_ShowString(55,101,0,colors[4],colors[7], "C");      //C
- 383   1              ChineseString(55,160,1,colors[4],colors[7],"01"); //时间
- 384   1              LCD_ShowString(55,208,0,colors[4],colors[7], ":");      //:
+ 382   1              LCD_ShowString(135,101,0,colors[4],colors[3], "C  ");   //C
+ 383   1              ChineseString(135,160,1,colors[4],colors[7],"01"); //时间
+ 384   1              LCD_ShowString(135,208,0,colors[4],colors[7], ":");     //:
  385   1              //LCD_ShowString(55,224,0,colors[4],colors[7], "13:36");        //13:36
  386   1      
  387   1              ChineseString(15,5,1,colors[4],colors[7],"@A"); //地址
@@ -415,16 +415,16 @@ line level    source
  393          void Display_Running_Refresh()
  394          {
  395   1              //年
- 396   1              LCD_ShowChar(215,90,0,colors[4],colors[7], DisplayData[0]);     //2014
- 397   1              LCD_ShowChar(215,106,0,colors[4],colors[7], DisplayData[1]);    //2014
- 398   1              LCD_ShowChar(215,122,0,colors[4],colors[7], DisplayData[2]);    //2014
- 399   1              LCD_ShowChar(215,138,0,colors[4],colors[7], DisplayData[3]);    //2014
+ 396   1              LCD_ShowChar(215,90,0,colors[4],colors[3], DisplayData[0]);     //2014
+ 397   1              LCD_ShowChar(215,106,0,colors[4],colors[3], DisplayData[1]);    //2014
+ 398   1              LCD_ShowChar(215,122,0,colors[4],colors[3], DisplayData[2]);    //2014
+ 399   1              LCD_ShowChar(215,138,0,colors[4],colors[3], DisplayData[3]);    //2014
  400   1              //月
- 401   1              LCD_ShowChar(215,188,0,colors[4],colors[7], DisplayData[4]);    //02
- 402   1              LCD_ShowChar(215,204,0,colors[4],colors[7], DisplayData[5]);    //02
+ 401   1              LCD_ShowChar(215,188,0,colors[4],colors[3], DisplayData[4]);    //02
+ 402   1              LCD_ShowChar(215,204,0,colors[4],colors[3], DisplayData[5]);    //02
  403   1              //日
- 404   1              LCD_ShowChar(215,254,0,colors[4],colors[7], DisplayData[6]);    //19
- 405   1              LCD_ShowChar(215,270,0,colors[4],colors[7], DisplayData[7]);    //19
+ 404   1              LCD_ShowChar(215,254,0,colors[4],colors[3], DisplayData[6]);    //19
+ 405   1              LCD_ShowChar(215,270,0,colors[4],colors[3], DisplayData[7]);    //19
  406   1              //状态
  407   1              if(DisplayData[15] == 'N')
  408   1              {
@@ -444,46 +444,46 @@ line level    source
  422   2                      ChineseString(175,264,1,colors[4],colors[0],">?"); //错误
  423   2              }
  424   1              //CPU
- 425   1              LCD_ShowChar(135,69,0,colors[4],colors[7], DisplayData[19]);    //56
- 426   1              LCD_ShowChar(135,85,0,colors[4],colors[7], DisplayData[20]);    //56
-C51 COMPILER V7.50   S6D0154                                                               02/19/2014 15:20:29 PAGE 8   
+ 425   1              LCD_ShowChar(55,69,0,colors[4],colors[3], DisplayData[19]);     //56
+ 426   1              LCD_ShowChar(55,85,0,colors[4],colors[3], DisplayData[20]);     //56
+C51 COMPILER V7.50   S6D0154                                                               02/19/2014 16:34:20 PAGE 8   
 
  427   1              //内存
- 428   1              LCD_ShowChar(135,224,0,colors[4],colors[7], DisplayData[22]);//64
- 429   1              LCD_ShowChar(135,240,0,colors[4],colors[7], DisplayData[23]);//64
+ 428   1              LCD_ShowChar(55,224,0,colors[4],colors[3], DisplayData[22]);//64
+ 429   1              LCD_ShowChar(55,240,0,colors[4],colors[3], DisplayData[23]);//64
  430   1              //上传
- 431   1              LCD_ShowChar(95,69,0,colors[4],colors[7], DisplayData[25]);     //024
- 432   1              LCD_ShowChar(95,85,0,colors[4],colors[7], DisplayData[26]);     //024
- 433   1              LCD_ShowChar(95,101,0,colors[4],colors[7], DisplayData[27]);    //024
+ 431   1              LCD_ShowChar(95,69,0,colors[4],colors[3], DisplayData[25]);     //024
+ 432   1              LCD_ShowChar(95,85,0,colors[4],colors[3], DisplayData[26]);     //024
+ 433   1              LCD_ShowChar(95,101,0,colors[4],colors[3], DisplayData[27]);    //024
  434   1              //下载
- 435   1              LCD_ShowChar(95,224,0,colors[4],colors[7], DisplayData[29]);//036
- 436   1              LCD_ShowChar(95,240,0,colors[4],colors[7], DisplayData[30]);//036
- 437   1              LCD_ShowChar(95,256,0,colors[4],colors[7], DisplayData[31]);//036
+ 435   1              LCD_ShowChar(95,224,0,colors[4],colors[3], DisplayData[29]);//036
+ 436   1              LCD_ShowChar(95,240,0,colors[4],colors[3], DisplayData[30]);//036
+ 437   1              LCD_ShowChar(95,256,0,colors[4],colors[3], DisplayData[31]);//036
  438   1              //温度
- 439   1              LCD_ShowChar(55,69,0,colors[4],colors[7], DisplayData[33]);     //13
- 440   1              LCD_ShowChar(55,85,0,colors[4],colors[7], DisplayData[34]);     //13
+ 439   1              LCD_ShowChar(135,69,0,colors[4],colors[3], DisplayData[33]);    //13
+ 440   1              LCD_ShowChar(135,85,0,colors[4],colors[3], DisplayData[34]);    //13
  441   1              //时间
- 442   1              LCD_ShowChar(55,224,0,colors[4],colors[7], DisplayData[9]);     //13:36
- 443   1              LCD_ShowChar(55,240,0,colors[4],colors[7], DisplayData[10]);    //13:36
- 444   1              LCD_ShowChar(55,256,0,colors[4],colors[7], DisplayData[11]);    //13:36
- 445   1              LCD_ShowChar(55,270,0,colors[4],colors[7], DisplayData[12]);    //13:36
- 446   1              LCD_ShowChar(55,286,0,colors[4],colors[7], DisplayData[13]);    //13:36
+ 442   1              LCD_ShowChar(135,224,0,colors[4],colors[3], DisplayData[9]);    //13:36
+ 443   1              LCD_ShowChar(135,240,0,colors[4],colors[3], DisplayData[10]);   //13:36
+ 444   1              LCD_ShowChar(135,256,0,colors[4],colors[3], DisplayData[11]);   //13:36
+ 445   1              LCD_ShowChar(135,270,0,colors[4],colors[3], DisplayData[12]);   //13:36
+ 446   1              LCD_ShowChar(135,286,0,colors[4],colors[3], DisplayData[13]);   //13:36
  447   1              //IP地址
- 448   1              LCD_ShowChar(15,69,0,colors[4],colors[7], DisplayData[36]);     //192.168.1.1
- 449   1              LCD_ShowChar(15,85,0,colors[4],colors[7], DisplayData[37]);     //192.168.1.1
- 450   1              LCD_ShowChar(15,101,0,colors[4],colors[7],DisplayData[38]);     //192.168.1.1
- 451   1              LCD_ShowChar(15,117,0,colors[4],colors[7], DisplayData[39]);    //192.168.1.1
- 452   1              LCD_ShowChar(15,133,0,colors[4],colors[7], DisplayData[40]);    //192.168.1.1
- 453   1              LCD_ShowChar(15,149,0,colors[4],colors[7], DisplayData[41]);    //192.168.1.1
- 454   1              LCD_ShowChar(15,165,0,colors[4],colors[7], DisplayData[42]);    //192.168.1.1
- 455   1              LCD_ShowChar(15,181,0,colors[4],colors[7], DisplayData[43]);    //192.168.1.1
- 456   1              LCD_ShowChar(15,197,0,colors[4],colors[7], DisplayData[44]);    //192.168.1.1
- 457   1              LCD_ShowChar(15,213,0,colors[4],colors[7], DisplayData[45]);    //192.168.1.1
- 458   1              LCD_ShowChar(15,229,0,colors[4],colors[7], DisplayData[46]);    //192.168.1.1
- 459   1              LCD_ShowChar(15,245,0,colors[4],colors[7], DisplayData[47]);    //192.168.1.1
- 460   1              LCD_ShowChar(15,261,0,colors[4],colors[7], DisplayData[48]);    //192.168.1.1
- 461   1              LCD_ShowChar(15,277,0,colors[4],colors[7], DisplayData[49]);    //192.168.1.1
- 462   1              LCD_ShowChar(15,293,0,colors[4],colors[7], DisplayData[50]);    //192.168.1.1
+ 448   1              LCD_ShowChar(15,69,0,colors[4],colors[3], DisplayData[36]);     //192.168.1.1
+ 449   1              LCD_ShowChar(15,85,0,colors[4],colors[3], DisplayData[37]);     //192.168.1.1
+ 450   1              LCD_ShowChar(15,101,0,colors[4],colors[3],DisplayData[38]);     //192.168.1.1
+ 451   1              LCD_ShowChar(15,117,0,colors[4],colors[3], DisplayData[39]);    //192.168.1.1
+ 452   1              LCD_ShowChar(15,133,0,colors[4],colors[3], DisplayData[40]);    //192.168.1.1
+ 453   1              LCD_ShowChar(15,149,0,colors[4],colors[3], DisplayData[41]);    //192.168.1.1
+ 454   1              LCD_ShowChar(15,165,0,colors[4],colors[3], DisplayData[42]);    //192.168.1.1
+ 455   1              LCD_ShowChar(15,181,0,colors[4],colors[3], DisplayData[43]);    //192.168.1.1
+ 456   1              LCD_ShowChar(15,197,0,colors[4],colors[3], DisplayData[44]);    //192.168.1.1
+ 457   1              LCD_ShowChar(15,213,0,colors[4],colors[3], DisplayData[45]);    //192.168.1.1
+ 458   1              LCD_ShowChar(15,229,0,colors[4],colors[3], DisplayData[46]);    //192.168.1.1
+ 459   1              LCD_ShowChar(15,245,0,colors[4],colors[3], DisplayData[47]);    //192.168.1.1
+ 460   1              LCD_ShowChar(15,261,0,colors[4],colors[3], DisplayData[48]);    //192.168.1.1
+ 461   1              LCD_ShowChar(15,277,0,colors[4],colors[3], DisplayData[49]);    //192.168.1.1
+ 462   1              LCD_ShowChar(15,293,0,colors[4],colors[3], DisplayData[50]);    //192.168.1.1
  463   1      }
  464          
  465          
@@ -510,7 +510,7 @@ line level    source
  486   1              LCD_ShowString(215,70,0,colors[4],colors[7],"e computer whic"); 
  487   1              LCD_ShowString(185,70,0,colors[4],colors[7],"h can be used i"); 
  488   1              LCD_ShowString(155,70,0,colors[4],colors[7],"n electronics p"); 
-C51 COMPILER V7.50   S6D0154                                                               02/19/2014 15:20:29 PAGE 9   
+C51 COMPILER V7.50   S6D0154                                                               02/19/2014 16:34:20 PAGE 9   
 
  489   1              LCD_ShowString(125,5,0,colors[4],colors[7],     "rojects, and for ma");
  490   1              LCD_ShowString(95,5,0,colors[4],colors[7],      "ny of the things th");
@@ -574,7 +574,7 @@ line level    source
  548   1              LCD_DataPortH=VH;       //高位P口
  549   1              LCD_DataPortL=VL;       //低位P口
  550   1              LCD_WR=0;
-C51 COMPILER V7.50   S6D0154                                                               02/19/2014 15:20:29 PAGE 10  
+C51 COMPILER V7.50   S6D0154                                                               02/19/2014 16:34:20 PAGE 10  
 
  551   1              LCD_WR=1;
  552   1      }
@@ -638,7 +638,7 @@ line level    source
  609   1              LCD_Write_COM(0x00,0x53); LCD_Write_DATA(0x08,0x05);
  610   1              LCD_Write_COM(0x00,0x54); LCD_Write_DATA(0x01,0x01);
  611   1              LCD_Write_COM(0x00,0x55); LCD_Write_DATA(0x0d,0x06);
-C51 COMPILER V7.50   S6D0154                                                               02/19/2014 15:20:29 PAGE 11  
+C51 COMPILER V7.50   S6D0154                                                               02/19/2014 16:34:20 PAGE 11  
 
  612   1              LCD_Write_COM(0x00,0x56); LCD_Write_DATA(0x0e,0x0a);
  613   1              LCD_Write_COM(0x00,0x57); LCD_Write_DATA(0x01,0x00);
@@ -658,9 +658,9 @@ line level    source
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
    CODE SIZE        =   6843    ----
-   CONSTANT SIZE    =  38140    ----
+   CONSTANT SIZE    =  38144    ----
    XDATA SIZE       =   ----    ----
-   PDATA SIZE       =     16     104
+   PDATA SIZE       =     18     104
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----

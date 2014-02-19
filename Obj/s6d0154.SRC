@@ -293,7 +293,7 @@ P0M0	DATA	094H
          y2?759:   DS   2
 
 	RSEG  ?PD?S6D0154
-         colors:   DS   16
+         colors:   DS   18
 
 	RSEG  ?CO?S6D0154
 ?SC_0:
@@ -318,134 +318,134 @@ P0M0	DATA	094H
 	DB  'C' ,'P' ,'U' ,':' ,000H
 
 ?SC_19:
-	DB  '%' ,000H
+	DB  '%' ,' ' ,' ' ,000H
 
-?SC_21:
+?SC_23:
 	DB  '6' ,'7' ,000H
 
-?SC_24:
+?SC_26:
 	DB  'O' ,'P' ,000H
 
-?SC_27:
+?SC_29:
 	DB  'k' ,'b' ,000H
 
-?SC_30:
+?SC_32:
 	DB  'Q' ,'R' ,000H
 
-?SC_33:
+?SC_35:
 	DB  '4' ,'5' ,000H
 
-?SC_36:
-	DB  'C' ,000H
-
 ?SC_38:
+	DB  'C' ,' ' ,' ' ,000H
+
+?SC_42:
 	DB  '0' ,'1' ,000H
 
-?SC_41:
+?SC_45:
 	DB  '@' ,'A' ,000H
 
-?SC_44:
+?SC_48:
 	DB  'M' ,'N' ,000H
 
-?SC_47:
+?SC_51:
 	DB  '>' ,'?' ,000H
 
-?SC_50:
+?SC_54:
 	DB  'W' ,'h' ,'a' ,'t' ,' ' ,'i' ,'s' ,' ' ,'a' ,' ' 
 	DB  'R' ,'a' ,'s' ,'p' ,'b' ,000H
 
-?SC_66:
+?SC_70:
 	DB  'e' ,'r' ,'r' ,'y' ,' ' ,'P' ,'i' ,'?' ,000H
 
-?SC_75:
+?SC_79:
 	DB  'T' ,'h' ,'e' ,' ' ,'R' ,'a' ,'s' ,'p' ,'b' ,'e' 
 	DB  'r' ,'r' ,'y' ,' ' ,'P' ,000H
 
-?SC_91:
+?SC_95:
 	DB  'i' ,' ' ,'i' ,'s' ,' ' ,'a' ,' ' ,'c' ,'r' ,'e' 
 	DB  'd' ,'i' ,'t' ,'-' ,'c' ,'a' ,'r' ,'d' ,' ' ,000H
 
-?SC_111:
+?SC_115:
 	DB  's' ,'i' ,'z' ,'e' ,'d' ,' ' ,'c' ,'o' ,'m' ,'p' 
 	DB  'u' ,'t' ,'e' ,'r' ,' ' ,'t' ,'h' ,'a' ,'t' ,000H
 
-?SC_131:
+?SC_135:
 	DB  ' ' ,'p' ,'l' ,'u' ,'g' ,'s' ,' ' ,'i' ,'n' ,'t' 
 	DB  'o' ,' ' ,'y' ,'o' ,'u' ,'r' ,' ' ,'T' ,'V' ,000H
 
-?SC_151:
+?SC_155:
 	DB  ' ' ,'a' ,'n' ,'d' ,' ' ,'a' ,' ' ,'k' ,'e' ,'y' 
 	DB  'b' ,'o' ,'a' ,'r' ,'d' ,'.' ,' ' ,'I' ,'t' ,000H
 
-?SC_171:
+?SC_175:
 	DB  ' ' ,'i' ,'s' ,' ' ,'a' ,' ' ,'c' ,'a' ,'p' ,'a' 
 	DB  'b' ,'l' ,'e' ,' ' ,'l' ,'i' ,'t' ,'t' ,'l' ,000H
 
-?SC_191:
+?SC_195:
 	DB  'e' ,' ' ,'c' ,'o' ,'m' ,'p' ,'u' ,'t' ,'e' ,'r' 
 	DB  ' ' ,'w' ,'h' ,'i' ,'c' ,000H
 
-?SC_207:
+?SC_211:
 	DB  'h' ,' ' ,'c' ,'a' ,'n' ,' ' ,'b' ,'e' ,' ' ,'u' 
 	DB  's' ,'e' ,'d' ,' ' ,'i' ,000H
 
-?SC_223:
+?SC_227:
 	DB  'n' ,' ' ,'e' ,'l' ,'e' ,'c' ,'t' ,'r' ,'o' ,'n' 
 	DB  'i' ,'c' ,'s' ,' ' ,'p' ,000H
 
-?SC_239:
+?SC_243:
 	DB  'r' ,'o' ,'j' ,'e' ,'c' ,'t' ,'s' ,',' ,' ' ,'a' 
 	DB  'n' ,'d' ,' ' ,'f' ,'o' ,'r' ,' ' ,'m' ,'a' ,000H
 
-?SC_259:
+?SC_263:
 	DB  'n' ,'y' ,' ' ,'o' ,'f' ,' ' ,'t' ,'h' ,'e' ,' ' 
 	DB  't' ,'h' ,'i' ,'n' ,'g' ,'s' ,' ' ,'t' ,'h' ,000H
 
-?SC_279:
+?SC_283:
 	DB  'a' ,'t' ,' ' ,'y' ,'o' ,'u' ,'r' ,' ' ,'d' ,'e' 
 	DB  's' ,'k' ,'t' ,'o' ,'p' ,' ' ,'P' ,'C' ,' ' ,000H
 
-?SC_299:
+?SC_303:
 	DB  'd' ,'o' ,'e' ,'s' ,',' ,' ' ,'l' ,'i' ,'k' ,'e' 
 	DB  ' ' ,'s' ,'p' ,'r' ,'e' ,'a' ,'d' ,'s' ,'h' ,000H
 
-?SC_319:
+?SC_323:
 	DB  'e' ,'e' ,'t' ,'s' ,',' ,' ' ,'w' ,'o' ,'r' ,'d' 
 	DB  '-' ,'p' ,'r' ,'o' ,'c' ,'e' ,'s' ,'s' ,'i' ,000H
 
-?SC_339:
+?SC_343:
 	DB  'n' ,'g' ,' ' ,'a' ,'n' ,'d' ,' ' ,'g' ,'a' ,'m' 
 	DB  'e' ,'s' ,'.' ,' ' ,'I' ,000H
 
-?SC_355:
+?SC_359:
 	DB  't' ,' ' ,'a' ,'l' ,'s' ,'o' ,' ' ,'p' ,'l' ,'a' 
 	DB  'y' ,'s' ,' ' ,'h' ,'i' ,'g' ,000H
 
-?SC_372:
+?SC_376:
 	DB  'h' ,'-' ,'d' ,'e' ,'f' ,'i' ,'n' ,'i' ,'t' ,'i' 
 	DB  'o' ,'n' ,' ' ,'v' ,'i' ,'d' ,000H
 
-?SC_389:
+?SC_393:
 	DB  'e' ,'o' ,'.' ,' ' ,'W' ,'e' ,' ' ,'w' ,'a' ,'n' 
 	DB  't' ,' ' ,'t' ,'o' ,' ' ,'s' ,'e' ,'e' ,' ' ,'i' 
 	DB  000H
 
-?SC_410:
+?SC_414:
 	DB  't' ,' ' ,'b' ,'e' ,'i' ,'n' ,'g' ,' ' ,'u' ,'s' 
 	DB  'e' ,'d' ,' ' ,'b' ,'y' ,' ' ,'k' ,'i' ,'d' ,'s' 
 	DB  000H
 
-?SC_431:
+?SC_435:
 	DB  ' ' ,'a' ,'l' ,'l' ,' ' ,'o' ,'v' ,'e' ,'r' ,' ' 
 	DB  't' ,'h' ,'e' ,' ' ,'w' ,'o' ,'r' ,'l' ,'d' ,' ' 
 	DB  000H
 
-?SC_452:
+?SC_456:
 	DB  't' ,'o' ,' ' ,'l' ,'e' ,'a' ,'r' ,'n' ,' ' ,'p' 
 	DB  'r' ,'o' ,'g' ,'r' ,'a' ,'m' ,'m' ,'i' ,'n' ,'g' 
 	DB  000H
 
-?SC_473:
+?SC_477:
 	DB  '.' ,000H
 
 RaspberryPiLogoBig:
@@ -36184,7 +36184,7 @@ _?ix1000:
 
 
 	RSEG  ?C_INITSEG
-	DB	090H
+	DB	092H
 	DB	LOW (colors)
 	DW	0F800H
 	DW	007E0H
@@ -36194,6 +36194,7 @@ _?ix1000:
 	DW	007FFH
 	DW	0F81FH
 	DW	0FFFFH
+	DW	0DF5DH
 
 ; /************************************************************/
 ; /*项目：DisplayTerminalTFT
@@ -36210,10 +36211,10 @@ _?ix1000:
 ; #include "serial.h"
 ; 
 ; /******************** 颜色定义 *******************/
-; //   0      1      2      3      4      5      6      7
-; //  红     绿     蓝     黄     黑     青     紫     白
+; //   0      1      2      3      4      5      6      7	   8
+; //  红     绿     蓝     黄     黑     青     紫     白	   灰
 ; uint colors[]={
-; 	0xf800,0x07e0,0x001f,0xffe0,0x0000,0x07ff,0xf81f,0xffff
+; 	0xf800,0x07e0,0x001f,0xffe0,0x0000,0x07ff,0xf81f,0xffff,0xdf5d
 ; };
 ; 
 ; /******************** 写数据函数 *******************/
@@ -38555,7 +38556,7 @@ Display_Running:
 	LCALL	_LCD_ShowString
 ; 	//ChineseString(175,264,1,colors[4],colors[1],"MN"); //正常
 ; 
-; 	LCD_ShowString(135,5,0,colors[4],colors[7], "CPU:");	//CPU:
+; 	LCD_ShowString(55,5,0,colors[4],colors[7], "CPU:");	//CPU:
 			; SOURCE LINE # 362
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -38588,10 +38589,10 @@ Display_Running:
 	INC  	R0
 	MOV  	A,#LOW (?SC_14)
 	MOVX 	@R0,A
-	MOV  	R7,#087H
+	MOV  	R7,#037H
 	LCALL	L?0140
 ; 	//LCD_ShowString(135,69,0,colors[4],colors[7], "56%");	//56%
-; 	LCD_ShowString(135,101,0,colors[4],colors[7], "%");	//%
+; 	LCD_ShowString(55,101,0,colors[4],colors[3], "%  ");	//%
 			; SOURCE LINE # 364
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -38604,7 +38605,7 @@ Display_Running:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -38629,10 +38630,10 @@ Display_Running:
 	MOV  	R2,A
 	MOV  	R5,#065H
 	MOV  	R4,A
-	MOV  	R7,#087H
+	MOV  	R7,#037H
 	MOV  	R6,A
 	LCALL	_LCD_ShowString
-; 	ChineseString(135,160,1,colors[4],colors[7],"67"); //内存
+; 	ChineseString(55,160,1,colors[4],colors[7],"67"); //内存
 			; SOURCE LINE # 365
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -38660,19 +38661,19 @@ Display_Running:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_21)
+	MOV  	A,#HIGH (?SC_23)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_21)
+	MOV  	A,#LOW (?SC_23)
 	MOVX 	@R0,A
 	MOV  	R3,#01H
 	MOV  	R2,#00H
 	MOV  	R5,#0A0H
 	MOV  	R4,#00H
-	MOV  	R7,#087H
+	MOV  	R7,#037H
 	MOV  	R6,#00H
 	LCALL	_ChineseString
-; 	LCD_ShowString(135,208,0,colors[4],colors[7], ":");	//:
+; 	LCD_ShowString(55,208,0,colors[4],colors[7], ":");	//:
 			; SOURCE LINE # 366
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -38710,11 +38711,11 @@ Display_Running:
 	MOV  	R2,A
 	MOV  	R5,#0D0H
 	MOV  	R4,A
-	MOV  	R7,#087H
+	MOV  	R7,#037H
 	MOV  	R6,A
 	LCALL	_LCD_ShowString
 ; 	//LCD_ShowString(135,224,0,colors[4],colors[7], "64%");	//64%
-; 	LCD_ShowString(135,256,0,colors[4],colors[7], "%");	//%
+; 	LCD_ShowString(55,256,0,colors[4],colors[3], "%  ");	//%
 			; SOURCE LINE # 368
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -38727,7 +38728,7 @@ Display_Running:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -38752,7 +38753,7 @@ Display_Running:
 	MOV  	R2,A
 	MOV  	R5,A
 	MOV  	R4,#01H
-	MOV  	R7,#087H
+	MOV  	R7,#037H
 	MOV  	R6,A
 	LCALL	_LCD_ShowString
 ; 
@@ -38784,10 +38785,10 @@ Display_Running:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_24)
+	MOV  	A,#HIGH (?SC_26)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_24)
+	MOV  	A,#LOW (?SC_26)
 	MOVX 	@R0,A
 	MOV  	R3,#01H
 	MOV  	R2,#00H
@@ -38838,7 +38839,7 @@ Display_Running:
 	MOV  	R6,A
 	LCALL	_LCD_ShowString
 ; 	//LCD_ShowString(95,69,0,colors[4],colors[7], "024kb");	//024KB/s
-; 	LCD_ShowString(95,117,0,colors[4],colors[7], "kb");	//KB
+; 	LCD_ShowString(95,117,0,colors[4],colors[3], "kb");	//KB
 			; SOURCE LINE # 373
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -38851,7 +38852,7 @@ Display_Running:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -38866,10 +38867,10 @@ Display_Running:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_27)
+	MOV  	A,#HIGH (?SC_29)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_27)
+	MOV  	A,#LOW (?SC_29)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -38907,10 +38908,10 @@ Display_Running:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_30)
+	MOV  	A,#HIGH (?SC_32)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_30)
+	MOV  	A,#LOW (?SC_32)
 	MOVX 	@R0,A
 	MOV  	R3,#01H
 	MOV  	R2,#00H
@@ -38961,7 +38962,7 @@ Display_Running:
 	MOV  	R6,A
 	LCALL	_LCD_ShowString
 ; 	//LCD_ShowString(95,224,0,colors[4],colors[7], "036kb");	//036KB/s
-; 	LCD_ShowString(95,272,0,colors[4],colors[7], "kb");	//KB
+; 	LCD_ShowString(95,272,0,colors[4],colors[3], "kb");	//KB
 			; SOURCE LINE # 377
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -38974,7 +38975,7 @@ Display_Running:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -38989,10 +38990,10 @@ Display_Running:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_27)
+	MOV  	A,#HIGH (?SC_29)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_27)
+	MOV  	A,#LOW (?SC_29)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -39003,7 +39004,7 @@ Display_Running:
 	MOV  	R6,A
 	LCALL	_LCD_ShowString
 ; 
-; 	ChineseString(55,5,1,colors[4],colors[7],"45"); //温度
+; 	ChineseString(135,5,1,colors[4],colors[7],"45"); //温度
 			; SOURCE LINE # 379
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -39031,19 +39032,19 @@ Display_Running:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_33)
+	MOV  	A,#HIGH (?SC_35)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_33)
+	MOV  	A,#LOW (?SC_35)
 	MOVX 	@R0,A
 	MOV  	R3,#01H
 	MOV  	R2,#00H
 	MOV  	R5,#05H
 	MOV  	R4,#00H
-	MOV  	R7,#037H
+	MOV  	R7,#087H
 	MOV  	R6,#00H
 	LCALL	_ChineseString
-; 	LCD_ShowString(55,53,0,colors[4],colors[7], ":");	//:
+; 	LCD_ShowString(135,53,0,colors[4],colors[7], ":");	//:
 			; SOURCE LINE # 380
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -39081,11 +39082,11 @@ Display_Running:
 	MOV  	R2,A
 	MOV  	R5,#035H
 	MOV  	R4,A
-	MOV  	R7,#037H
+	MOV  	R7,#087H
 	MOV  	R6,A
 	LCALL	_LCD_ShowString
 ; 	//LCD_ShowString(55,69,0,colors[4],colors[7], "13C");	//13C
-; 	LCD_ShowString(55,101,0,colors[4],colors[7], "C");	//C
+; 	LCD_ShowString(135,101,0,colors[4],colors[3], "C  ");	//C
 			; SOURCE LINE # 382
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -39098,7 +39099,7 @@ Display_Running:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -39113,20 +39114,20 @@ Display_Running:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_36)
+	MOV  	A,#HIGH (?SC_38)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_36)
+	MOV  	A,#LOW (?SC_38)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
 	MOV  	R2,A
 	MOV  	R5,#065H
 	MOV  	R4,A
-	MOV  	R7,#037H
+	MOV  	R7,#087H
 	MOV  	R6,A
 	LCALL	_LCD_ShowString
-; 	ChineseString(55,160,1,colors[4],colors[7],"01"); //时间
+; 	ChineseString(135,160,1,colors[4],colors[7],"01"); //时间
 			; SOURCE LINE # 383
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -39154,19 +39155,19 @@ Display_Running:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_38)
+	MOV  	A,#HIGH (?SC_42)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_38)
+	MOV  	A,#LOW (?SC_42)
 	MOVX 	@R0,A
 	MOV  	R3,#01H
 	MOV  	R2,#00H
 	MOV  	R5,#0A0H
 	MOV  	R4,#00H
-	MOV  	R7,#037H
+	MOV  	R7,#087H
 	MOV  	R6,#00H
 	LCALL	_ChineseString
-; 	LCD_ShowString(55,208,0,colors[4],colors[7], ":");	//:
+; 	LCD_ShowString(135,208,0,colors[4],colors[7], ":");	//:
 			; SOURCE LINE # 384
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -39204,7 +39205,7 @@ Display_Running:
 	MOV  	R2,A
 	MOV  	R5,#0D0H
 	MOV  	R4,A
-	MOV  	R7,#037H
+	MOV  	R7,#087H
 	MOV  	R6,A
 	LCALL	_LCD_ShowString
 ; 	//LCD_ShowString(55,224,0,colors[4],colors[7], "13:36");	//13:36
@@ -39237,10 +39238,10 @@ Display_Running:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_41)
+	MOV  	A,#HIGH (?SC_45)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_41)
+	MOV  	A,#LOW (?SC_45)
 	MOVX 	@R0,A
 	MOV  	R3,#01H
 	MOV  	R2,#00H
@@ -39305,7 +39306,7 @@ Display_Running_Refresh:
 ; {
 			; SOURCE LINE # 394
 ; 	//年
-; 	LCD_ShowChar(215,90,0,colors[4],colors[7], DisplayData[0]);	//2014
+; 	LCD_ShowChar(215,90,0,colors[4],colors[3], DisplayData[0]);	//2014
 			; SOURCE LINE # 396
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -39318,7 +39319,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -39341,7 +39342,7 @@ Display_Running_Refresh:
 	MOV  	R7,#0D7H
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(215,106,0,colors[4],colors[7], DisplayData[1]);	//2014
+; 	LCD_ShowChar(215,106,0,colors[4],colors[3], DisplayData[1]);	//2014
 			; SOURCE LINE # 397
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -39354,7 +39355,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -39377,7 +39378,7 @@ Display_Running_Refresh:
 	MOV  	R7,#0D7H
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(215,122,0,colors[4],colors[7], DisplayData[2]);	//2014
+; 	LCD_ShowChar(215,122,0,colors[4],colors[3], DisplayData[2]);	//2014
 			; SOURCE LINE # 398
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -39390,7 +39391,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -39413,7 +39414,7 @@ Display_Running_Refresh:
 	MOV  	R7,#0D7H
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(215,138,0,colors[4],colors[7], DisplayData[3]);	//2014
+; 	LCD_ShowChar(215,138,0,colors[4],colors[3], DisplayData[3]);	//2014
 			; SOURCE LINE # 399
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -39426,7 +39427,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -39450,7 +39451,7 @@ Display_Running_Refresh:
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
 ; 	//月
-; 	LCD_ShowChar(215,188,0,colors[4],colors[7], DisplayData[4]);	//02
+; 	LCD_ShowChar(215,188,0,colors[4],colors[3], DisplayData[4]);	//02
 			; SOURCE LINE # 401
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -39463,7 +39464,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -39486,7 +39487,7 @@ Display_Running_Refresh:
 	MOV  	R7,#0D7H
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(215,204,0,colors[4],colors[7], DisplayData[5]);	//02
+; 	LCD_ShowChar(215,204,0,colors[4],colors[3], DisplayData[5]);	//02
 			; SOURCE LINE # 402
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -39499,7 +39500,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -39523,7 +39524,7 @@ Display_Running_Refresh:
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
 ; 	//日
-; 	LCD_ShowChar(215,254,0,colors[4],colors[7], DisplayData[6]);	//19
+; 	LCD_ShowChar(215,254,0,colors[4],colors[3], DisplayData[6]);	//19
 			; SOURCE LINE # 404
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -39536,7 +39537,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -39559,7 +39560,7 @@ Display_Running_Refresh:
 	MOV  	R7,#0D7H
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(215,270,0,colors[4],colors[7], DisplayData[7]);	//19
+; 	LCD_ShowChar(215,270,0,colors[4],colors[3], DisplayData[7]);	//19
 			; SOURCE LINE # 405
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -39572,7 +39573,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -39631,10 +39632,10 @@ Display_Running_Refresh:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_44)
+	MOV  	A,#HIGH (?SC_48)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_44)
+	MOV  	A,#LOW (?SC_48)
 ; 	}
 			; SOURCE LINE # 410
 	SJMP 	?C0136
@@ -39669,10 +39670,10 @@ Display_Running_Refresh:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_47)
+	MOV  	A,#HIGH (?SC_51)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_47)
+	MOV  	A,#LOW (?SC_51)
 ?C0136:
 	MOVX 	@R0,A
 	MOV  	R3,#01H
@@ -39718,10 +39719,10 @@ Display_Running_Refresh:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_44)
+	MOV  	A,#HIGH (?SC_48)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_44)
+	MOV  	A,#LOW (?SC_48)
 ; 	}
 			; SOURCE LINE # 419
 	SJMP 	?C0137
@@ -39756,10 +39757,10 @@ Display_Running_Refresh:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_47)
+	MOV  	A,#HIGH (?SC_51)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_47)
+	MOV  	A,#LOW (?SC_51)
 ?C0137:
 	MOVX 	@R0,A
 	MOV  	R3,#01H
@@ -39773,7 +39774,7 @@ Display_Running_Refresh:
 			; SOURCE LINE # 423
 ?C0104:
 ; 	//CPU
-; 	LCD_ShowChar(135,69,0,colors[4],colors[7], DisplayData[19]);	//56
+; 	LCD_ShowChar(55,69,0,colors[4],colors[3], DisplayData[19]);	//56
 			; SOURCE LINE # 425
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -39786,7 +39787,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -39801,9 +39802,9 @@ Display_Running_Refresh:
 	MOVX 	A,@R0
 	MOV  	R0,#LOW (?_LCD_ShowChar?BYTE+0AH)
 	MOVX 	@R0,A
-	MOV  	R7,#087H
+	MOV  	R7,#037H
 	LCALL	L?0141
-; 	LCD_ShowChar(135,85,0,colors[4],colors[7], DisplayData[20]);	//56
+; 	LCD_ShowChar(55,85,0,colors[4],colors[3], DisplayData[20]);	//56
 			; SOURCE LINE # 426
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -39816,7 +39817,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -39836,11 +39837,11 @@ Display_Running_Refresh:
 	MOV  	R2,A
 	MOV  	R5,#055H
 	MOV  	R4,A
-	MOV  	R7,#087H
+	MOV  	R7,#037H
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
 ; 	//内存
-; 	LCD_ShowChar(135,224,0,colors[4],colors[7], DisplayData[22]);//64
+; 	LCD_ShowChar(55,224,0,colors[4],colors[3], DisplayData[22]);//64
 			; SOURCE LINE # 428
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -39853,7 +39854,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -39873,10 +39874,10 @@ Display_Running_Refresh:
 	MOV  	R2,A
 	MOV  	R5,#0E0H
 	MOV  	R4,A
-	MOV  	R7,#087H
+	MOV  	R7,#037H
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(135,240,0,colors[4],colors[7], DisplayData[23]);//64
+; 	LCD_ShowChar(55,240,0,colors[4],colors[3], DisplayData[23]);//64
 			; SOURCE LINE # 429
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -39889,7 +39890,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -39909,11 +39910,11 @@ Display_Running_Refresh:
 	MOV  	R2,A
 	MOV  	R5,#0F0H
 	MOV  	R4,A
-	MOV  	R7,#087H
+	MOV  	R7,#037H
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
 ; 	//上传
-; 	LCD_ShowChar(95,69,0,colors[4],colors[7], DisplayData[25]);	//024
+; 	LCD_ShowChar(95,69,0,colors[4],colors[3], DisplayData[25]);	//024
 			; SOURCE LINE # 431
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -39926,7 +39927,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -39949,7 +39950,7 @@ Display_Running_Refresh:
 	MOV  	R7,#05FH
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(95,85,0,colors[4],colors[7], DisplayData[26]);	//024
+; 	LCD_ShowChar(95,85,0,colors[4],colors[3], DisplayData[26]);	//024
 			; SOURCE LINE # 432
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -39962,7 +39963,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -39985,7 +39986,7 @@ Display_Running_Refresh:
 	MOV  	R7,#05FH
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(95,101,0,colors[4],colors[7], DisplayData[27]);	//024
+; 	LCD_ShowChar(95,101,0,colors[4],colors[3], DisplayData[27]);	//024
 			; SOURCE LINE # 433
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -39998,7 +39999,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40022,7 +40023,7 @@ Display_Running_Refresh:
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
 ; 	//下载
-; 	LCD_ShowChar(95,224,0,colors[4],colors[7], DisplayData[29]);//036
+; 	LCD_ShowChar(95,224,0,colors[4],colors[3], DisplayData[29]);//036
 			; SOURCE LINE # 435
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40035,7 +40036,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40058,7 +40059,7 @@ Display_Running_Refresh:
 	MOV  	R7,#05FH
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(95,240,0,colors[4],colors[7], DisplayData[30]);//036
+; 	LCD_ShowChar(95,240,0,colors[4],colors[3], DisplayData[30]);//036
 			; SOURCE LINE # 436
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40071,7 +40072,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40094,7 +40095,7 @@ Display_Running_Refresh:
 	MOV  	R7,#05FH
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(95,256,0,colors[4],colors[7], DisplayData[31]);//036
+; 	LCD_ShowChar(95,256,0,colors[4],colors[3], DisplayData[31]);//036
 			; SOURCE LINE # 437
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40107,7 +40108,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40131,7 +40132,7 @@ Display_Running_Refresh:
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
 ; 	//温度
-; 	LCD_ShowChar(55,69,0,colors[4],colors[7], DisplayData[33]);	//13
+; 	LCD_ShowChar(135,69,0,colors[4],colors[3], DisplayData[33]);	//13
 			; SOURCE LINE # 439
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40144,7 +40145,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40164,10 +40165,10 @@ Display_Running_Refresh:
 	MOV  	R2,A
 	MOV  	R5,#045H
 	MOV  	R4,A
-	MOV  	R7,#037H
+	MOV  	R7,#087H
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(55,85,0,colors[4],colors[7], DisplayData[34]);	//13
+; 	LCD_ShowChar(135,85,0,colors[4],colors[3], DisplayData[34]);	//13
 			; SOURCE LINE # 440
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40180,7 +40181,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40200,11 +40201,11 @@ Display_Running_Refresh:
 	MOV  	R2,A
 	MOV  	R5,#055H
 	MOV  	R4,A
-	MOV  	R7,#037H
+	MOV  	R7,#087H
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
 ; 	//时间
-; 	LCD_ShowChar(55,224,0,colors[4],colors[7], DisplayData[9]);	//13:36
+; 	LCD_ShowChar(135,224,0,colors[4],colors[3], DisplayData[9]);	//13:36
 			; SOURCE LINE # 442
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40217,7 +40218,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40237,10 +40238,10 @@ Display_Running_Refresh:
 	MOV  	R2,A
 	MOV  	R5,#0E0H
 	MOV  	R4,A
-	MOV  	R7,#037H
+	MOV  	R7,#087H
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(55,240,0,colors[4],colors[7], DisplayData[10]);	//13:36
+; 	LCD_ShowChar(135,240,0,colors[4],colors[3], DisplayData[10]);	//13:36
 			; SOURCE LINE # 443
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40253,7 +40254,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40273,10 +40274,10 @@ Display_Running_Refresh:
 	MOV  	R2,A
 	MOV  	R5,#0F0H
 	MOV  	R4,A
-	MOV  	R7,#037H
+	MOV  	R7,#087H
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(55,256,0,colors[4],colors[7], DisplayData[11]);	//13:36
+; 	LCD_ShowChar(135,256,0,colors[4],colors[3], DisplayData[11]);	//13:36
 			; SOURCE LINE # 444
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40289,7 +40290,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40309,10 +40310,10 @@ Display_Running_Refresh:
 	MOV  	R2,A
 	MOV  	R5,A
 	MOV  	R4,#01H
-	MOV  	R7,#037H
+	MOV  	R7,#087H
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(55,270,0,colors[4],colors[7], DisplayData[12]);	//13:36
+; 	LCD_ShowChar(135,270,0,colors[4],colors[3], DisplayData[12]);	//13:36
 			; SOURCE LINE # 445
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40325,7 +40326,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40345,10 +40346,10 @@ Display_Running_Refresh:
 	MOV  	R2,A
 	MOV  	R5,#0EH
 	MOV  	R4,#01H
-	MOV  	R7,#037H
+	MOV  	R7,#087H
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(55,286,0,colors[4],colors[7], DisplayData[13]);	//13:36
+; 	LCD_ShowChar(135,286,0,colors[4],colors[3], DisplayData[13]);	//13:36
 			; SOURCE LINE # 446
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40361,7 +40362,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40381,11 +40382,11 @@ Display_Running_Refresh:
 	MOV  	R2,A
 	MOV  	R5,#01EH
 	MOV  	R4,#01H
-	MOV  	R7,#037H
+	MOV  	R7,#087H
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
 ; 	//IP地址
-; 	LCD_ShowChar(15,69,0,colors[4],colors[7], DisplayData[36]);	//192.168.1.1
+; 	LCD_ShowChar(15,69,0,colors[4],colors[3], DisplayData[36]);	//192.168.1.1
 			; SOURCE LINE # 448
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40398,7 +40399,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40415,7 +40416,7 @@ Display_Running_Refresh:
 	MOVX 	@R0,A
 	MOV  	R7,#0FH
 	LCALL	L?0141
-; 	LCD_ShowChar(15,85,0,colors[4],colors[7], DisplayData[37]);	//192.168.1.1
+; 	LCD_ShowChar(15,85,0,colors[4],colors[3], DisplayData[37]);	//192.168.1.1
 			; SOURCE LINE # 449
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40428,7 +40429,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40451,7 +40452,7 @@ Display_Running_Refresh:
 	MOV  	R7,#0FH
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(15,101,0,colors[4],colors[7],DisplayData[38]);	//192.168.1.1
+; 	LCD_ShowChar(15,101,0,colors[4],colors[3],DisplayData[38]);	//192.168.1.1
 			; SOURCE LINE # 450
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40464,7 +40465,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40487,7 +40488,7 @@ Display_Running_Refresh:
 	MOV  	R7,#0FH
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(15,117,0,colors[4],colors[7], DisplayData[39]);	//192.168.1.1
+; 	LCD_ShowChar(15,117,0,colors[4],colors[3], DisplayData[39]);	//192.168.1.1
 			; SOURCE LINE # 451
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40500,7 +40501,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40523,7 +40524,7 @@ Display_Running_Refresh:
 	MOV  	R7,#0FH
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(15,133,0,colors[4],colors[7], DisplayData[40]);	//192.168.1.1
+; 	LCD_ShowChar(15,133,0,colors[4],colors[3], DisplayData[40]);	//192.168.1.1
 			; SOURCE LINE # 452
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40536,7 +40537,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40559,7 +40560,7 @@ Display_Running_Refresh:
 	MOV  	R7,#0FH
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(15,149,0,colors[4],colors[7], DisplayData[41]);	//192.168.1.1
+; 	LCD_ShowChar(15,149,0,colors[4],colors[3], DisplayData[41]);	//192.168.1.1
 			; SOURCE LINE # 453
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40572,7 +40573,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40595,7 +40596,7 @@ Display_Running_Refresh:
 	MOV  	R7,#0FH
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(15,165,0,colors[4],colors[7], DisplayData[42]);	//192.168.1.1
+; 	LCD_ShowChar(15,165,0,colors[4],colors[3], DisplayData[42]);	//192.168.1.1
 			; SOURCE LINE # 454
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40608,7 +40609,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40631,7 +40632,7 @@ Display_Running_Refresh:
 	MOV  	R7,#0FH
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(15,181,0,colors[4],colors[7], DisplayData[43]);	//192.168.1.1
+; 	LCD_ShowChar(15,181,0,colors[4],colors[3], DisplayData[43]);	//192.168.1.1
 			; SOURCE LINE # 455
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40644,7 +40645,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40667,7 +40668,7 @@ Display_Running_Refresh:
 	MOV  	R7,#0FH
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(15,197,0,colors[4],colors[7], DisplayData[44]);	//192.168.1.1
+; 	LCD_ShowChar(15,197,0,colors[4],colors[3], DisplayData[44]);	//192.168.1.1
 			; SOURCE LINE # 456
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40680,7 +40681,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40703,7 +40704,7 @@ Display_Running_Refresh:
 	MOV  	R7,#0FH
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(15,213,0,colors[4],colors[7], DisplayData[45]);	//192.168.1.1
+; 	LCD_ShowChar(15,213,0,colors[4],colors[3], DisplayData[45]);	//192.168.1.1
 			; SOURCE LINE # 457
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40716,7 +40717,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40739,7 +40740,7 @@ Display_Running_Refresh:
 	MOV  	R7,#0FH
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(15,229,0,colors[4],colors[7], DisplayData[46]);	//192.168.1.1
+; 	LCD_ShowChar(15,229,0,colors[4],colors[3], DisplayData[46]);	//192.168.1.1
 			; SOURCE LINE # 458
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40752,7 +40753,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40775,7 +40776,7 @@ Display_Running_Refresh:
 	MOV  	R7,#0FH
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(15,245,0,colors[4],colors[7], DisplayData[47]);	//192.168.1.1
+; 	LCD_ShowChar(15,245,0,colors[4],colors[3], DisplayData[47]);	//192.168.1.1
 			; SOURCE LINE # 459
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40788,7 +40789,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40811,7 +40812,7 @@ Display_Running_Refresh:
 	MOV  	R7,#0FH
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(15,261,0,colors[4],colors[7], DisplayData[48]);	//192.168.1.1
+; 	LCD_ShowChar(15,261,0,colors[4],colors[3], DisplayData[48]);	//192.168.1.1
 			; SOURCE LINE # 460
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40824,7 +40825,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40847,7 +40848,7 @@ Display_Running_Refresh:
 	MOV  	R7,#0FH
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(15,277,0,colors[4],colors[7], DisplayData[49]);	//192.168.1.1
+; 	LCD_ShowChar(15,277,0,colors[4],colors[3], DisplayData[49]);	//192.168.1.1
 			; SOURCE LINE # 461
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40860,7 +40861,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40883,7 +40884,7 @@ Display_Running_Refresh:
 	MOV  	R7,#0FH
 	MOV  	R6,A
 	LCALL	_LCD_ShowChar
-; 	LCD_ShowChar(15,293,0,colors[4],colors[7], DisplayData[50]);	//192.168.1.1
+; 	LCD_ShowChar(15,293,0,colors[4],colors[3], DisplayData[50]);	//192.168.1.1
 			; SOURCE LINE # 462
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -40896,7 +40897,7 @@ Display_Running_Refresh:
 	INC  	R0
 	MOV  	A,R7
 	MOVX 	@R0,A
-	MOV  	R0,#LOW (colors+0EH)
+	MOV  	R0,#LOW (colors+06H)
 	MOVX 	A,@R0
 	MOV  	R7,A
 	INC  	R0
@@ -40967,10 +40968,10 @@ Display_Running1:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_50)
+	MOV  	A,#HIGH (?SC_54)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_50)
+	MOV  	A,#LOW (?SC_54)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41008,10 +41009,10 @@ Display_Running1:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_66)
+	MOV  	A,#HIGH (?SC_70)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_66)
+	MOV  	A,#LOW (?SC_70)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41049,10 +41050,10 @@ Display_Running1:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_75)
+	MOV  	A,#HIGH (?SC_79)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_75)
+	MOV  	A,#LOW (?SC_79)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41090,10 +41091,10 @@ Display_Running1:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_91)
+	MOV  	A,#HIGH (?SC_95)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_91)
+	MOV  	A,#LOW (?SC_95)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41131,9 +41132,9 @@ Display_Running1:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_111)
+	MOV  	A,#HIGH (?SC_115)
 	MOVX 	@R0,A
-	MOV  	A,#LOW (?SC_111)
+	MOV  	A,#LOW (?SC_115)
 	LCALL	L?0138
 ; 	LCD_ShowString(65,5,0,colors[4],colors[7],		" plugs into your TV"); 
 			; SOURCE LINE # 476
@@ -41163,10 +41164,10 @@ Display_Running1:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_131)
+	MOV  	A,#HIGH (?SC_135)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_131)
+	MOV  	A,#LOW (?SC_135)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41204,10 +41205,10 @@ Display_Running1:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_151)
+	MOV  	A,#HIGH (?SC_155)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_151)
+	MOV  	A,#LOW (?SC_155)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41245,10 +41246,10 @@ Display_Running1:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_171)
+	MOV  	A,#HIGH (?SC_175)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_171)
+	MOV  	A,#LOW (?SC_175)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41305,10 +41306,10 @@ Display_Running2:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_191)
+	MOV  	A,#HIGH (?SC_195)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_191)
+	MOV  	A,#LOW (?SC_195)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41346,10 +41347,10 @@ Display_Running2:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_207)
+	MOV  	A,#HIGH (?SC_211)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_207)
+	MOV  	A,#LOW (?SC_211)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41387,10 +41388,10 @@ Display_Running2:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_223)
+	MOV  	A,#HIGH (?SC_227)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_223)
+	MOV  	A,#LOW (?SC_227)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41428,10 +41429,10 @@ Display_Running2:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_239)
+	MOV  	A,#HIGH (?SC_243)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_239)
+	MOV  	A,#LOW (?SC_243)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41469,9 +41470,9 @@ Display_Running2:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_259)
+	MOV  	A,#HIGH (?SC_263)
 	MOVX 	@R0,A
-	MOV  	A,#LOW (?SC_259)
+	MOV  	A,#LOW (?SC_263)
 	LCALL	L?0138
 ; 	LCD_ShowString(65,5,0,colors[4],colors[7],	"at your desktop PC "); 
 			; SOURCE LINE # 491
@@ -41501,10 +41502,10 @@ Display_Running2:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_279)
+	MOV  	A,#HIGH (?SC_283)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_279)
+	MOV  	A,#LOW (?SC_283)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41542,10 +41543,10 @@ Display_Running2:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_299)
+	MOV  	A,#HIGH (?SC_303)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_299)
+	MOV  	A,#LOW (?SC_303)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41583,10 +41584,10 @@ Display_Running2:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_319)
+	MOV  	A,#HIGH (?SC_323)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_319)
+	MOV  	A,#LOW (?SC_323)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41643,10 +41644,10 @@ Display_Running3:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_339)
+	MOV  	A,#HIGH (?SC_343)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_339)
+	MOV  	A,#LOW (?SC_343)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41684,10 +41685,10 @@ Display_Running3:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_355)
+	MOV  	A,#HIGH (?SC_359)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_355)
+	MOV  	A,#LOW (?SC_359)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41725,10 +41726,10 @@ Display_Running3:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_372)
+	MOV  	A,#HIGH (?SC_376)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_372)
+	MOV  	A,#LOW (?SC_376)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41766,10 +41767,10 @@ Display_Running3:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_389)
+	MOV  	A,#HIGH (?SC_393)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_389)
+	MOV  	A,#LOW (?SC_393)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41807,10 +41808,10 @@ Display_Running3:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_410)
+	MOV  	A,#HIGH (?SC_414)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_410)
+	MOV  	A,#LOW (?SC_414)
 	LCALL	L?0139
 ; 	LCD_ShowString(65,5,0,colors[4],colors[7]," all over the world "); 
 			; SOURCE LINE # 506
@@ -41840,10 +41841,10 @@ Display_Running3:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_431)
+	MOV  	A,#HIGH (?SC_435)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_431)
+	MOV  	A,#LOW (?SC_435)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41881,10 +41882,10 @@ Display_Running3:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_452)
+	MOV  	A,#HIGH (?SC_456)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_452)
+	MOV  	A,#LOW (?SC_456)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41922,10 +41923,10 @@ Display_Running3:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_473)
+	MOV  	A,#HIGH (?SC_477)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_473)
+	MOV  	A,#LOW (?SC_477)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A

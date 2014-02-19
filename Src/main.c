@@ -53,7 +53,8 @@ void main(void)
     while(1)
     {
   	   Display_Running_Refresh();
-	   delayms(1000); 
+	   delayms(1000);
+	   //DisplayData[0] ++; 
     }
 }
 

@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   MAIN                                                                  02/19/2014 15:20:28 PAGE 1   
+C51 COMPILER V7.50   MAIN                                                                  02/19/2014 16:34:20 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE MAIN
@@ -62,14 +62,15 @@ line level    source
   52   1              Display_Running();
   53   1          while(1)
   54   1          {
-C51 COMPILER V7.50   MAIN                                                                  02/19/2014 15:20:28 PAGE 2   
+C51 COMPILER V7.50   MAIN                                                                  02/19/2014 16:34:20 PAGE 2   
 
   55   2                 Display_Running_Refresh();
-  56   2                 delayms(1000); 
-  57   2          }
-  58   1      }
-  59          
+  56   2                 delayms(1000);
+  57   2                 //DisplayData[0] ++; 
+  58   2          }
+  59   1      }
   60          
+  61          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE

@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   SERIAL                                                                02/19/2014 15:20:30 PAGE 1   
+C51 COMPILER V7.50   SERIAL                                                                02/19/2014 16:34:21 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE SERIAL
@@ -62,7 +62,7 @@ line level    source
   52   1              uchar k;
   53   1              if(RI==1)
   54   1              {
-C51 COMPILER V7.50   SERIAL                                                                02/19/2014 15:20:30 PAGE 2   
+C51 COMPILER V7.50   SERIAL                                                                02/19/2014 16:34:21 PAGE 2   
 
   55   2                      RI = 0;
   56   2                      k = SBUF;
