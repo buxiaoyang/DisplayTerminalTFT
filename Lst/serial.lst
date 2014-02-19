@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   SERIAL                                                                02/19/2014 21:06:19 PAGE 1   
+C51 COMPILER V7.50   SERIAL                                                                02/19/2014 22:52:49 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE SERIAL
@@ -25,7 +25,7 @@ line level    source
   15          //0123   45      67      9 10  12 13       15    17       19 20  22 23  25 26 27   29 30 31      33 34   36~50
   16          uchar DisplayData[51] = "20140219,13:26,N,N,45,64,034,089,13,192.168.025.001";
   17          uchar DisplayDataTemp[51] = "20140219,13:26,N,N,45,64,034,089,13,192.168.025.001";
-  18          //数据格式 BGI20140219,13:26,N,N,45,64,034,089,13,192.168.025.001STOOOO
+  18          //数据格式 BGI20140219,13:26,N,N,45,64,034,089,13,192.168.025.001STO
   19          
   20          /******************** 全局变量定义 *******************/
   21          uchar get_i=0;  //读取数据的计数
@@ -62,7 +62,7 @@ line level    source
   52   1              switch(readSerialCurrent)
   53   1              {
   54   2                      case 0:
-C51 COMPILER V7.50   SERIAL                                                                02/19/2014 21:06:19 PAGE 2   
+C51 COMPILER V7.50   SERIAL                                                                02/19/2014 22:52:49 PAGE 2   
 
   55   2                              if(input == 'B')
   56   2                                      readSerialCurrent ++;
@@ -75,106 +75,109 @@ line level    source
   63   2                      break;  
   64   2                      case 2:
   65   2                              if(input == 'I')
-  66   2                                      readSerialCurrent ++;   
-  67   2                              else
-  68   2                                      readSerialCurrent = 0;  
-  69   2                      break; 
-  70   2                      case 3:  //read serial
-  71   2                              DisplayDataTemp[readSerialNumber] = input;
-  72   2                              readSerialNumber ++;    
-  73   2                              if(input == 'S')
-  74   2                                      readSerialCurrent ++;
-  75   2                              if(readSerialNumber > 51)
-  76   2                                      readSerialCurrent = 0;
-  77   2                      break;
-  78   2                      case 4:
-  79   2                              if(input == 'T')
-  80   2                                      readSerialCurrent ++;   
-  81   2                              else
-  82   2                                      readSerialCurrent = 0;
-  83   2                      case 5:
-  84   2                              if(input == 'O')
-  85   2                                      readSerialCurrent ++;   
-  86   2                              else
-  87   2                                      readSerialCurrent = 0;
-  88   2                      case 6:
-  89   2                              for(i=0; i<51; i++)
-  90   2                              {
-  91   3                                      DisplayData[i] = DisplayDataTemp[i];    
-  92   3                              }
-  93   2                              readSerialTimeOut = 0;
-  94   2                              readSerialCurrent = 0;  
-  95   2                      break;
-  96   2                      default:
-  97   2                              readSerialCurrent = 0;
-  98   2              }
-  99   1      }
- 100          
- 101          /******************** 软复位函数 *******************/
- 102          void soft_reset_to_ISP_Monitor(void)
- 103          {
- 104   1              IAP_CONTR = 0x60;   //0110，0000  软复位到系统ISP监控区
- 105   1      }
- 106          
- 107          /******************** 串口接收中断函数 *******************/
- 108          void UART_Interrupt_Receive(void) interrupt 4 //using 1
- 109          {
- 110   1              uchar k;
- 111   1              if(RI==1)
- 112   1              {
- 113   2                      RI = 0;
- 114   2                      k = SBUF;
- 115   2                      if((k==Self_Define_ISP_Download_Command)||(0x1f==k))        //是自定义下载命令
- 116   2                      {
-C51 COMPILER V7.50   SERIAL                                                                02/19/2014 21:06:19 PAGE 3   
+  66   2                              {
+  67   3                                      readSerialCurrent ++;
+  68   3                                      readSerialNumber = 0;   
+  69   3                              }
+  70   2                              else
+  71   2                                      readSerialCurrent = 0;  
+  72   2                      break; 
+  73   2                      case 3:  //read serial
+  74   2                              DisplayDataTemp[readSerialNumber] = input;
+  75   2                              readSerialNumber ++;    
+  76   2                              if(input == 'S')
+  77   2                                      readSerialCurrent ++;
+  78   2                              if(readSerialNumber > 52)
+  79   2                                      readSerialCurrent = 0;
+  80   2                      break;
+  81   2                      case 4:
+  82   2                              if(input == 'T')
+  83   2                                      readSerialCurrent ++;   
+  84   2                              else
+  85   2                                      readSerialCurrent = 0;
+  86   2                      case 5:
+  87   2                              if(input == 'O')
+  88   2                                      readSerialCurrent ++;   
+  89   2                              else
+  90   2                                      readSerialCurrent = 0;
+  91   2                      case 6:
+  92   2                              for(i=0; i<51; i++)
+  93   2                              {
+  94   3                                      DisplayData[i] = DisplayDataTemp[i];    
+  95   3                              }
+  96   2                              readSerialTimeOut = 0;
+  97   2                              readSerialCurrent = 0;  
+  98   2                      break;
+  99   2                      default:
+ 100   2                              readSerialCurrent = 0;
+ 101   2              }
+ 102   1      }
+ 103          
+ 104          /******************** 软复位函数 *******************/
+ 105          void soft_reset_to_ISP_Monitor(void)
+ 106          {
+ 107   1              IAP_CONTR = 0x60;   //0110，0000  软复位到系统ISP监控区
+ 108   1      }
+ 109          
+ 110          /******************** 串口接收中断函数 *******************/
+ 111          void UART_Interrupt_Receive(void) interrupt 4 //using 1
+ 112          {
+ 113   1              uchar k;
+ 114   1              if(RI==1)
+ 115   1              {
+ 116   2                      RI = 0;
+C51 COMPILER V7.50   SERIAL                                                                02/19/2014 22:52:49 PAGE 3   
 
- 117   3                              get_i++;
- 118   3                              if (10==get_i)
- 119   3                              {
- 120   4                                      delayms(200); //zxy
- 121   4                                      soft_reset_to_ISP_Monitor();    //软复位到系统ISP监控区
- 122   4                              }
- 123   3                      }
- 124   2                      else
- 125   2                      {
- 126   3                              if ((0==TI)&&(0==LenToSend))
- 127   3                              {
- 128   4                                      SBUF=0xa5;  //Serial OK !!!
- 129   4                              }
- 130   3                              get_i=0;
- 131   3                      }
- 132   2                      readSerialProcess(k);
- 133   2              }
- 134   1              else
- 135   1              {
- 136   2                      TI = 0;
- 137   2                      if (0!=LenToSend)
- 138   2                      {
- 139   3                              LenToSend--;
- 140   3                              if (0==LenToSend)
- 141   3                                      SBUF=DataToSend>>8;
- 142   3                              else
- 143   3                                      SBUF=DataToSend;
- 144   3                      }
- 145   2              }       
- 146   1      }
- 147          
- 148          /******************** 串口发送函数 *******************/
- 149          void SerialSend(uint Data, uchar Len)
- 150          {
- 151   1              if (0==TI)
- 152   1              {
- 153   2                      SBUF=Data;
- 154   2                      Len--;
- 155   2              }
- 156   1              LenToSend=Len;
- 157   1              DataToSend=Data;
- 158   1      }
- 159          
+ 117   2                      k = SBUF;
+ 118   2                      if((k==Self_Define_ISP_Download_Command)||(0x1f==k))        //是自定义下载命令
+ 119   2                      {
+ 120   3                              get_i++;
+ 121   3                              if (10==get_i)
+ 122   3                              {
+ 123   4                                      delayms(200); //zxy
+ 124   4                                      soft_reset_to_ISP_Monitor();    //软复位到系统ISP监控区
+ 125   4                              }
+ 126   3                      }
+ 127   2                      else
+ 128   2                      {
+ 129   3                              if ((0==TI)&&(0==LenToSend))
+ 130   3                              {
+ 131   4                                      SBUF=0xa5;  //Serial OK !!!
+ 132   4                              }
+ 133   3                              get_i=0;
+ 134   3                      }
+ 135   2                      readSerialProcess(k);
+ 136   2              }
+ 137   1              else
+ 138   1              {
+ 139   2                      TI = 0;
+ 140   2                      if (0!=LenToSend)
+ 141   2                      {
+ 142   3                              LenToSend--;
+ 143   3                              if (0==LenToSend)
+ 144   3                                      SBUF=DataToSend>>8;
+ 145   3                              else
+ 146   3                                      SBUF=DataToSend;
+ 147   3                      }
+ 148   2              }       
+ 149   1      }
+ 150          
+ 151          /******************** 串口发送函数 *******************/
+ 152          void SerialSend(uint Data, uchar Len)
+ 153          {
+ 154   1              if (0==TI)
+ 155   1              {
+ 156   2                      SBUF=Data;
+ 157   2                      Len--;
+ 158   2              }
+ 159   1              LenToSend=Len;
+ 160   1              DataToSend=Data;
+ 161   1      }
+ 162          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    340    ----
+   CODE SIZE        =    347    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =    110    ----

@@ -466,8 +466,8 @@ void Display_Running_Refresh()
 /******************** œ‘ æ≤‚ ‘∫Ø ˝1 *******************/
 void Display_Running1()
 {
-	Display_White();
-	Display_Running_Image();
+	//Display_White();
+	//Display_Running_Image();
 	LCD_ShowString(215,70,0,colors[4],colors[7],	"What is a Raspb");	
 	LCD_ShowString(185,70,0,colors[4],colors[7],	"erry Pi?"); 
 	LCD_ShowString(155,70,0,colors[4],colors[7],	"The Raspberry P"); 
@@ -475,7 +475,7 @@ void Display_Running1()
 	LCD_ShowString(95,5,0,colors[4],colors[7],		"sized computer that");
 	LCD_ShowString(65,5,0,colors[4],colors[7],		" plugs into your TV"); 
 	LCD_ShowString(35,5,0,colors[4],colors[7],		" and a keyboard. It");
-	LCD_ShowString(5,5,0,colors[4],colors[7],		" is a capable littl");
+	LCD_ShowString(5,5,0,colors[4],colors[7],		DisplayDataTemp);
 }
 
 /******************** œ‘ æ≤‚ ‘∫Ø ˝2 *******************/

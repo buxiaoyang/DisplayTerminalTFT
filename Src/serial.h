@@ -13,6 +13,7 @@
 
 
 uchar DisplayData[];
+uchar DisplayDataTemp[];
 /******************** º¯Êý¶¨Òå *******************/
 void SerialSend(uint Data, uchar len);
 void delayms(uint tt);

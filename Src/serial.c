@@ -15,7 +15,7 @@
 //0123	 45	 67	 9 10  12 13	   15	 17	  19 20	 22 23	25 26 27   29 30 31	 33 34	 36~50
 uchar DisplayData[51] = "20140219,13:26,N,N,45,64,034,089,13,192.168.025.001";
 uchar DisplayDataTemp[51] = "20140219,13:26,N,N,45,64,034,089,13,192.168.025.001";
-//数据格式 BGI20140219,13:26,N,N,45,64,034,089,13,192.168.025.001STOOOO
+//数据格式 BGI20140219,13:26,N,N,45,64,034,089,13,192.168.025.001STO
 
 /******************** 全局变量定义 *******************/
 uchar get_i=0;  //读取数据的计数
@@ -63,7 +63,10 @@ void readSerialProcess(uchar input)
 		break;	
 		case 2:
 			if(input == 'I')
-				readSerialCurrent ++;	
+			{
+				readSerialCurrent ++;
+				readSerialNumber = 0;	
+			}
 			else
 				readSerialCurrent = 0;	
 		break; 
@@ -72,7 +75,7 @@ void readSerialProcess(uchar input)
 			readSerialNumber ++;	
 			if(input == 'S')
 				readSerialCurrent ++;
-			if(readSerialNumber > 51)
+			if(readSerialNumber > 52)
 				readSerialCurrent = 0;
 		break;
 		case 4:

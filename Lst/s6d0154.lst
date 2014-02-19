@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   S6D0154                                                               02/19/2014 21:06:17 PAGE 1   
+C51 COMPILER V7.50   S6D0154                                                               02/19/2014 22:52:45 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE S6D0154
@@ -62,7 +62,7 @@ line level    source
   52          {  
   53   1              uint i,j,k=0;
   54   1              LCD_CS =0;  //打开片选使能
-C51 COMPILER V7.50   S6D0154                                                               02/19/2014 21:06:17 PAGE 2   
+C51 COMPILER V7.50   S6D0154                                                               02/19/2014 22:52:45 PAGE 2   
 
   55   1              Address_set(0,0,239,319);
   56   1              Write_COMD(0x00,0x22); 
@@ -126,7 +126,7 @@ line level    source
  114   3                  Write_DATA(0xff,0xff);
  115   3                  //Write_Data_18(0xff,0xff,0xc0);
  116   3              }
-C51 COMPILER V7.50   S6D0154                                                               02/19/2014 21:06:17 PAGE 3   
+C51 COMPILER V7.50   S6D0154                                                               02/19/2014 22:52:45 PAGE 3   
 
  117   2          }
  118   1              LCD_CS = 1;  //关闭片选使能
@@ -190,7 +190,7 @@ line level    source
  176   1          pfont=(uchar *)fonttable[size];
  177   1              LCD_CS =0;  //打开片选使能
  178   1          if(size==0)
-C51 COMPILER V7.50   S6D0154                                                               02/19/2014 21:06:17 PAGE 4   
+C51 COMPILER V7.50   S6D0154                                                               02/19/2014 22:52:45 PAGE 4   
 
  179   1          {
  180   2              ncols =16-1;
@@ -254,7 +254,7 @@ line level    source
  238   2              p++;
  239   2          }
  240   1      }
-C51 COMPILER V7.50   S6D0154                                                               02/19/2014 21:06:17 PAGE 5   
+C51 COMPILER V7.50   S6D0154                                                               02/19/2014 22:52:45 PAGE 5   
 
  241          
  242          /******************** 字符显示函数 *******************/
@@ -318,7 +318,7 @@ line level    source
  300   1              Display_Loading_Image();
  301   1              ChineseChar(50,79,2,colors[4],colors[7],1);             //正
  302   1          ChineseChar(50,122,2,colors[4],colors[7],2);        //在
-C51 COMPILER V7.50   S6D0154                                                               02/19/2014 21:06:17 PAGE 6   
+C51 COMPILER V7.50   S6D0154                                                               02/19/2014 22:52:45 PAGE 6   
 
  303   1          ChineseChar(50,165,2,colors[4],colors[7],3);        //启
  304   1          ChineseChar(50,208,2,colors[4],colors[7],4);        //动
@@ -382,7 +382,7 @@ line level    source
  362   1              LCD_ShowString(55,5,0,colors[4],colors[7], "CPU:");     //CPU:
  363   1              //LCD_ShowString(135,69,0,colors[4],colors[7], "56%");  //56%
  364   1              LCD_ShowString(55,101,0,colors[4],colors[3], "%  ");    //%
-C51 COMPILER V7.50   S6D0154                                                               02/19/2014 21:06:17 PAGE 7   
+C51 COMPILER V7.50   S6D0154                                                               02/19/2014 22:52:45 PAGE 7   
 
  365   1              ChineseString(55,160,1,colors[4],colors[7],"67"); //内存
  366   1              LCD_ShowString(55,208,0,colors[4],colors[7], ":");      //:
@@ -446,7 +446,7 @@ line level    source
  424   1              //CPU
  425   1              LCD_ShowChar(55,69,0,colors[4],colors[3], DisplayData[19]);     //56
  426   1              LCD_ShowChar(55,85,0,colors[4],colors[3], DisplayData[20]);     //56
-C51 COMPILER V7.50   S6D0154                                                               02/19/2014 21:06:17 PAGE 8   
+C51 COMPILER V7.50   S6D0154                                                               02/19/2014 22:52:45 PAGE 8   
 
  427   1              //内存
  428   1              LCD_ShowChar(55,224,0,colors[4],colors[3], DisplayData[22]);//64
@@ -490,8 +490,8 @@ line level    source
  466          /******************** 显示测试函数1 *******************/
  467          void Display_Running1()
  468          {
- 469   1              Display_White();
- 470   1              Display_Running_Image();
+ 469   1              //Display_White();
+ 470   1              //Display_Running_Image();
  471   1              LCD_ShowString(215,70,0,colors[4],colors[7],    "What is a Raspb");     
  472   1              LCD_ShowString(185,70,0,colors[4],colors[7],    "erry Pi?"); 
  473   1              LCD_ShowString(155,70,0,colors[4],colors[7],    "The Raspberry P"); 
@@ -499,7 +499,7 @@ line level    source
  475   1              LCD_ShowString(95,5,0,colors[4],colors[7],              "sized computer that");
  476   1              LCD_ShowString(65,5,0,colors[4],colors[7],              " plugs into your TV"); 
  477   1              LCD_ShowString(35,5,0,colors[4],colors[7],              " and a keyboard. It");
- 478   1              LCD_ShowString(5,5,0,colors[4],colors[7],               " is a capable littl");
+ 478   1              LCD_ShowString(5,5,0,colors[4],colors[7],               DisplayDataTemp);
  479   1      }
  480          
  481          /******************** 显示测试函数2 *******************/
@@ -510,7 +510,7 @@ line level    source
  486   1              LCD_ShowString(215,70,0,colors[4],colors[7],"e computer whic"); 
  487   1              LCD_ShowString(185,70,0,colors[4],colors[7],"h can be used i"); 
  488   1              LCD_ShowString(155,70,0,colors[4],colors[7],"n electronics p"); 
-C51 COMPILER V7.50   S6D0154                                                               02/19/2014 21:06:17 PAGE 9   
+C51 COMPILER V7.50   S6D0154                                                               02/19/2014 22:52:45 PAGE 9   
 
  489   1              LCD_ShowString(125,5,0,colors[4],colors[7],     "rojects, and for ma");
  490   1              LCD_ShowString(95,5,0,colors[4],colors[7],      "ny of the things th");
@@ -574,7 +574,7 @@ line level    source
  548   1              LCD_DataPortH=VH;       //高位P口
  549   1              LCD_DataPortL=VL;       //低位P口
  550   1              LCD_WR=0;
-C51 COMPILER V7.50   S6D0154                                                               02/19/2014 21:06:17 PAGE 10  
+C51 COMPILER V7.50   S6D0154                                                               02/19/2014 22:52:45 PAGE 10  
 
  551   1              LCD_WR=1;
  552   1      }
@@ -638,7 +638,7 @@ line level    source
  609   1              LCD_Write_COM(0x00,0x53); LCD_Write_DATA(0x08,0x05);
  610   1              LCD_Write_COM(0x00,0x54); LCD_Write_DATA(0x01,0x01);
  611   1              LCD_Write_COM(0x00,0x55); LCD_Write_DATA(0x0d,0x06);
-C51 COMPILER V7.50   S6D0154                                                               02/19/2014 21:06:17 PAGE 11  
+C51 COMPILER V7.50   S6D0154                                                               02/19/2014 22:52:45 PAGE 11  
 
  612   1              LCD_Write_COM(0x00,0x56); LCD_Write_DATA(0x0e,0x0a);
  613   1              LCD_Write_COM(0x00,0x57); LCD_Write_DATA(0x01,0x00);
@@ -657,8 +657,8 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   6843    ----
-   CONSTANT SIZE    =  38144    ----
+   CODE SIZE        =   6837    ----
+   CONSTANT SIZE    =  38124    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =     18     104
    DATA SIZE        =   ----    ----

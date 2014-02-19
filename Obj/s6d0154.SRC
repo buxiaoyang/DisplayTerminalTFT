@@ -169,6 +169,7 @@ P0M0	DATA	094H
 ?PD?S6D0154          SEGMENT XDATA INPAGE 
 	EXTRN	CODE (_delayms)
 	EXTRN	XDATA (DisplayData)
+	EXTRN	XDATA (DisplayDataTemp)
 	EXTRN	CODE (?C?COPY)
 	EXTRN	CODE (?C?IMUL)
 	EXTRN	CODE (?C?CLDPTR)
@@ -378,74 +379,70 @@ P0M0	DATA	094H
 	DB  'b' ,'o' ,'a' ,'r' ,'d' ,'.' ,' ' ,'I' ,'t' ,000H
 
 ?SC_175:
-	DB  ' ' ,'i' ,'s' ,' ' ,'a' ,' ' ,'c' ,'a' ,'p' ,'a' 
-	DB  'b' ,'l' ,'e' ,' ' ,'l' ,'i' ,'t' ,'t' ,'l' ,000H
-
-?SC_195:
 	DB  'e' ,' ' ,'c' ,'o' ,'m' ,'p' ,'u' ,'t' ,'e' ,'r' 
 	DB  ' ' ,'w' ,'h' ,'i' ,'c' ,000H
 
-?SC_211:
+?SC_191:
 	DB  'h' ,' ' ,'c' ,'a' ,'n' ,' ' ,'b' ,'e' ,' ' ,'u' 
 	DB  's' ,'e' ,'d' ,' ' ,'i' ,000H
 
-?SC_227:
+?SC_207:
 	DB  'n' ,' ' ,'e' ,'l' ,'e' ,'c' ,'t' ,'r' ,'o' ,'n' 
 	DB  'i' ,'c' ,'s' ,' ' ,'p' ,000H
 
-?SC_243:
+?SC_223:
 	DB  'r' ,'o' ,'j' ,'e' ,'c' ,'t' ,'s' ,',' ,' ' ,'a' 
 	DB  'n' ,'d' ,' ' ,'f' ,'o' ,'r' ,' ' ,'m' ,'a' ,000H
 
-?SC_263:
+?SC_243:
 	DB  'n' ,'y' ,' ' ,'o' ,'f' ,' ' ,'t' ,'h' ,'e' ,' ' 
 	DB  't' ,'h' ,'i' ,'n' ,'g' ,'s' ,' ' ,'t' ,'h' ,000H
 
-?SC_283:
+?SC_263:
 	DB  'a' ,'t' ,' ' ,'y' ,'o' ,'u' ,'r' ,' ' ,'d' ,'e' 
 	DB  's' ,'k' ,'t' ,'o' ,'p' ,' ' ,'P' ,'C' ,' ' ,000H
 
-?SC_303:
+?SC_283:
 	DB  'd' ,'o' ,'e' ,'s' ,',' ,' ' ,'l' ,'i' ,'k' ,'e' 
 	DB  ' ' ,'s' ,'p' ,'r' ,'e' ,'a' ,'d' ,'s' ,'h' ,000H
 
-?SC_323:
+?SC_303:
 	DB  'e' ,'e' ,'t' ,'s' ,',' ,' ' ,'w' ,'o' ,'r' ,'d' 
 	DB  '-' ,'p' ,'r' ,'o' ,'c' ,'e' ,'s' ,'s' ,'i' ,000H
 
-?SC_343:
+?SC_323:
 	DB  'n' ,'g' ,' ' ,'a' ,'n' ,'d' ,' ' ,'g' ,'a' ,'m' 
 	DB  'e' ,'s' ,'.' ,' ' ,'I' ,000H
 
-?SC_359:
+?SC_339:
 	DB  't' ,' ' ,'a' ,'l' ,'s' ,'o' ,' ' ,'p' ,'l' ,'a' 
 	DB  'y' ,'s' ,' ' ,'h' ,'i' ,'g' ,000H
 
-?SC_376:
+?SC_356:
 	DB  'h' ,'-' ,'d' ,'e' ,'f' ,'i' ,'n' ,'i' ,'t' ,'i' 
 	DB  'o' ,'n' ,' ' ,'v' ,'i' ,'d' ,000H
 
-?SC_393:
+?SC_373:
 	DB  'e' ,'o' ,'.' ,' ' ,'W' ,'e' ,' ' ,'w' ,'a' ,'n' 
 	DB  't' ,' ' ,'t' ,'o' ,' ' ,'s' ,'e' ,'e' ,' ' ,'i' 
 	DB  000H
 
-?SC_414:
+?SC_394:
 	DB  't' ,' ' ,'b' ,'e' ,'i' ,'n' ,'g' ,' ' ,'u' ,'s' 
 	DB  'e' ,'d' ,' ' ,'b' ,'y' ,' ' ,'k' ,'i' ,'d' ,'s' 
 	DB  000H
 
-?SC_435:
+?SC_415:
 	DB  ' ' ,'a' ,'l' ,'l' ,' ' ,'o' ,'v' ,'e' ,'r' ,' ' 
 	DB  't' ,'h' ,'e' ,' ' ,'w' ,'o' ,'r' ,'l' ,'d' ,' ' 
 	DB  000H
 
-?SC_456:
+?SC_436:
 	DB  't' ,'o' ,' ' ,'l' ,'e' ,'a' ,'r' ,'n' ,' ' ,'p' 
 	DB  'r' ,'o' ,'g' ,'r' ,'a' ,'m' ,'m' ,'i' ,'n' ,'g' 
 	DB  000H
 
-?SC_477:
+?SC_457:
 	DB  '.' ,000H
 
 RaspberryPiLogoBig:
@@ -40934,12 +40931,8 @@ Display_Running1:
 			; SOURCE LINE # 467
 ; {
 			; SOURCE LINE # 468
-; 	Display_White();
-			; SOURCE LINE # 469
-	LCALL	Display_White
-; 	Display_Running_Image();
-			; SOURCE LINE # 470
-	LCALL	Display_Running_Image
+; 	//Display_White();
+; 	//Display_Running_Image();
 ; 	LCD_ShowString(215,70,0,colors[4],colors[7],	"What is a Raspb");	
 			; SOURCE LINE # 471
 	MOV  	R0,#LOW (colors+08H)
@@ -41218,7 +41211,7 @@ Display_Running1:
 	MOV  	R7,#023H
 	MOV  	R6,A
 	LCALL	_LCD_ShowString
-; 	LCD_ShowString(5,5,0,colors[4],colors[7],		" is a capable littl");
+; 	LCD_ShowString(5,5,0,colors[4],colors[7],		DisplayDataTemp);
 			; SOURCE LINE # 478
 	MOV  	R0,#LOW (colors+08H)
 	MOVX 	A,@R0
@@ -41243,13 +41236,13 @@ Display_Running1:
 	MOV  	A,R7
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#0FFH
+	MOV  	A,#0FEH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_175)
+	MOV  	A,#HIGH (DisplayDataTemp)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_175)
+	MOV  	A,#LOW (DisplayDataTemp)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41306,10 +41299,10 @@ Display_Running2:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_195)
+	MOV  	A,#HIGH (?SC_175)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_195)
+	MOV  	A,#LOW (?SC_175)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41347,10 +41340,10 @@ Display_Running2:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_211)
+	MOV  	A,#HIGH (?SC_191)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_211)
+	MOV  	A,#LOW (?SC_191)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41388,10 +41381,10 @@ Display_Running2:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_227)
+	MOV  	A,#HIGH (?SC_207)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_227)
+	MOV  	A,#LOW (?SC_207)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41429,10 +41422,10 @@ Display_Running2:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_243)
+	MOV  	A,#HIGH (?SC_223)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_243)
+	MOV  	A,#LOW (?SC_223)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41470,9 +41463,9 @@ Display_Running2:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_263)
+	MOV  	A,#HIGH (?SC_243)
 	MOVX 	@R0,A
-	MOV  	A,#LOW (?SC_263)
+	MOV  	A,#LOW (?SC_243)
 	LCALL	L?0138
 ; 	LCD_ShowString(65,5,0,colors[4],colors[7],	"at your desktop PC "); 
 			; SOURCE LINE # 491
@@ -41502,10 +41495,10 @@ Display_Running2:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_283)
+	MOV  	A,#HIGH (?SC_263)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_283)
+	MOV  	A,#LOW (?SC_263)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41543,10 +41536,10 @@ Display_Running2:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_303)
+	MOV  	A,#HIGH (?SC_283)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_303)
+	MOV  	A,#LOW (?SC_283)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41584,10 +41577,10 @@ Display_Running2:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_323)
+	MOV  	A,#HIGH (?SC_303)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_323)
+	MOV  	A,#LOW (?SC_303)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41644,10 +41637,10 @@ Display_Running3:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_343)
+	MOV  	A,#HIGH (?SC_323)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_343)
+	MOV  	A,#LOW (?SC_323)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41685,10 +41678,10 @@ Display_Running3:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_359)
+	MOV  	A,#HIGH (?SC_339)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_359)
+	MOV  	A,#LOW (?SC_339)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41726,10 +41719,10 @@ Display_Running3:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_376)
+	MOV  	A,#HIGH (?SC_356)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_376)
+	MOV  	A,#LOW (?SC_356)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41767,10 +41760,10 @@ Display_Running3:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_393)
+	MOV  	A,#HIGH (?SC_373)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_393)
+	MOV  	A,#LOW (?SC_373)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41808,10 +41801,10 @@ Display_Running3:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_414)
+	MOV  	A,#HIGH (?SC_394)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_414)
+	MOV  	A,#LOW (?SC_394)
 	LCALL	L?0139
 ; 	LCD_ShowString(65,5,0,colors[4],colors[7]," all over the world "); 
 			; SOURCE LINE # 506
@@ -41841,10 +41834,10 @@ Display_Running3:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_435)
+	MOV  	A,#HIGH (?SC_415)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_435)
+	MOV  	A,#LOW (?SC_415)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41882,10 +41875,10 @@ Display_Running3:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_456)
+	MOV  	A,#HIGH (?SC_436)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_456)
+	MOV  	A,#LOW (?SC_436)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
@@ -41923,10 +41916,10 @@ Display_Running3:
 	MOV  	A,#0FFH
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#HIGH (?SC_477)
+	MOV  	A,#HIGH (?SC_457)
 	MOVX 	@R0,A
 	INC  	R0
-	MOV  	A,#LOW (?SC_477)
+	MOV  	A,#LOW (?SC_457)
 	MOVX 	@R0,A
 	CLR  	A
 	MOV  	R3,A
