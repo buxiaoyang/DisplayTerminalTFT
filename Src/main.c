@@ -18,7 +18,9 @@
 #define T1_H 0xfe
 #define T1_L 0x31
 
-extern uint readSerialTimeOut; 
+extern uint readSerialTimeOut;
+extern uchar displayRunning; 
+extern uchar isLoadingDisplay;  
 /******************** 定时器0中断函数 *******************/
 void time0() interrupt 1 //using 1
 {
@@ -36,7 +38,7 @@ void InitSys(void)
     TMOD=0x21;  //time0:16bit;time1:serial
     TH1=0xe6;    //12MHz,0xf3, 12T,SMOD=0,2400bps; 24MHz 0xe6
     TL1=0xe6;
-    PCON=0x00; 
+	PCON=0x00; 
     SCON=0x70; //MODE:1;   串口10位异步收发，定时器控制
     ES=1;      //串口中断开
     ET1=0;
@@ -50,11 +52,19 @@ void main(void)
 {
 	InitSys();
     LCD_Init();
-	Display_Running();
+	Display_Loding();
     while(1)
     {
-		Display_Running_Refresh();
-		delayms(1000);
+		if(!isLoadingDisplay)
+		{
+			if(!displayRunning)
+			{
+				Display_Running();
+				displayRunning = 1;	
+			}
+			Display_Running_Refresh();
+			delayms(1000);
+		}
 		readSerialTimeOut++;
 		if(readSerialTimeOut > 50)
 		{

@@ -26,7 +26,10 @@ uint DataToSend;
 
 uchar readSerialCurrent = 0;
 uchar readSerialNumber = 0;
-uint readSerialTimeOut = 0; 
+uint readSerialTimeOut = 0;
+
+uchar displayRunning = 0; //running界面是否显示标志位
+uchar isLoadingDisplay = 1; //是否在loading状态 
 /******************** 延迟函数ms *******************/
 void delayms(uint tt)
 {
@@ -93,6 +96,7 @@ void readSerialProcess(uchar input)
 			{
 				DisplayData[i] = DisplayDataTemp[i];	
 			}
+			isLoadingDisplay = 0;
 			readSerialTimeOut = 0;
 			readSerialCurrent = 0;	
 		break;
