@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   MAIN                                                                  02/23/2014 17:33:59 PAGE 1   
+C51 COMPILER V7.50   MAIN                                                                  02/23/2014 17:42:58 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   52          {
   53   1              InitSys();
   54   1          LCD_Init();
-C51 COMPILER V7.50   MAIN                                                                  02/23/2014 17:33:59 PAGE 2   
+C51 COMPILER V7.50   MAIN                                                                  02/23/2014 17:42:58 PAGE 2   
 
   55   1              Display_Loding();
   56   1          while(1)

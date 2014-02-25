@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   SERIAL                                                                02/23/2014 17:34:00 PAGE 1   
+C51 COMPILER V7.50   SERIAL                                                                02/23/2014 17:42:59 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE SERIAL
@@ -62,7 +62,7 @@ line level    source
   52          void readSerialProcess(uchar input)
   53          {
   54   1              uchar i;
-C51 COMPILER V7.50   SERIAL                                                                02/23/2014 17:34:00 PAGE 2   
+C51 COMPILER V7.50   SERIAL                                                                02/23/2014 17:42:59 PAGE 2   
 
   55   1              switch(readSerialCurrent)
   56   1              {
@@ -126,7 +126,7 @@ line level    source
  114          /******************** 串口接收中断函数 *******************/
  115          void UART_Interrupt_Receive(void) interrupt 4 //using 1
  116          {
-C51 COMPILER V7.50   SERIAL                                                                02/23/2014 17:34:00 PAGE 3   
+C51 COMPILER V7.50   SERIAL                                                                02/23/2014 17:42:59 PAGE 3   
 
  117   1              uchar k;
  118   1              if(RI==1)
