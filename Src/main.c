@@ -18,6 +18,9 @@
 #define T1_H 0xfe
 #define T1_L 0x31
 
+sbit BackLight = P4^1;
+sbit TestOut = P4^0;
+
 extern uint readSerialTimeOut;
 extern uchar displayRunning; 
 extern uchar isLoadingDisplay;  
@@ -28,6 +31,7 @@ void time0() interrupt 1 //using 1
     TH0=T0_H;   
     TL0=T0_L;   
     TR0=1;
+	TestOut = ~TestOut;
 }
 
 /******************** 系统初始化函数 *******************/
@@ -53,6 +57,7 @@ void main(void)
 	InitSys();
     LCD_Init();
 	Display_Loding();
+	//BackLight = 1;
     while(1)
     {
 		if(!isLoadingDisplay)
